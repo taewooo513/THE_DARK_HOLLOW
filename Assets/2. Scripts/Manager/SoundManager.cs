@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
@@ -14,9 +15,18 @@ public class SoundManager : Singleton<SoundManager>
 
     void Start()
     {
-        bgmAudio = GetComponents<AudioSource>()[0];
+        if (transform.TryGetComponent(out AudioSource source))
+        {
+            bgmAudio = GetComponents<AudioSource>()[0];
+            efxAudio = GetComponents<AudioSource>()[1];
+        }
+        else
+        {
+            bgmAudio = transform.AddComponent<AudioSource>();
+            efxAudio = transform.AddComponent<AudioSource>();
+        }
+
         bgmAudio.loop = true;
-        efxAudio = GetComponents<AudioSource>()[1];
         sounds = new Dictionary<string, AudioClip>();
     }
 
