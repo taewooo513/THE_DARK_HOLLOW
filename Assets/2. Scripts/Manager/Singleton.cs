@@ -30,12 +30,12 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    protected virtual void Init()
+    public virtual void Init()
     {
 
     }
 
-    protected virtual void Release()
+    public virtual void Release()
     {
 
     }
