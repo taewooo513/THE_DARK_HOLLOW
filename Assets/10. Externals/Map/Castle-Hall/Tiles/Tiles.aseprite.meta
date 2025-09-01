@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff06df69071e0bd458526eb49fbec8b1
+guid: af413168ffd002a49b1972b83ea273aa
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,16 +123,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Tiles
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.506993, y: -0.006240249}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 320
-      height: 576
-    spriteID: acbb03ca3115f714dbd6372b10c581e7
+      width: 572
+      height: 641
+    spriteID: 826879748d900824f90b83de07029268
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -154,14 +154,14 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 0
-        y: 0
-        width: 320
-        height: 576
-      spriteId: acbb03ca3115f714dbd6372b10c581e7
+        y: 4
+        width: 572
+        height: 641
+      spriteId: 826879748d900824f90b83de07029268
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 320, y: 576}
+  canvasSize: {x: 580, y: 660}
