@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Info")]
     [SerializeField] private float moveSpeed;
+    [SerializeField] private Vector2 movementInput;
+    [SerializeField] private Vector2 movementDirection;
+    [SerializeField] private float jumpPower;
 
     private void Awake()
     {
@@ -37,11 +40,44 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        Move();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("누름");
+        // 키를 누르고 있으면
+        if(context.phase == InputActionPhase.Performed)
+        {
+            movementInput = context.ReadValue<Vector2>();
+        }
+        // 키를 떼면 
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            movementInput = Vector2.zero;
+        }
+    }
+
+    private void Move()
+    {
+        // 이동 방향 설정
+        movementDirection = movementInput;
+
+        // 이동 속도 설정
+        movementDirection *= moveSpeed;
+
+        // 중력은 velocity.y값으로 설정
+        movementDirection.y = rigid.velocity.y;
+
+        // 이동 처리
+        rigid.velocity = movementDirection;
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        // 키를 누르기 시작했을 때 
+        if(context.phase == InputActionPhase.Started)
+        {
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        }
     }
 }
