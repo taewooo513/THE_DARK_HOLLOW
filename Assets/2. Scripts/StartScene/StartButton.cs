@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartManager : MonoBehaviour
+public class StartButton : MonoBehaviour
 {
     // 인스펙터에서 장면 불러오기
     public string MainSceneCGH;
