@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class ObjectNameKey
 {
-    public const string Skill_3 = "";
+    public const string Skill_3 = ""; // 프리팹 이름과 맞춰서 사용해야합니다
 }
 
 public class ObjectPoolingManager : Singleton<ObjectPoolingManager>
