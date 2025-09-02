@@ -7,7 +7,7 @@ public class ChaseState : BossStateBase
     public ChaseState(BossController c, BossStateMachine f) : base(c, f) { }
     public override void OnEnter()
     {
-        ctx.Play("Run"); // 애니 트리거명 맞추기
+        //ctx.Play("Run"); // 애니 트리거명 맞추기
     }
     public override void Tick(float dt)
     {

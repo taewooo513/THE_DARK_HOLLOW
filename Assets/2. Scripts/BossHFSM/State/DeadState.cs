@@ -8,7 +8,7 @@ public class DeadState : BossStateBase
     public override void OnEnter()
     {
         ctx.StopMove();
-        ctx.Play("Dead"); // TODO
+        //ctx.Play("Dead"); // TODO
         var col = ctx.GetComponent<Collider2D>(); if (col) col.enabled = false;
         ctx.ToDie();
     }

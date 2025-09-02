@@ -6,7 +6,11 @@ public class RecoverState : BossStateBase
 {
     public RecoverState(BossController c, BossStateMachine f) : base(c, f) { }
     float t; const float dur = 0.3f;
-    public override void OnEnter() { t = 0; ctx.StopMove(); ctx.Play("Recover"); } // TODO
+    public override void OnEnter() 
+    {
+        t = 0; ctx.StopMove();
+        //ctx.Play("Recover"); 
+    }
     public override void Tick(float dt)
     {
         t += dt;

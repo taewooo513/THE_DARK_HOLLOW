@@ -17,7 +17,13 @@ public class AttackRangedState : AttackSuper
     {
         readonly AttackRangedState sup; float t;
         public A_Windup(BossController c, BossStateMachine f, AttackRangedState s) : base(c, f) { sup = s; }
-        public override void OnEnter() { t = 0; sup.locked = true; ctx.StopMove(); ctx.Play("Shoot_Windup"); } // TODO
+        public override void OnEnter() 
+        { 
+            t = 0; 
+            sup.locked = true; 
+            ctx.StopMove(); 
+            //ctx.Play("Shoot_Windup"); 
+        }
         public override void Tick(float dt)
         {
             t += dt;
@@ -33,7 +39,7 @@ public class AttackRangedState : AttackSuper
         {
             fired = false;
             ctx.FaceToPlayer();
-            ctx.Play("Shoot"); // TODO
+          //  ctx.Play("Shoot"); // TODO
         }
         public override void Tick(float dt)
         {
@@ -51,7 +57,11 @@ public class AttackRangedState : AttackSuper
     {
         readonly AttackRangedState sup; float t;
         public A_Recover(BossController c, BossStateMachine f, AttackRangedState s) : base(c, f) { sup = s; }
-        public override void OnEnter() { t = 0; ctx.Play("Shoot_Recover"); } // TODO
+        public override void OnEnter() 
+        { 
+            t = 0; 
+            //ctx.Play("Shoot_Recover"); 
+        }
         public override void Tick(float dt)
         {
             t += dt;

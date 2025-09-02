@@ -329,6 +329,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83f137c42eaed10419538cf82c7344ba, type: 3}
+--- !u!4 &374106130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4390913238621973653, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+  m_PrefabInstance: {fileID: 9148196727777323072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &550706592
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +345,8 @@ GameObject:
   - component: {fileID: 550706594}
   - component: {fileID: 550706593}
   m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -527,6 +532,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7912fb9db2687141ba317876edb994b, type: 3}
+--- !u!1 &1548325027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4385063254897747745, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
+  m_PrefabInstance: {fileID: 1662575658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1662575658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6249,6 +6259,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 374106130}
+    - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1548325027}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

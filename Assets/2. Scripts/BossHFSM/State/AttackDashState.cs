@@ -18,7 +18,12 @@ public class AttackDashState : AttackSuper
     {
         readonly AttackDashState sup; float t;
         public A_Windup(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
-        public override void OnEnter() { t = 0; sup.locked = true; ctx.StopMove(); ctx.Play("Dash_Windup"); } // TODO
+        public override void OnEnter() 
+        { 
+            t = 0;
+            sup.locked = true; ctx.StopMove(); 
+            //ctx.Play("Dash_Windup"); 
+        } 
         public override void Tick(float dt)
         {
             t += dt;
@@ -36,7 +41,7 @@ public class AttackDashState : AttackSuper
             ctx.FaceToPlayer();
             if (ctx.player) dir = (ctx.player.position - ctx.transform.position).normalized;
             else dir = new Vector2(ctx.transform.localScale.x, 0f);
-            ctx.Play("Dash"); // TODO
+            //ctx.Play("Dash");
         }
         public override void Tick(float dt)
         {
@@ -55,7 +60,11 @@ public class AttackDashState : AttackSuper
     {
         readonly AttackDashState sup; float t;
         public A_Recover(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
-        public override void OnEnter() { t = 0; ctx.Play("Dash_Recover"); } // TODO
+        public override void OnEnter() 
+        { 
+            t = 0; 
+            //ctx.Play("Dash_Recover"); 
+        } 
         public override void Tick(float dt)
         {
             t += dt;
