@@ -15,5 +15,4 @@ public abstract class BossStateBase : IBossState
     public virtual void OnExit() { }
     public virtual void Tick(float dt) { }
     public virtual void FixedTick(float fdt) { }
-    public virtual void HandleEvent(EventType evt, Component sender, object param = null) { }
 }

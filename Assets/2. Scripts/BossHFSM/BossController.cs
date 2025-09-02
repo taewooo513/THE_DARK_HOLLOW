@@ -169,6 +169,7 @@ public class BossController : MonoBehaviour
         if (canHurt == true)
         {
             canHurt = false;
+            stat.hp01 -= damage;
             Play("TakeDamage");
             StartCoroutine(OnTakeDamageRoutine());
         }
@@ -178,6 +179,12 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         canHurt = true;
     }
+
+    public void ApplyDamage()
+    {
+        
+    }
+
 
     // 상태 접근자(내부 전이용)
     public IdleState SIdle => idle;

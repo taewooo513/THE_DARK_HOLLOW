@@ -17,5 +17,4 @@ public sealed class BossStateMachine
 
     public void Tick(float dt) => Current?.Tick(dt);
     public void FixedTick(float fdt) => Current?.FixedTick(fdt);
-    public void Send(EventType e, Component s, object p = null) => Current?.HandleEvent(e, s, p);
 }

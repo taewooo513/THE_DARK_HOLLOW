@@ -37,7 +37,7 @@ public class BossStat : MonoBehaviour
     public float bulletLifetime = 2f;       // 예상 이동거리 = speed * lifetime
 
     [Header("Phase / HP")]
-    [Range(0, 1)] public float hp01 = 1f;   // 0~1 정규화 HP (원하면 외부에서 갱신)
+    [Range(100, 10000)] public float hp01 = 100;   
 
     void OnValidate()
     {

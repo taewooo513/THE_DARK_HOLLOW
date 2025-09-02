@@ -8,7 +8,6 @@ public interface IBossState
     void OnExit();
     void Tick(float dt);
     void FixedTick(float fdt);
-    void HandleEvent(EventType evt, Component sender, object param = null);
     bool IsLocked { get; }
     string Name { get; }
 }
