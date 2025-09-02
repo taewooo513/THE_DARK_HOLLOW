@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
@@ -10,14 +11,19 @@ public class BossController : MonoBehaviour
     public Transform player;              // 타깃(없으면 자동으로 Player 태그 검색)
     public Rigidbody2D rb;
     public Animator animator;
+    public Animator preAnimator;
     public BossStat stat;
 
     // FSM
     public BossStateMachine fsm { get; private set; }
     // States
-    IdleState idle; ChaseState chase; ChooseState choose;
-    AttackDashState atkDash; AttackRangedState atkRanged;
-    RecoverState recover; DeadState dead;
+    IdleState idle;
+    ChaseState chase;
+    ChooseState choose;
+    AttackDashState atkDash;
+    AttackRangedState atkRanged;
+    RecoverState recover;
+    DeadState dead;
 
     // 쿨다운
     float readyDash, readyRanged;
@@ -30,6 +36,8 @@ public class BossController : MonoBehaviour
     // 캐시 접근자
     public float Dist => distCache;
     bool InAggro => Dist <= stat.detectRange;
+
+    [SerializeField] GameObject preAttack;
 
     void Awake()
     {
@@ -109,7 +117,6 @@ public class BossController : MonoBehaviour
     {
         var dir = (pos - (Vector2)transform.position).normalized;
         rb.velocity = dir * speed;
-        if (dir.x != 0) transform.localScale = new Vector3(Mathf.Sign(dir.x), 1, 1);
     }
     public void StopMove() => rb.velocity = Vector2.zero;
 
@@ -117,15 +124,24 @@ public class BossController : MonoBehaviour
     {
         if (!player) return;
         var dir = (player.position - transform.position);
-        if (Mathf.Abs(dir.x) > 0.01f) transform.localScale = new Vector3(Mathf.Sign(dir.x), 1, 1);
     }
 
-   /* public void Play(string trigger)
+    public void Play(string trigger)
     {
         if (!animator || string.IsNullOrEmpty(trigger)) return;
         animator.ResetTrigger(trigger);
         animator.SetTrigger(trigger);
-    }*/
+    }
+    public void OnPreAttackEffect()
+    {
+        preAttack.SetActive(true);
+        StartCoroutine(OnPreAttackRoutine());
+    }
+    IEnumerator OnPreAttackRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        preAttack.SetActive(false);
+    }
 
     // 투사체 스폰(기즈모와 일치하도록 stat.bulletSpeed 사용)
     public void FireProjectile()

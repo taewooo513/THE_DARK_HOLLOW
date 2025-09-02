@@ -16,7 +16,7 @@ public class BossStat : MonoBehaviour
     public float dashSpeed = 12f;
 
     [Header("Dash Timings")]
-    public float dashWindup = 0.20f;
+    public float dashWindup = 0.5f;
     public float dashActive = 0.28f;
     public float dashRecover = 0.35f;
     public float dashCooldown = 1.8f;

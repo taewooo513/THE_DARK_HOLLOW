@@ -126,12 +126,12 @@ TextureImporter:
       name: BossAttackEffect_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 82
-        width: 49
-        height: 32
+        x: 56
+        y: 97
+        width: 17
+        height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +147,12 @@ TextureImporter:
       name: BossAttackEffect_1
       rect:
         serializedVersion: 2
-        x: 167
-        y: 82
-        width: 51
-        height: 34
+        x: 182
+        y: 96
+        width: 20
+        height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: BossAttackEffect_2
       rect:
         serializedVersion: 2
-        x: 294
-        y: 82
-        width: 53
-        height: 37
+        x: 308
+        y: 92
+        width: 27
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: BossAttackEffect_3
       rect:
         serializedVersion: 2
-        x: 421
-        y: 82
-        width: 55
-        height: 40
+        x: 432
+        y: 89
+        width: 33
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: BossAttackEffect_4
       rect:
         serializedVersion: 2
-        x: 548
-        y: 82
-        width: 57
-        height: 47
+        x: 553
+        y: 86
+        width: 44
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: BossAttackEffect_5
       rect:
         serializedVersion: 2
-        x: 675
-        y: 82
-        width: 59
-        height: 49
+        x: 680
+        y: 83
+        width: 49
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -253,11 +253,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 801
-        y: 81
+        y: 80
         width: 63
-        height: 52
+        height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -274,11 +274,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 928
-        y: 35
+        y: 76
         width: 65
-        height: 99
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -295,11 +295,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1055
-        y: 35
+        y: 73
         width: 67
-        height: 104
+        height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -316,11 +316,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1182
-        y: 35
+        y: 71
         width: 69
-        height: 106
+        height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

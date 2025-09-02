@@ -329,11 +329,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83f137c42eaed10419538cf82c7344ba, type: 3}
---- !u!4 &374106130 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4390913238621973653, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
-  m_PrefabInstance: {fileID: 9148196727777323072}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &550706592
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +527,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7912fb9db2687141ba317876edb994b, type: 3}
+--- !u!1 &1237504768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1238154396340138914, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+  m_PrefabInstance: {fileID: 9148196727777323072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1548325027 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4385063254897747745, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
@@ -6219,6 +6219,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 1238154396340138914, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481520039354108700, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: preAttack
+      value: 
+      objectReference: {fileID: 1237504768}
     - target: {fileID: 4202443844225021835, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.59
@@ -6260,9 +6268,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
-      propertyPath: firePoint
-      value: 
-      objectReference: {fileID: 374106130}
+      propertyPath: nearRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: dashActive
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: bulletPrefab
       value: 

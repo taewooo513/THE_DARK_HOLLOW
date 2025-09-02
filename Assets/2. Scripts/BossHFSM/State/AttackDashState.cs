@@ -14,20 +14,25 @@ public class AttackDashState : AttackSuper
 
     protected override IBossState DefaultSub() => new A_Windup(ctx, fsm, this);
 
+    //A_Windup : 돌진 준비 단계
+    // - 이동을 멈춤, 애니 트리거, 방향을 미리 계산/고정(래치)
+    // - dashWindup 경과 후 Execute로 전환
     class A_Windup : BossStateBase
     {
         readonly AttackDashState sup; float t;
         public A_Windup(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
-            t = 0;
-            sup.locked = true; ctx.StopMove(); 
+            t = 0f;
+            sup.locked = true; ctx.StopMove();
+            ctx.OnPreAttackEffect();
             //ctx.Play("Dash_Windup"); 
         } 
         public override void Tick(float dt)
         {
             t += dt;
-            if (t >= ctx.stat.dashWindup) sup.ChangeSub(new A_Execute(ctx, fsm, sup));
+            if (t >= ctx.stat.dashWindup)
+                sup.ChangeSub(new A_Execute(ctx, fsm, sup));
         }
     }
 
@@ -73,9 +78,14 @@ public class AttackDashState : AttackSuper
                 sup.locked = false;
                 ctx.StartCD_Dash();
                 // 다음으로
-                if (!ctx.CanSeePlayer()) fsm.Change(ctx.SIdle);
-                else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) fsm.Change(ctx.SChoose);
-                else fsm.Change(ctx.SChase);
+                if (!ctx.CanSeePlayer()) 
+                    fsm.Change(ctx.SIdle);
+
+                else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) 
+                    fsm.Change(ctx.SChoose);
+
+                else 
+                    fsm.Change(ctx.SChase);
             }
         }
     }
