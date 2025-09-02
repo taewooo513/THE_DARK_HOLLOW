@@ -17,15 +17,18 @@ public class ObjectManager : Singleton<ObjectManager>
 
     public void Start()
     {
-        
+
     }
 
-    public void LoadGameObject(string label)
+    public AsyncOperationHandle LoadGameObject(string label)
     {
-        ResourceManager.Instance.LoadResource<GameObject>("Stage1", obj =>
-        {
-            objects.Add(obj.name, obj);
-        }).Completed += OnLoadCompleteObject;
+        var handle = ResourceManager.Instance.LoadResource<GameObject>("Stage1", obj =>
+         {
+             objects.Add(obj.name, obj);
+         });
+        handle.Completed += OnLoadCompleteObject;
+        objectsHandle = handle;
+        return objectsHandle;
     }
 
     public override void Release()
@@ -66,7 +69,6 @@ public class ObjectManager : Singleton<ObjectManager>
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Debug.Log("Load Prefabs Succeeded");
-            objectsHandle = handle;
         }
         else if (handle.Status == AsyncOperationStatus.Failed)
         {
