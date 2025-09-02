@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/1. Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/1. Scenes/TaewoongTest.unity
-    guid: b9a7a1e2a4f8d43479d9b4fa03890cb1
+    path: Assets/1. Scenes/StartSceneCGH.unity
+    guid: 764410d435f0c88459b9ae1e8813d427
+  - enabled: 1
+    path: Assets/1. Scenes/MainSceneCGH.unity
+    guid: 170fd76c9c2123b49b9849960d0c8e9c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 479071fdfa5952543990e36549a87ea3, type: 2}
