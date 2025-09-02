@@ -33,8 +33,6 @@ public class BackGroundFog : MonoBehaviour
                 x = 0;
             }
         }
-
-        Debug.Log(spritewidth);
         x += Time.deltaTime * speed * directionX;
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }

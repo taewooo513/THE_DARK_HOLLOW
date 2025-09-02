@@ -10,21 +10,29 @@ public class ObjectManager : Singleton<ObjectManager>
     Dictionary<string, GameObject> objects;
     AsyncOperationHandle objectsHandle;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         objects = new Dictionary<string, GameObject>();
+        Debug.Log(1);
     }
 
     public void Start()
     {
+        Debug.Log(2);
 
+    }
+
+    private void Update()
+    {
+        Debug.Log(objects.Count);
     }
 
     public AsyncOperationHandle LoadGameObject(string label)
     {
-        var handle = ResourceManager.Instance.LoadResource<GameObject>("Stage1", obj =>
+        var handle = ResourceManager.Instance.LoadResource<GameObject>(label, obj =>
          {
-             objects.Add(obj.name, obj);
+             InsertObject(obj.name, obj);
          });
         handle.Completed += OnLoadCompleteObject;
         objectsHandle = handle;
@@ -35,6 +43,7 @@ public class ObjectManager : Singleton<ObjectManager>
     {
         objects.Clear();
         Addressables.Release(objectsHandle);
+        Debug.Log(8);
     }
 
     public void InsertObject(string key, GameObject obj)
@@ -44,6 +53,7 @@ public class ObjectManager : Singleton<ObjectManager>
             Debug.Log($"{key} is duplicate in obj");
             return;
         }
+
         objects.Add(key, obj);
     }
 
@@ -61,6 +71,7 @@ public class ObjectManager : Singleton<ObjectManager>
             }
         }
         Debug.Log($"Not Find {key} in Objects");
+
         return null;
     }
 

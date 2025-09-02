@@ -20,10 +20,6 @@ public class ResourceManager : Singleton<ResourceManager>
     }
     public override void Release()
     {
-        if (objsHandle.IsValid())
-            Addressables.Release(objsHandle);
-        if (soundsHandle.IsValid())
-            Addressables.Release(soundsHandle);
     }
 
     public AsyncOperationHandle<IList<T>> LoadResource<T>(string label, Action<T> callback) where T : UnityEngine.Object

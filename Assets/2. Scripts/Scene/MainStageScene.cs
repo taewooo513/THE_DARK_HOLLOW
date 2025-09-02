@@ -7,6 +7,7 @@ public class MainStageScene : MonoScene
 {
     public override void Init()
     {
+        SoundManager.Instance.PlayBGMSound("BossBGM1");
     }
 
     public override AsyncOperationHandle LoadPrefabs()
@@ -21,10 +22,7 @@ public class MainStageScene : MonoScene
 
     public override void Release()
     {
-    }
-
-    void Update()
-    {
-
+        SoundManager.Instance.Release();
+        ObjectManager.Instance.Release();
     }
 }

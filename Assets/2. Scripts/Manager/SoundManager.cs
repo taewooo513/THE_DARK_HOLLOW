@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
 {
@@ -30,12 +31,15 @@ public class SoundManager : Singleton<SoundManager>
 
         bgmAudio.loop = true;
         sounds = new Dictionary<string, AudioClip>();
+
+        SceneLoadManager.Instance.LoadScene("TaewoongTest");
     }
 
     public override void Release()
     {
         sounds.Clear();
         Addressables.Release(soundHandle);
+        Debug.Log(7);
     }
 
     public void SetEFXVolume(float volume)
