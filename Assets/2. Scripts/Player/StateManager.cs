@@ -1,7 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerStateType
+{
+    Idle,
+    Move,
+    Run,
+    Jump,
+    Hit
+}
+
 // context = 상태 데이터 전달 역할 = StateMachine = StateManager(나는 매니저로 정의)
-// 상태머신의 context(상황, 상태?)
+// 상태머신의 context(상황, 상태?) Il || 
 public class StateManager : MonoBehaviour
 {
     // 상태 머신은 하나의 상태만 가짐. 
@@ -9,29 +19,43 @@ public class StateManager : MonoBehaviour
     //public BaseState CurrentState { get; set; }
 
     // 구체적인 상태들을 정의
-    public PlayerIdleState idleState = new PlayerIdleState();
-    public PlayerMoveState moveState = new PlayerMoveState();
-    public PlayerRunState runState = new PlayerRunState();
-    public PlayerJumpState jumpState = new PlayerJumpState();
-    public PlayerHitState hitState = new PlayerHitState();
+    private Dictionary<PlayerStateType, BaseState> states = new();
+    //public PlayerIdleState idleState = new PlayerIdleState();
+    //public PlayerMoveState moveState = new PlayerMoveState();
+    //public PlayerRunState runState = new PlayerRunState();
+    //public PlayerJumpState jumpState = new PlayerJumpState();
+    //public PlayerHitState hitState = new PlayerHitState();
+
     //public PlayerGrowingState growState = new PlayerGrowingState();
     //public PlayerWholeState wholeState = new PlayerWholeState();
     //public PlayerRottenState rottenState = new PlayerRottenState();
     //public PlayerChewedState chewedState = new PlayerChewedState();
 
-    private PlayerController playerController;
+    //private PlayerController playerController;
+    public PlayerController PlayerController { get; set; }
+
+    private void Awake()
+    {
+        states.Add(PlayerStateType.Idle, new PlayerIdleState());
+        states.Add(PlayerStateType.Move, new PlayerMoveState());
+        states.Add(PlayerStateType.Run, new PlayerRunState());
+        states.Add(PlayerStateType.Jump, new PlayerJumpState());
+        states.Add(PlayerStateType.Hit, new PlayerHitState());
+    }
 
     private void Start()
     {
+        PlayerController = GetComponent<PlayerController>();    
+
         // 초기 상태 설정
-        currentState = idleState;
+        //currentState = idleState;
+        currentState = states[PlayerStateType.Idle];
         //currentState = moveState;
         //currentState = growState;
 
         // context를 넘겨서 상태 진입 
         currentState.EnterState(this);  
 
-        playerController = GetComponent<PlayerController>();    
     }
 
     private void Update()
@@ -51,6 +75,7 @@ public class StateManager : MonoBehaviour
         switch (currentState)
         {
             case PlayerMoveState:
+            case PlayerJumpState:
             case PlayerRunState:
             case PlayerHitState:
                 currentState.FixedUpdateState(this);
@@ -69,5 +94,10 @@ public class StateManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentState.OnCollisionEnter(this, collision);
+    }
+
+    public BaseState Getstates(PlayerStateType type)
+    {
+        return states[type];
     }
 }

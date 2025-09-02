@@ -2,23 +2,32 @@ using UnityEngine;
 
 public class PlayerRunState : BaseState
 {
-    public override void EnterState(StateManager player)
+    private PlayerController playerController;
+
+    public override void EnterState(StateManager stateManager)
+    {
+        Debug.Log("Hello from the Run State");
+        this.playerController = stateManager.PlayerController;
+        ChangeSpeed();
+    }
+
+    public override void UpdateState(StateManager stateManager)
     {
 
     }
 
-    public override void UpdateState(StateManager player)
+    public override void OnCollisionEnter(StateManager stateManager, Collision2D collision)
     {
 
     }
 
-    public override void OnCollisionEnter(StateManager player, Collision2D collision)
+    public override void FixedUpdateState(StateManager stateManager)
     {
 
     }
 
-    public override void FixedUpdateState(StateManager player)
+    private void ChangeSpeed()
     {
-
+        this.playerController.SpeedModifier = playerController.SpeedModifierInput;
     }
 }

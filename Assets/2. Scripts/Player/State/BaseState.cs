@@ -5,11 +5,11 @@ using UnityEngine;
 // concrte 클래스에서 구현 
 public abstract class BaseState 
 {
-    public abstract void EnterState(StateManager player);
+    public abstract void EnterState(StateManager stateManager);
 
-    public abstract void UpdateState(StateManager player);
+    public abstract void UpdateState(StateManager stateManager);
 
-    public abstract void FixedUpdateState(StateManager player);
+    public abstract void FixedUpdateState(StateManager stateManager);
 
-    public abstract void OnCollisionEnter(StateManager player, Collision2D collision);
+    public abstract void OnCollisionEnter(StateManager stateManager, Collision2D collision);
 }
