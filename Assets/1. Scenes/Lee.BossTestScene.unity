@@ -285,8 +285,16 @@ PrefabInstance:
       value: Skill_5
       objectReference: {fileID: 0}
     - target: {fileID: 6010515105116331871, guid: 83f137c42eaed10419538cf82c7344ba, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010515105116331871, guid: 83f137c42eaed10419538cf82c7344ba, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010515105116331871, guid: 83f137c42eaed10419538cf82c7344ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.16
+      value: 14.34
       objectReference: {fileID: 0}
     - target: {fileID: 6010515105116331871, guid: 83f137c42eaed10419538cf82c7344ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6267,6 +6275,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4222286140246841869, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062852338360735969, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: nearRange
       value: 10
@@ -6276,9 +6292,21 @@ PrefabInstance:
       value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: dashWindup
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1548325027}
+    - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: dashCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: rangedCooldown
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -9,7 +9,8 @@ public class DeadState : BossStateBase
     {
         ctx.StopMove();
         //ctx.Play("Dead"); // TODO
-        var col = ctx.GetComponent<Collider2D>(); if (col) col.enabled = false;
+        var col = ctx.GetComponent<Collider2D>(); 
+        if (col) col.enabled = false;
         ctx.ToDie();
     }
 }

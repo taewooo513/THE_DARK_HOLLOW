@@ -9,7 +9,7 @@ public class BossStat : MonoBehaviour
     public float nearRange = 1.8f;  // 돌진(근접) 임계
     public float farRange = 5.5f;  // 원거리 임계
     [Tooltip("시야/거리 계산 주기(Hz). 8~10 권장")]
-    public float perceptionHz = 8f;
+    public float perceptionHz = 8f; // 눈깜빡임 주기
 
     [Header("Move Speeds")]
     public float moveSpeed = 3.5f;

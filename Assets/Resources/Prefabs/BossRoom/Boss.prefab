@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1481520039354108700}
   - component: {fileID: 1210616300662183778}
   - component: {fileID: 2486494017034777118}
-  - component: {fileID: 971342725208699766}
+  - component: {fileID: 7995802627108600116}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -126,19 +126,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectRange: 15
-  nearRange: 1.8
+  nearRange: 10
   farRange: 5.5
   perceptionHz: 1
   moveSpeed: 3.5
   dashSpeed: 12
-  dashWindup: 0.2
-  dashActive: 0.28
+  dashWindup: 1
+  dashActive: 1.2
   dashRecover: 0.35
-  dashCooldown: 1.8
+  dashCooldown: 5
   rangedWindup: 0.2
   rangedActive: 0
   rangedRecover: 0.35
-  rangedCooldown: 1.4
+  rangedCooldown: 3
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 4390913238621973653}
   bulletSpeed: 5
@@ -159,7 +159,9 @@ MonoBehaviour:
   player: {fileID: 0}
   rb: {fileID: 0}
   animator: {fileID: 0}
+  preAnimator: {fileID: 0}
   stat: {fileID: 0}
+  preAttack: {fileID: 1238154396340138914}
 --- !u!114 &1210616300662183778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +202,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &971342725208699766
+--- !u!60 &7995802627108600116
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -445,7 +447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5826344542003525504
 Transform:
   m_ObjectHideFlags: 0
@@ -501,7 +503,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1529487401, guid: 81e62807d2f2b8245be15af2f2c004e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

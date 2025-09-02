@@ -32,6 +32,7 @@ public class BossController : MonoBehaviour
     bool canSee;
     float distCache = Mathf.Infinity;
     float pAcc;
+    bool canHurt = true;
 
     // 캐시 접근자
     public float Dist => distCache;
@@ -72,7 +73,7 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
-        // ── Perception 주기 업데이트(거리/가시성 캐시) ──
+  // ── Perception 주기 업데이트──
         pAcc += Time.deltaTime;
         if (pAcc >= 1f / Mathf.Max(0.1f, stat.perceptionHz))
         {
@@ -161,6 +162,21 @@ public class BossController : MonoBehaviour
     public void ToDie()
     {
         Destroy(this.gameObject, 3f);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (canHurt == true)
+        {
+            canHurt = false;
+            Play("TakeDamage");
+            StartCoroutine(OnTakeDamageRoutine());
+        }
+    }
+    IEnumerator OnTakeDamageRoutine()
+    {
+        yield return new WaitForSeconds(0.8f);
+        canHurt = true;
     }
 
     // 상태 접근자(내부 전이용)
