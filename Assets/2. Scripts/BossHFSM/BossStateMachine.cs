@@ -4,9 +4,9 @@ using UnityEngine;
 
 public sealed class BossStateMachine
 {
-    public IState Current { get; private set; }
+    public IBossState Current { get; private set; }
 
-    public void Change(IState next, string reason = null)
+    public void Change(IBossState next, string reason = null)
     {
         if (next == null || next == Current) return;
         if (Current != null && Current.IsLocked && reason != "Force") return;
