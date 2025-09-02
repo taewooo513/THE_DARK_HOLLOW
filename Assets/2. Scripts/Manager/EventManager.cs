@@ -7,7 +7,11 @@ using UnityEngine.SceneManagement;
 // 필요한 이벤트만 구성 - Good
 public enum EventType
 {
-    AchievementUnlocked,
+    Boss_Hit,      // 피격/경직
+    Boss_Stun,     // 강제 스턴
+    Boss_Die,      // 사망
+    Boss_Phase,    // 페이즈(각성) 진입
+               
 }
 public class EventManager : Singleton<EventManager>
 {
