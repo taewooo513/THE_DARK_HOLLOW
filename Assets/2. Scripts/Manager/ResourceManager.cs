@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,10 +11,6 @@ public class ResourceManager : Singleton<ResourceManager>
     AsyncOperationHandle<IList<GameObject>> objsHandle;
     AsyncOperationHandle<IList<AudioClip>> soundsHandle;
 
-    void Start()
-    {
-        LoadResource("Stage1");
-    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
@@ -29,42 +26,8 @@ public class ResourceManager : Singleton<ResourceManager>
             Addressables.Release(soundsHandle);
     }
 
-    public void LoadResource(string label)
+    public AsyncOperationHandle<IList<T>> LoadResource<T>(string label, Action<T> callback) where T : UnityEngine.Object
     {
-        Addressables.LoadAssetsAsync<GameObject>(label, obj =>
-        {
-            ObjectManager.Instance.InsertObject(obj.name, obj);
-            Debug.Log(obj.name);
-        }).Completed += OnLoadCompletePrefabs;
-        Addressables.LoadAssetsAsync<AudioClip>(label, audioClip =>
-        {
-            SoundManager.Instance.InsertSound(audioClip.name, audioClip);
-        }).Completed += OnLoadCompleteSounds;
-    }
-
-    private void OnLoadCompletePrefabs(AsyncOperationHandle<IList<GameObject>> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            Debug.Log("Load Prefabs Succeeded");
-            objsHandle = handle;
-        }
-        else if (handle.Status == AsyncOperationStatus.Failed)
-        {
-            Debug.LogError("Load Prefabs Failed");
-        }
-    }
-
-    private void OnLoadCompleteSounds(AsyncOperationHandle<IList<AudioClip>> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            Debug.Log("Load Sounds Succeeded");
-            soundsHandle = handle;
-        }
-        else if (handle.Status == AsyncOperationStatus.Failed)
-        {
-            Debug.LogError("Load Sounds Failed");
-        }
+        return Addressables.LoadAssetsAsync<T>(label, callback);
     }
 }

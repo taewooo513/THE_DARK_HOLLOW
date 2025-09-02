@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5bea088dd7e73a04cbb208bf64ea3f55
+guid: 3081cc37ba8999d46b88f17ac2f0b225
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,16 +123,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Props
     originalName: 
-    pivot: {x: 0.5106383, y: -0.04489796}
+    pivot: {x: 0.51724136, y: -0.04489796}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 188
+      width: 290
       height: 245
-    spriteID: 46961313b1b1ab74f92357d4dd8f79c5
+    spriteID: 6cdea664b4aff674fbdf347c934e7747
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -155,13 +155,13 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 11
-        width: 188
+        width: 290
         height: 245
-      spriteId: 46961313b1b1ab74f92357d4dd8f79c5
+      spriteId: 6cdea664b4aff674fbdf347c934e7747
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 192, y: 256}
+  canvasSize: {x: 300, y: 256}
