@@ -3,52 +3,45 @@ using UnityEngine;
 // 움직이는 역할 
 public class PlayerMoveState : BaseState
 {
-    private StateManager player;
+    private PlayerController playerController;
 
-    public override void EnterState(StateManager player)
+    public override void EnterState(StateManager stateManager)
     {
         Debug.Log("Hello from the Move State");
-        this.player = player;
+        this.playerController = stateManager.PlayerController;
     }
 
-    public override void UpdateState(StateManager player)
+    public override void UpdateState(StateManager stateManager)
     {
         
     }
 
-    public override void OnCollisionEnter(StateManager player, Collision2D collision)
+    public override void OnCollisionEnter(StateManager stateManager, Collision2D collision)
     {
 
     }
 
-    public override void FixedUpdateState(StateManager player)
+    public override void FixedUpdateState(StateManager stateManager)
     {
         Debug.Log("(FixedUpdateState): Player Move!!");
         Move();
-        Jump();
     }
 
     private void Move()
     {
-        //// 이동 방향 설정
-        //movementDirection = player.movementInput;
+        // 이동 방향 설정
+        playerController.MovementDirection = playerController.MovementInput;
 
-        //// 이동 속도 설정
-        //movementDirection *= (moveSpeed * speedModifier);
+        // 이동 속도 설정
+        playerController.MovementDirection *= (playerController.MoveSpeed * playerController.SpeedModifier);
 
-        //// 중력은 velocity.y값으로 설정
-        //movementDirection.y = rigid.velocity.y;
+        // 중력은 velocity.y값으로 설정
+        Vector2 dir = playerController.MovementDirection;
+        dir.y = playerController.Rigid.velocity.y;
+        playerController.MovementDirection = dir;
+        //playerController.MovementDirection.y = playerController.Rigid.velocity.y;
 
-        //// 이동 처리
-        //rigid.velocity = movementDirection;
-    }
-
-    private void Jump()
-    {
-        //if (canJump)
-        //{
-        //    rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        //    canJump = false;
-        //}
+        // 이동 처리
+        playerController.Rigid.velocity = playerController.MovementDirection;
     }
 }
