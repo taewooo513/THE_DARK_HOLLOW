@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 2997029}
   - component: {fileID: 2997028}
   - component: {fileID: 2997027}
+  - component: {fileID: 2997031}
+  - component: {fileID: 2997030}
   m_Layer: 5
   m_Name: the
   m_TagString: Untagged
@@ -218,6 +220,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2997025}
   m_CullTransparentMesh: 1
+--- !u!114 &2997030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2997025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141eeae118da62344bb463f39a742cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalTime: 0.5
+  flickerCount: 2
+  jitterPos: 4
+  jitterRot: 4
+  jitterScale: 0.06
+--- !u!225 &2997031
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2997025}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &310469185
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +424,8 @@ GameObject:
   - component: {fileID: 328620243}
   - component: {fileID: 328620242}
   - component: {fileID: 328620241}
+  - component: {fileID: 328620245}
+  - component: {fileID: 328620244}
   m_Layer: 5
   m_Name: hollow
   m_TagString: Untagged
@@ -476,6 +509,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328620239}
   m_CullTransparentMesh: 1
+--- !u!114 &328620244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328620239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141eeae118da62344bb463f39a742cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalTime: 0.5
+  flickerCount: 2
+  jitterPos: 4
+  jitterRot: 4
+  jitterScale: 0.06
+--- !u!225 &328620245
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328620239}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &373190373
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +657,8 @@ GameObject:
   - component: {fileID: 458053905}
   - component: {fileID: 458053904}
   - component: {fileID: 458053903}
+  - component: {fileID: 458053908}
+  - component: {fileID: 458053907}
   m_Layer: 5
   m_Name: OptionButton
   m_TagString: Untagged
@@ -719,6 +783,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458053901}
   m_CullTransparentMesh: 1
+--- !u!114 &458053907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458053901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141eeae118da62344bb463f39a742cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalTime: 0.5
+  flickerCount: 2
+  jitterPos: 4
+  jitterRot: 4
+  jitterScale: 0.06
+--- !u!225 &458053908
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458053901}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &574346804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1157,8 @@ GameObject:
   - component: {fileID: 1085988147}
   - component: {fileID: 1085988146}
   - component: {fileID: 1085988145}
+  - component: {fileID: 1085988149}
+  - component: {fileID: 1085988148}
   m_Layer: 5
   m_Name: dark
   m_TagString: Untagged
@@ -1147,6 +1242,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085988143}
   m_CullTransparentMesh: 1
+--- !u!114 &1085988148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085988143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141eeae118da62344bb463f39a742cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalTime: 0.5
+  flickerCount: 2
+  jitterPos: 4
+  jitterRot: 4
+  jitterScale: 0.06
+--- !u!225 &1085988149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085988143}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1107852228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,6 +1834,9 @@ GameObject:
   - component: {fileID: 1795512611}
   - component: {fileID: 1795512610}
   - component: {fileID: 1795512609}
+  - component: {fileID: 1795512614}
+  - component: {fileID: 1795512613}
+  - component: {fileID: 1795512615}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -1795,7 +1922,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1795512611}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1795512615}
+        m_TargetAssemblyTypeName: StartManager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1795512611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1834,6 +1973,101 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795512607}
   m_CullTransparentMesh: 1
+--- !u!114 &1795512613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795512607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141eeae118da62344bb463f39a742cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalTime: 0.5
+  flickerCount: 2
+  jitterPos: 4
+  jitterRot: 4
+  jitterScale: 0.06
+--- !u!225 &1795512614
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795512607}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1795512615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795512607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c67a17736996cc48b2f6ffb58bbc19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainSceneCGH: MainSceneCGH
+--- !u!1 &1840304848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1840304850}
+  - component: {fileID: 1840304849}
+  m_Layer: 0
+  m_Name: StartManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1840304849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840304848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8dd479b7772ec24c8a710b3ef0005dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleObjects:
+  - {fileID: 2997030}
+  - {fileID: 1085988148}
+  - {fileID: 328620244}
+  buttonObjects:
+  - {fileID: 1795512613}
+  - {fileID: 458053907}
+  delayBetweenTitles: 0.12
+  delayBeforeButtons: 0.2
+--- !u!4 &1840304850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840304848}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1895126809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,3 +2385,4 @@ SceneRoots:
   - {fileID: 574346805}
   - {fileID: 373190377}
   - {fileID: 1606334580}
+  - {fileID: 1840304850}
