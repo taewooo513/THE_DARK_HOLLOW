@@ -4,13 +4,17 @@ using UnityEngine;
 
 public static class ObjectNameKey
 {
-    public const string Skill_3 = "";
+    public const string Skill_3 = ""; // 프리팹 이름과 맞춰서 사용해야합니다
 }
 
 public class ObjectPoolingManager : Singleton<ObjectPoolingManager>
 {
     Dictionary<string, Queue<GameObject>> poolingObjectsQueues;
-
+    // 사용법
+    // 1. Start에서 얘 생성->  InsertPoolQueue(키, 개수 , 상속 <- 얘 필요할지몰라서 일딴 칸은 만들어놨는데 미구현입니다) 
+    // 2. AddObject(키, 위치 , 각도 , 로컬 포지션인지, 로컬 로테이션인지)
+    // 3. 오브젝트가 삭제될때 RemoveObject(키)
+    // 4. Release는 씬에서 삭제해줄거임
     protected override void Awake()
     {
         base.Awake();
