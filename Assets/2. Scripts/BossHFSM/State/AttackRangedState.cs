@@ -22,7 +22,7 @@ public class AttackRangedState : AttackSuper
             t = 0; 
             sup.locked = true; 
             ctx.StopMove(); 
-            //ctx.Play("Shoot_Windup"); 
+            ctx.Play("SetRangedAttack"); 
         }
         public override void Tick(float dt)
         {
@@ -39,7 +39,6 @@ public class AttackRangedState : AttackSuper
         {
             fired = false;
             ctx.FaceToPlayer();
-          //  ctx.Play("Shoot"); // TODO
         }
         public override void Tick(float dt)
         {
@@ -60,7 +59,6 @@ public class AttackRangedState : AttackSuper
         public override void OnEnter() 
         { 
             t = 0; 
-            //ctx.Play("Shoot_Recover"); 
         }
         public override void Tick(float dt)
         {

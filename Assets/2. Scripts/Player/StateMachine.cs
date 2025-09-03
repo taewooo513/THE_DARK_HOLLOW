@@ -1,0 +1,88 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum PlayerStateType
+{
+    Idle,
+    Move,
+    Run,
+    Jump,
+    Hit
+}
+
+// context = 상태 데이터 전달 역할 = StateMachine 
+public class StateMachine : MonoBehaviour
+{
+    // 상태 머신은 하나의 상태만 가짐. 
+    private BaseState currentState;
+
+    // 구체적인 상태들을 저장할 Dictionary 
+    private Dictionary<PlayerStateType, BaseState> states = new();
+
+    public PlayerController PlayerController { get; set; }
+
+    private void Awake()
+    {
+        states.Add(PlayerStateType.Idle, new PlayerIdleState());
+        states.Add(PlayerStateType.Move, new PlayerMoveState());
+        states.Add(PlayerStateType.Run, new PlayerRunState());
+        states.Add(PlayerStateType.Jump, new PlayerJumpState());
+        states.Add(PlayerStateType.Hit, new PlayerHitState());
+    }
+
+    private void Start()
+    {
+        PlayerController = GetComponent<PlayerController>();    
+
+        // 초기 상태 설정
+        currentState = states[PlayerStateType.Idle];
+
+        // context를 넘겨서 상태 진입 
+        currentState.EnterState(this);  
+
+    }
+
+    private void Update()
+    {
+        //Debug.Log($"현재 상태 : {currentState.ToString()}");
+        switch (currentState)
+        {
+            case PlayerIdleState:
+            case PlayerHitState:
+                // 매 프레임마다 실행될 상태
+                currentState.UpdateState(this);
+                break;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        switch (currentState)
+        {
+            case PlayerMoveState:
+            case PlayerJumpState:
+            case PlayerRunState:
+            case PlayerHitState:
+                currentState.FixedUpdateState(this);
+                break;
+        }
+    }
+
+    // 상태 전환 => 상태 매니저가 구체적인 상태들을 가지고 있으니까 
+    public void SwitchState(BaseState state)
+    {
+        currentState = state; 
+        state.EnterState(this); // 상태 매니저를 알려줘서 상태 진입 
+    }
+
+    // 상태 매니저를 가진 오브젝트에서 충돌이 발생하면 충돌 상태로 진입한다 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        currentState.OnCollisionEnter(this, collision);
+    }
+
+    public BaseState Getstates(PlayerStateType type)
+    {
+        return states[type];
+    }
+}

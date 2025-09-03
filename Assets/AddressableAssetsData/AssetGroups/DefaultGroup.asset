@@ -16,7 +16,55 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 0f737f3bac888c94b952c9412ee45faf
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: f85929130ead51041a4572df7eef0e73
+    m_Address: Sounds/BossBGM1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b76a826bf52ffd346b58e691d498b4c4
+    m_Address: Sounds/BossBGM12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f2c784af3061f84d91c928bca456320
+    m_Address: Sounds/BossBGM2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f746d4cc23cda264d9dc575b026b82eb
+    m_Address: Sounds/little-slimex27s-adventure-151007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 123844dfde5c9a84c831cff99dd31551
+    m_Address: Sounds/MainBGM
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7facceb30beb27b45954cdaaca4d2413
+    m_Address: Sounds/retro-8bit-happy-videogame-music-246631
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24ef70b7f0759544fbd3d2651debcbb6
+    m_Address: Assets/Resources_moved/Prefabs/Map/Stage1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36cdb201d9fdf5b4281cf0d32607d983
+    m_Address: Prefabs/BossRoom/Skill/Skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ed5694c84ebdf1941b0f5ef7c6b83e5f, type: 2}
   m_SchemaSet:

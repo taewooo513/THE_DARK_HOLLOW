@@ -10,28 +10,40 @@ public class ObjectManager : Singleton<ObjectManager>
     Dictionary<string, GameObject> objects;
     AsyncOperationHandle objectsHandle;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         objects = new Dictionary<string, GameObject>();
+        Debug.Log(1);
     }
 
     public void Start()
     {
-        
+        Debug.Log(2);
+
     }
 
-    public void LoadGameObject(string label)
+    private void Update()
     {
-        ResourceManager.Instance.LoadResource<GameObject>("Stage1", obj =>
-        {
-            objects.Add(obj.name, obj);
-        }).Completed += OnLoadCompleteObject;
+        Debug.Log(objects.Count);
+    }
+
+    public AsyncOperationHandle LoadGameObject(string label)
+    {
+        var handle = ResourceManager.Instance.LoadResource<GameObject>(label, obj =>
+         {
+             InsertObject(obj.name, obj);
+         });
+        handle.Completed += OnLoadCompleteObject;
+        objectsHandle = handle;
+        return objectsHandle;
     }
 
     public override void Release()
     {
         objects.Clear();
         Addressables.Release(objectsHandle);
+        Debug.Log(8);
     }
 
     public void InsertObject(string key, GameObject obj)
@@ -41,6 +53,7 @@ public class ObjectManager : Singleton<ObjectManager>
             Debug.Log($"{key} is duplicate in obj");
             return;
         }
+
         objects.Add(key, obj);
     }
 
@@ -58,6 +71,7 @@ public class ObjectManager : Singleton<ObjectManager>
             }
         }
         Debug.Log($"Not Find {key} in Objects");
+
         return null;
     }
 
@@ -66,7 +80,6 @@ public class ObjectManager : Singleton<ObjectManager>
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Debug.Log("Load Prefabs Succeeded");
-            objectsHandle = handle;
         }
         else if (handle.Status == AsyncOperationStatus.Failed)
         {
