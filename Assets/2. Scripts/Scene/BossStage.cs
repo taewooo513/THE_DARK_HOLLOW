@@ -8,7 +8,6 @@ public class BossStage : MonoScene
     public override void Init()
     {
         ObjectManager.Instance.AddObject("BossStage", Vector3.zero, Quaternion.identity);
-        Debug.Log("te");
     }
 
     public override AsyncOperationHandle LoadPrefabs()

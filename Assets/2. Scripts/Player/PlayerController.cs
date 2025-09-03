@@ -27,7 +27,13 @@ public class PlayerController : MonoBehaviour
         stateMachine = GetComponent<StateMachine>();
         playerStat = GetComponent<PlayerStat>();
     }
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            SceneLoadManager.Instance.LoadScene(SceneKey.bossScene);
+        }
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         // 키를 누르고 있으면 (땅에 있든 없든 상관X -> 이동은 땅에서, 공중에서 다 가능)

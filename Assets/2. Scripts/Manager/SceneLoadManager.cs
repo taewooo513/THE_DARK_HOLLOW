@@ -15,7 +15,7 @@ public static class SceneKey
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
     Dictionary<string, MonoScene> scenes;
-    // Start is called before the first frame update
+
     MonoScene nowScene;
     Coroutine asyncLoadScene;
     protected override void Awake()
@@ -34,8 +34,6 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             return;
         }
         scenes.Add(key, monoScene);
-        Debug.Log(4);
-
     }
 
     public void LoadScene(string key)
@@ -52,6 +50,15 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     IEnumerator AsyncLoadScene(string key)
     {
+        //while (true)
+        //{
+        //    if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeIn() == true)
+        //    {
+        //        break;
+        //    }
+        //    yield return null;
+        //}
+
         if (nowScene != null)
         {
             nowScene.Release();
@@ -76,6 +83,16 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         {
             yield return null;
         }
+
         nowScene.Init();
+
+        //while (true)
+        //{
+        //    if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeOut() == true)
+        //    {
+        //        break;
+        //    }
+        //    yield return null;
+        //}
     }
 }
