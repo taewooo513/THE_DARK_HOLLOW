@@ -2,33 +2,39 @@ using UnityEngine;
 
 public class PlayerIdleState : BaseState
 {
-    private PlayerController playerController; 
+    //private PlayerController playerController; 
 
-    public override void EnterState(StateManager stateManager)
+    public override void EnterState(StateMachine stateMachine)
     {
         Debug.Log("Hello from the Idle State");
-        this.playerController = stateManager.PlayerController;
+        //this.playerController = stateMachine.PlayerController;
 
         ChangeSpeed();
     }
 
-    public override void UpdateState(StateManager stateManager)
+    public override void UpdateState(StateMachine stateMachine)
     {
         
     }
 
-    public override void OnCollisionEnter(StateManager stateManager, Collision2D collision)
+    public override void OnCollisionEnter(StateMachine stateMachine, Collision2D collision)
     {
 
     }
 
-    public override void FixedUpdateState(StateManager stateManager)
+    public override void OnTriggerEnter(StateMachine stateMachine, Collision2D collision)
+    {
+
+    }
+
+    public override void FixedUpdateState(StateMachine stateMachine)
     {
 
     }
 
     private void ChangeSpeed()
     {
-        this.playerController.SpeedModifier = 1.0f;
+        CharacterManager.instance.PlayerStat.SpeedModifier = 1.0f;
+        //this.playerController.SpeedModifier = 1.0f;
     }
 }
