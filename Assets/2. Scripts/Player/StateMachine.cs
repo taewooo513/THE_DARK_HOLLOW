@@ -10,28 +10,15 @@ public enum PlayerStateType
     Hit
 }
 
-// context = 상태 데이터 전달 역할 = StateMachine = StateManager(나는 매니저로 정의)
-// 상태머신의 context(상황, 상태?) Il || 
-public class StateManager : MonoBehaviour
+// context = 상태 데이터 전달 역할 = StateMachine 
+public class StateMachine : MonoBehaviour
 {
     // 상태 머신은 하나의 상태만 가짐. 
     private BaseState currentState;
-    //public BaseState CurrentState { get; set; }
 
-    // 구체적인 상태들을 정의
+    // 구체적인 상태들을 저장할 Dictionary 
     private Dictionary<PlayerStateType, BaseState> states = new();
-    //public PlayerIdleState idleState = new PlayerIdleState();
-    //public PlayerMoveState moveState = new PlayerMoveState();
-    //public PlayerRunState runState = new PlayerRunState();
-    //public PlayerJumpState jumpState = new PlayerJumpState();
-    //public PlayerHitState hitState = new PlayerHitState();
 
-    //public PlayerGrowingState growState = new PlayerGrowingState();
-    //public PlayerWholeState wholeState = new PlayerWholeState();
-    //public PlayerRottenState rottenState = new PlayerRottenState();
-    //public PlayerChewedState chewedState = new PlayerChewedState();
-
-    //private PlayerController playerController;
     public PlayerController PlayerController { get; set; }
 
     private void Awake()
@@ -48,10 +35,7 @@ public class StateManager : MonoBehaviour
         PlayerController = GetComponent<PlayerController>();    
 
         // 초기 상태 설정
-        //currentState = idleState;
         currentState = states[PlayerStateType.Idle];
-        //currentState = moveState;
-        //currentState = growState;
 
         // context를 넘겨서 상태 진입 
         currentState.EnterState(this);  
@@ -60,6 +44,7 @@ public class StateManager : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log($"현재 상태 : {currentState.ToString()}");
         switch (currentState)
         {
             case PlayerIdleState:

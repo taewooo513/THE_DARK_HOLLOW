@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Xml;
 using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [Header("Refs")]
-    public Transform player;              // 타깃(없으면 자동으로 Player 태그 검색)
-    public Rigidbody2D rb;
-    public Animator animator;
-    public Animator preAnimator;
-    public BossStat stat;
+    [Header("직렬화요소")]
+    [SerializeField] Animator preAnimator;
+    [SerializeField] GameObject preAttack;
 
+    public Transform player;              // 타겟(없으면 자동으로 Player 태그 검색)
+    public BossStat stat;
+    public Rigidbody2D rb;
     // FSM
     public BossStateMachine fsm { get; private set; }
-    // States
+
+    // =================[States]=================
     IdleState idle;
     ChaseState chase;
     ChooseState choose;
@@ -28,22 +30,33 @@ public class BossController : MonoBehaviour
     // 쿨다운
     float readyDash, readyRanged;
 
-    // ── Perception 캐시(계산형) ──
+    // 변수들
     bool canSee;
-    float distCache = Mathf.Infinity;
+    bool canHurt = true;
+    bool isDead = false;
     float pAcc;
+    int hp01;
 
-    // 캐시 접근자
+
+    Animator animator;
+
+    float distCache = Mathf.Infinity;
     public float Dist => distCache;
     bool InAggro => Dist <= stat.detectRange;
 
-    [SerializeField] GameObject preAttack;
+    public IdleState SIdle => idle;
+    public ChaseState SChase => chase;
+    public ChooseState SChoose => choose;
+    public AttackDashState SAtkDash => atkDash;
+    public AttackRangedState SAtkRng => atkRanged;
+    public RecoverState SRecover => recover;
+    public DeadState SDead => dead;
 
     void Awake()
     {
-        if (!rb) rb = GetComponent<Rigidbody2D>();
-        if (!animator) animator = GetComponentInChildren<Animator>();
-        if (!stat) stat = GetComponent<BossStat>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
+        stat = GetComponent<BossStat>();
 
         // Player 태그 자동 할당(수동 지정되어 있으면 유지)
         if (!player)
@@ -51,7 +64,6 @@ public class BossController : MonoBehaviour
             var go = GameObject.FindGameObjectWithTag("Player");
             if (go) player = go.transform;
         }
-
         fsm = new BossStateMachine();
 
         // 상태 인스턴스
@@ -62,19 +74,22 @@ public class BossController : MonoBehaviour
         atkRanged = new AttackRangedState(this, fsm);
         recover = new RecoverState(this, fsm);
         dead = new DeadState(this, fsm);
+        ObjectPoolingManager.Instance.InsertPoolQueue("Skill_3", 5);
     }
 
     void Start()
     {
         if (CharacterManager.instance) CharacterManager.instance.Boss = GetComponent<Boss>();
         fsm.Change(idle);
+        hp01 = stat.hp01;
     }
 
     void Update()
     {
-        // ── Perception 주기 업데이트(거리/가시성 캐시) ──
+         if(isDead) return;
+        // ----주기 업데이트----
         pAcc += Time.deltaTime;
-        if (pAcc >= 1f / Mathf.Max(0.1f, stat.perceptionHz))
+        if (pAcc >= 1f / Mathf.Max(0.1f, stat.perceptionHz))    // 체크 간격 주기 연산(최소 0.1보장), 1초에 0.1f~stat.perceptionHz까지 프레임보간)
         {
             pAcc = 0f;
             UpdatePerception2D();
@@ -94,19 +109,20 @@ public class BossController : MonoBehaviour
 
     void FixedUpdate() => fsm.FixedTick(Time.fixedDeltaTime);
 
-    // ─────────────────────────────
-    // Perception(계산형) : 거리만으로도 충분(원하면 FOV/LoS 추가 가능)
-    // ─────────────────────────────
+    // 시야 처리 로직
     void UpdatePerception2D()
     {
-        if (!player) { canSee = false; distCache = Mathf.Infinity; return; }
-        distCache = Vector2.Distance(transform.position, player.position);
-        canSee = distCache <= stat.detectRange; // 간단 버전: 범위 내면 "볼 수 있음"
+        if (!player) 
+        { 
+            canSee = false; 
+            distCache = Mathf.Infinity; 
+            return; 
+        }
+        distCache = Vector2.Distance(transform.position, player.position);  // 플레이어와 보스간 거리 캐싱
+        canSee = distCache <= stat.detectRange; 
     }
 
-    // ─────────────────────────────
     // 공용 유틸 (상태에서 호출)
-    // ─────────────────────────────
     public bool CanSeePlayer() => canSee;
     public bool CDReadyDash() => Time.time >= readyDash;
     public bool CDReadyRanged() => Time.time >= readyRanged;
@@ -118,6 +134,7 @@ public class BossController : MonoBehaviour
         var dir = (pos - (Vector2)transform.position).normalized;
         rb.velocity = dir * speed;
     }
+
     public void StopMove() => rb.velocity = Vector2.zero;
 
     public void FaceToPlayer()
@@ -143,38 +160,87 @@ public class BossController : MonoBehaviour
         preAttack.SetActive(false);
     }
 
-    // 투사체 스폰(기즈모와 일치하도록 stat.bulletSpeed 사용)
+    // 투사체 스폰
     public void FireProjectile()
     {
-        if (!stat.bulletPrefab) return;
+
+
         Vector3 spawnPos = stat.firePoint ? stat.firePoint.position : transform.position;
-        var go = Instantiate(stat.bulletPrefab, spawnPos, Quaternion.identity);
+        float dx = player ? (player.position.x - spawnPos.x) : (transform.localScale.x >= 0 ? 1f : -1f);
+        bool faceLeft = dx < 0f;
+        //부모 오브젝트를 해당 방향으로 회전해 생성 (Y=0 ↔ -180)
+        Quaternion rot = Quaternion.Euler(0f, faceLeft ? -180f : 0f, 0f);
+
+        GameObject go = ObjectPoolingManager.Instance.AddObject("Skill_3", spawnPos, rot);
+        Debug.Log($"풀링에 담은것 : {go}");
+
 
         if (player && go.TryGetComponent<Rigidbody2D>(out var rb2))
         {
-            Vector2 dir = (player.position - spawnPos).normalized;
-            rb2.velocity = dir * stat.bulletSpeed; // ← 속도 통일
+            rb2.velocity = (faceLeft ? Vector2.left : Vector2.right) * stat.bulletSpeed;
         }
+        StartCoroutine(DestroyBulltRoutine(go));
         // 수명은 발사체 스크립트에서 bulletLifetime을 참고해 Destroy하도록 권장
+    }
+
+    IEnumerator DestroyBulltRoutine(GameObject go)
+    {
+        yield return new WaitForSeconds(stat.bulletLifetime);
+        ObjectPoolingManager.Instance.DestoryObject("Skill_3", go);
     }
 
     public void ToDie()
     {
+        Debug.Log("보스 곧 사라짐");
         Destroy(this.gameObject, 3f);
     }
 
-    // 상태 접근자(내부 전이용)
-    public IdleState SIdle => idle;
-    public ChaseState SChase => chase;
-    public ChooseState SChoose => choose;
-    public AttackDashState SAtkDash => atkDash;
-    public AttackRangedState SAtkRng => atkRanged;
-    public RecoverState SRecover => recover;
-    public DeadState SDead => dead;
+    public void TakeDamage(int damage)
+    {
+        if (canHurt == true)
+        {
+            canHurt = false;
+            hp01 -= damage;
+            Debug.Log($"현재 체력 : {hp01}");
+            if (hp01 <= 0)  //죽음
+            {
+                isDead = true;
+                // 어디서든 죽으면 강제 Dead 상태로 전환
+                if (isDead && fsm.Current != null && fsm.Current.Name != "Dead")
+                {
+                    hp01 = 0;
+                    StopMove();
+                    fsm.Change(dead, reason: "Force");
+                    return;
+                }
+            }
+            else
+            {
+                Play("TakeDamage");
+                StartCoroutine(OnTakeDamageRoutine());
+            }
+        }
+    }
+    private void  OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+                TakeDamage(1);
+        }
+    }
+    IEnumerator OnTakeDamageRoutine()
+    {
+        yield return new WaitForSeconds(0.8f);
+        canHurt = true;
+    }
 
-    // ─────────────────────────────
+    public void ApplyDamage()
+    {
+
+    }
+
+
     // Gizmos (거리/사정/대시/투사체 예상거리)
-    // ─────────────────────────────
     void OnDrawGizmosSelected()
     {
         // 레퍼런스가 에디터에서 비어있을 수 있으므로 안전 체크
