@@ -39,9 +39,8 @@ public class SoundManager : Singleton<SoundManager>
     {
         sounds.Clear();
         Addressables.Release(soundHandle);
-        Debug.Log(7);
+        Debug.Log("test");
     }
-
     public void SetEFXVolume(float volume)
     {
         efxVolume = volume;
@@ -101,7 +100,7 @@ public class SoundManager : Singleton<SoundManager>
     }
     public AsyncOperationHandle LoadSound(string label)
     {
-        var handle = ResourceManager.Instance.LoadResource<AudioClip>("Stage1", clip =>
+        var handle = ResourceManager.Instance.LoadResource<AudioClip>(label, clip =>
         {
             sounds.Add(clip.name, clip);
         });

@@ -8,6 +8,7 @@ public class DeadState : BossStateBase
     public override void OnEnter()
     {
         ctx.StopMove();
+        SoundManager.Instance.PlayEFXSound("BossDead_EFX");
         ctx.Play("Dead");
         var col = ctx.GetComponent<Collider2D>(); 
         if (col) col.enabled = false;
