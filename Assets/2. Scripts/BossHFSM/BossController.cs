@@ -7,16 +7,17 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [Header("Refs")]
-    public Transform player;              // 타깃(없으면 자동으로 Player 태그 검색)
-    public Rigidbody2D rb;
-    public Animator animator;
-    public Animator preAnimator;
-    public BossStat stat;
+    [Header("직렬화요소")]
+    [SerializeField] Animator preAnimator;
+    [SerializeField] GameObject preAttack;
 
+    public Transform player;              // 타겟(없으면 자동으로 Player 태그 검색)
+    public BossStat stat;
+    public Rigidbody2D rb;
     // FSM
     public BossStateMachine fsm { get; private set; }
-    // States
+
+    // =================[States]=================
     IdleState idle;
     ChaseState chase;
     ChooseState choose;
@@ -28,23 +29,32 @@ public class BossController : MonoBehaviour
     // 쿨다운
     float readyDash, readyRanged;
 
-    // ── Perception 캐시(계산형) ──
+    // 변수들
     bool canSee;
-    float distCache = Mathf.Infinity;
-    float pAcc;
     bool canHurt = true;
+    float pAcc;
+    float hp01;
 
-    // 캐시 접근자
+
+    Animator animator;
+
+    float distCache = Mathf.Infinity;
     public float Dist => distCache;
     bool InAggro => Dist <= stat.detectRange;
 
-    [SerializeField] GameObject preAttack;
+    public IdleState SIdle => idle;
+    public ChaseState SChase => chase;
+    public ChooseState SChoose => choose;
+    public AttackDashState SAtkDash => atkDash;
+    public AttackRangedState SAtkRng => atkRanged;
+    public RecoverState SRecover => recover;
+    public DeadState SDead => dead;
 
     void Awake()
     {
-        if (!rb) rb = GetComponent<Rigidbody2D>();
-        if (!animator) animator = GetComponentInChildren<Animator>();
-        if (!stat) stat = GetComponent<BossStat>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
+        stat = GetComponent<BossStat>();
 
         // Player 태그 자동 할당(수동 지정되어 있으면 유지)
         if (!player)
@@ -52,7 +62,6 @@ public class BossController : MonoBehaviour
             var go = GameObject.FindGameObjectWithTag("Player");
             if (go) player = go.transform;
         }
-
         fsm = new BossStateMachine();
 
         // 상태 인스턴스
@@ -69,13 +78,14 @@ public class BossController : MonoBehaviour
     {
         if (CharacterManager.instance) CharacterManager.instance.Boss = GetComponent<Boss>();
         fsm.Change(idle);
+        hp01 = stat.hp01;
     }
 
     void Update()
     {
-  // ── Perception 주기 업데이트──
+        // ----주기 업데이트----
         pAcc += Time.deltaTime;
-        if (pAcc >= 1f / Mathf.Max(0.1f, stat.perceptionHz))
+        if (pAcc >= 1f / Mathf.Max(0.1f, stat.perceptionHz))    // 체크 간격 주기 연산(최소 0.1보장), 1초에 0.1f~stat.perceptionHz까지 프레임보간)
         {
             pAcc = 0f;
             UpdatePerception2D();
@@ -95,19 +105,20 @@ public class BossController : MonoBehaviour
 
     void FixedUpdate() => fsm.FixedTick(Time.fixedDeltaTime);
 
-    // ─────────────────────────────
-    // Perception(계산형) : 거리만으로도 충분(원하면 FOV/LoS 추가 가능)
-    // ─────────────────────────────
+    // 시야 처리 로직
     void UpdatePerception2D()
     {
-        if (!player) { canSee = false; distCache = Mathf.Infinity; return; }
-        distCache = Vector2.Distance(transform.position, player.position);
-        canSee = distCache <= stat.detectRange; // 간단 버전: 범위 내면 "볼 수 있음"
+        if (!player) 
+        { 
+            canSee = false; 
+            distCache = Mathf.Infinity; 
+            return; 
+        }
+        distCache = Vector2.Distance(transform.position, player.position);  // 플레이어와 보스간 거리 캐싱
+        canSee = distCache <= stat.detectRange; 
     }
 
-    // ─────────────────────────────
     // 공용 유틸 (상태에서 호출)
-    // ─────────────────────────────
     public bool CanSeePlayer() => canSee;
     public bool CDReadyDash() => Time.time >= readyDash;
     public bool CDReadyRanged() => Time.time >= readyRanged;
@@ -119,6 +130,7 @@ public class BossController : MonoBehaviour
         var dir = (pos - (Vector2)transform.position).normalized;
         rb.velocity = dir * speed;
     }
+
     public void StopMove() => rb.velocity = Vector2.zero;
 
     public void FaceToPlayer()
@@ -169,9 +181,17 @@ public class BossController : MonoBehaviour
         if (canHurt == true)
         {
             canHurt = false;
-            stat.hp01 -= damage;
-            Play("TakeDamage");
-            StartCoroutine(OnTakeDamageRoutine());
+            hp01 -= damage;
+            if (hp01 <= 0)
+            {
+                hp01 = 0;
+                fsm.Change(dead);
+            }
+            else
+            {
+                Play("TakeDamage");
+                StartCoroutine(OnTakeDamageRoutine());
+            }
         }
     }
     IEnumerator OnTakeDamageRoutine()
@@ -182,22 +202,11 @@ public class BossController : MonoBehaviour
 
     public void ApplyDamage()
     {
-        
+
     }
 
 
-    // 상태 접근자(내부 전이용)
-    public IdleState SIdle => idle;
-    public ChaseState SChase => chase;
-    public ChooseState SChoose => choose;
-    public AttackDashState SAtkDash => atkDash;
-    public AttackRangedState SAtkRng => atkRanged;
-    public RecoverState SRecover => recover;
-    public DeadState SDead => dead;
-
-    // ─────────────────────────────
     // Gizmos (거리/사정/대시/투사체 예상거리)
-    // ─────────────────────────────
     void OnDrawGizmosSelected()
     {
         // 레퍼런스가 에디터에서 비어있을 수 있으므로 안전 체크

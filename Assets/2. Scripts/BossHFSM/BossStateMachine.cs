@@ -6,7 +6,7 @@ public sealed class BossStateMachine
 {
     public IBossState Current { get; private set; }
 
-    public void Change(IBossState next, string reason = null)
+    public void Change(IBossState next, string reason = null)   // reason: "Force"면 강제 전이
     {
         if (next == null || next == Current) return;
         if (Current != null && Current.IsLocked && reason != "Force") return;
