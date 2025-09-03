@@ -734,10 +734,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill_3
       objectReference: {fileID: 0}
-    - target: {fileID: 7827799481149926921, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_Constraints
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6428,6 +6424,10 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1519064328}
+    - target: {fileID: 7995802627108600116, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7995802627108600116, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: m_IsTrigger
       value: 1

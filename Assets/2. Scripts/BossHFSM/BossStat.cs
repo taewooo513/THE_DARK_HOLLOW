@@ -28,13 +28,12 @@ public class BossStat : MonoBehaviour
     public float rangedCooldown = 1.4f;
 
     [Header("Ranged Projectile")]
-    public GameObject bulletPrefab;
     public Transform firePoint;
 
     [Tooltip("기즈모 미리보기용(발사 속도)")]
     public float bulletSpeed = 10f;         // FireProjectile에서도 사용하도록 권장
     [Tooltip("기즈모 미리보기용(투사체 생존 시간)")]
-    public float bulletLifetime = 2f;       // 예상 이동거리 = speed * lifetime
+    public float bulletLifetime = 3f;       // 예상 이동거리 = speed * lifetime
 
     [Header("Phase / HP")]
     [Range(1, 100)] public int hp01;   
