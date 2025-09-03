@@ -167,13 +167,12 @@ public class BossController : MonoBehaviour
 
         // 2) 부모 오브젝트를 해당 방향으로 회전해 생성 (Y=0 ↔ -180)
         Quaternion rot = Quaternion.Euler(0f, faceLeft ? -180f : 0f, 0f);
+
         GameObject go = Instantiate(stat.bulletPrefab, spawnPos, rot); // 풀링 쓰면 교체
 
         if (player && go.TryGetComponent<Rigidbody2D>(out var rb2))
         {
             rb2.velocity = (faceLeft ? Vector2.left : Vector2.right) * stat.bulletSpeed;
-/*            Vector2 dir = (player.position - spawnPos).normalized;
-            rb2.velocity = dir * stat.bulletSpeed; // ← 속도 통일*/
         }
         // 수명은 발사체 스크립트에서 bulletLifetime을 참고해 Destroy하도록 권장
     }
