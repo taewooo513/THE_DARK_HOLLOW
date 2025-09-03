@@ -222,6 +222,7 @@ public class BossController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             TakeDamage(1);
+            SoundManager.Instance.PlayEFXSound("BossHit_EFX");
             hitEffect.transform.position = collision.ClosestPoint(transform.position);
             hitEffect.SetActive(true);
             StartCoroutine(OnHitEffectRoutine());
