@@ -156,17 +156,24 @@ public class BossController : MonoBehaviour
         preAttack.SetActive(false);
     }
 
-    // 투사체 스폰(기즈모와 일치하도록 stat.bulletSpeed 사용)
+    // 투사체 스폰
     public void FireProjectile()
     {
         if (!stat.bulletPrefab) return;
         Vector3 spawnPos = stat.firePoint ? stat.firePoint.position : transform.position;
-        var go = Instantiate(stat.bulletPrefab, spawnPos, Quaternion.identity);
+        float dx = player ? (player.position.x - spawnPos.x)
+                          : (transform.localScale.x >= 0 ? 1f : -1f);
+        bool faceLeft = dx < 0f;
+
+        // 2) 부모 오브젝트를 해당 방향으로 회전해 생성 (Y=0 ↔ -180)
+        Quaternion rot = Quaternion.Euler(0f, faceLeft ? -180f : 0f, 0f);
+        GameObject go = Instantiate(stat.bulletPrefab, spawnPos, rot); // 풀링 쓰면 교체
 
         if (player && go.TryGetComponent<Rigidbody2D>(out var rb2))
         {
-            Vector2 dir = (player.position - spawnPos).normalized;
-            rb2.velocity = dir * stat.bulletSpeed; // ← 속도 통일
+            rb2.velocity = (faceLeft ? Vector2.left : Vector2.right) * stat.bulletSpeed;
+/*            Vector2 dir = (player.position - spawnPos).normalized;
+            rb2.velocity = dir * stat.bulletSpeed; // ← 속도 통일*/
         }
         // 수명은 발사체 스크립트에서 bulletLifetime을 참고해 Destroy하도록 권장
     }

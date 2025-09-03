@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
 
     private void Awake()
     {
+        CharacterManager.Instance.Boss = this;
         bossStat = GetComponent<BossStat>();
     }
 }
