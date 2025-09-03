@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Xml;
 using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -32,8 +33,9 @@ public class BossController : MonoBehaviour
     // 변수들
     bool canSee;
     bool canHurt = true;
+    bool isDead = false;
     float pAcc;
-    float hp01;
+    int hp01;
 
 
     Animator animator;
@@ -83,6 +85,7 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
+         if(isDead) return;
         // ----주기 업데이트----
         pAcc += Time.deltaTime;
         if (pAcc >= 1f / Mathf.Max(0.1f, stat.perceptionHz))    // 체크 간격 주기 연산(최소 0.1보장), 1초에 0.1f~stat.perceptionHz까지 프레임보간)
@@ -179,25 +182,41 @@ public class BossController : MonoBehaviour
 
     public void ToDie()
     {
+        Debug.Log("보스 곧 사라짐");
         Destroy(this.gameObject, 3f);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (canHurt == true)
         {
             canHurt = false;
             hp01 -= damage;
-            if (hp01 <= 0)
+            Debug.Log($"현재 체력 : {hp01}");
+            if (hp01 <= 0)  //죽음
             {
-                hp01 = 0;
-                fsm.Change(dead);
+                isDead = true;
+                // 어디서든 죽으면 강제 Dead 상태로 전환
+                if (isDead && fsm.Current != null && fsm.Current.Name != "Dead")
+                {
+                    hp01 = 0;
+                    StopMove();
+                    fsm.Change(dead, reason: "Force");
+                    return;
+                }
             }
             else
             {
                 Play("TakeDamage");
                 StartCoroutine(OnTakeDamageRoutine());
             }
+        }
+    }
+    private void  OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+                TakeDamage(1);
         }
     }
     IEnumerator OnTakeDamageRoutine()
