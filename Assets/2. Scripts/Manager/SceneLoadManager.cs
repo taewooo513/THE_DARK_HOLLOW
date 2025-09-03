@@ -10,6 +10,7 @@ public static class SceneKey
     public const string mainScene = "TaewoongTest";
     public const string titleScene = "TitleScene";
     public const string endingScene = "EndingScene";
+    public const string bossScene = "Lee.BossTestScene";
 }
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
@@ -22,6 +23,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         base.Awake();
         scenes = new Dictionary<string, MonoScene>();
         AddScene(SceneKey.mainScene, new MainStageScene());
+        AddScene(SceneKey.bossScene, new BossStage());
     }
 
     public void AddScene(string key, MonoScene monoScene)

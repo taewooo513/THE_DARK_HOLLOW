@@ -25,7 +25,10 @@ public class ObjectManager : Singleton<ObjectManager>
 
     private void Update()
     {
-        Debug.Log(objects.Count);
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            SceneLoadManager.Instance.LoadScene(SceneKey.bossScene);
+        }
     }
 
     public AsyncOperationHandle LoadGameObject(string label)
