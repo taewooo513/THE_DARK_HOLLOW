@@ -21,12 +21,17 @@ public class BossController : MonoBehaviour
 
     // =================[States]=================
     IdleState idle;
-    ChaseState chase;
     ChooseState choose;
     AttackDashState atkDash;
     AttackRangedState atkRanged;
     RecoverState recover;
     DeadState dead;
+    public IdleState SIdle => idle;
+    public ChooseState SChoose => choose;
+    public AttackDashState SAtkDash => atkDash;
+    public AttackRangedState SAtkRng => atkRanged;
+    public RecoverState SRecover => recover;
+    public DeadState SDead => dead;
 
     // 쿨다운
     float readyDash, readyRanged;
@@ -45,13 +50,7 @@ public class BossController : MonoBehaviour
     public float Dist => distCache;
     bool InAggro => Dist <= stat.detectRange;
 
-    public IdleState SIdle => idle;
-    public ChaseState SChase => chase;
-    public ChooseState SChoose => choose;
-    public AttackDashState SAtkDash => atkDash;
-    public AttackRangedState SAtkRng => atkRanged;
-    public RecoverState SRecover => recover;
-    public DeadState SDead => dead;
+
 
     void Awake()
     {
@@ -69,7 +68,6 @@ public class BossController : MonoBehaviour
 
         // 상태 인스턴스
         idle = new IdleState(this, fsm);
-        chase = new ChaseState(this, fsm);
         choose = new ChooseState(this, fsm);
         atkDash = new AttackDashState(this, fsm);
         atkRanged = new AttackRangedState(this, fsm);

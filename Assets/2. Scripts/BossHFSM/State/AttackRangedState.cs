@@ -69,7 +69,6 @@ public class AttackRangedState : AttackSuper
                 ctx.StartCD_Ranged();
                 if (!ctx.CanSeePlayer()) fsm.Change(ctx.SIdle);
                 else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) fsm.Change(ctx.SChoose);
-                else fsm.Change(ctx.SChase);
             }
         }
     }
