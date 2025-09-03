@@ -11,6 +11,7 @@ public class BossController : MonoBehaviour
     [Header("직렬화요소")]
     [SerializeField] Animator preAnimator;
     [SerializeField] GameObject preAttack;
+    [SerializeField] GameObject hitEffect;
 
     public Transform player;              // 타겟(없으면 자동으로 Player 태그 검색)
     public BossStat stat;
@@ -20,12 +21,17 @@ public class BossController : MonoBehaviour
 
     // =================[States]=================
     IdleState idle;
-    ChaseState chase;
     ChooseState choose;
     AttackDashState atkDash;
     AttackRangedState atkRanged;
     RecoverState recover;
     DeadState dead;
+    public IdleState SIdle => idle;
+    public ChooseState SChoose => choose;
+    public AttackDashState SAtkDash => atkDash;
+    public AttackRangedState SAtkRng => atkRanged;
+    public RecoverState SRecover => recover;
+    public DeadState SDead => dead;
 
     // 쿨다운
     float readyDash, readyRanged;
@@ -44,13 +50,7 @@ public class BossController : MonoBehaviour
     public float Dist => distCache;
     bool InAggro => Dist <= stat.detectRange;
 
-    public IdleState SIdle => idle;
-    public ChaseState SChase => chase;
-    public ChooseState SChoose => choose;
-    public AttackDashState SAtkDash => atkDash;
-    public AttackRangedState SAtkRng => atkRanged;
-    public RecoverState SRecover => recover;
-    public DeadState SDead => dead;
+
 
     void Awake()
     {
@@ -68,13 +68,11 @@ public class BossController : MonoBehaviour
 
         // 상태 인스턴스
         idle = new IdleState(this, fsm);
-        chase = new ChaseState(this, fsm);
         choose = new ChooseState(this, fsm);
         atkDash = new AttackDashState(this, fsm);
         atkRanged = new AttackRangedState(this, fsm);
         recover = new RecoverState(this, fsm);
         dead = new DeadState(this, fsm);
-        ObjectPoolingManager.Instance.InsertPoolQueue("Skill_3", 5);
     }
 
     void Start()
@@ -82,11 +80,12 @@ public class BossController : MonoBehaviour
         if (CharacterManager.instance) CharacterManager.instance.Boss = GetComponent<Boss>();
         fsm.Change(idle);
         hp01 = stat.hp01;
+        ObjectPoolingManager.Instance.InsertPoolQueue("Skill_3", 5);
     }
 
     void Update()
     {
-         if(isDead) return;
+        if (isDead) return;
         // ----주기 업데이트----
         pAcc += Time.deltaTime;
         if (pAcc >= 1f / Mathf.Max(0.1f, stat.perceptionHz))    // 체크 간격 주기 연산(최소 0.1보장), 1초에 0.1f~stat.perceptionHz까지 프레임보간)
@@ -112,14 +111,14 @@ public class BossController : MonoBehaviour
     // 시야 처리 로직
     void UpdatePerception2D()
     {
-        if (!player) 
-        { 
-            canSee = false; 
-            distCache = Mathf.Infinity; 
-            return; 
+        if (!player)
+        {
+            canSee = false;
+            distCache = Mathf.Infinity;
+            return;
         }
         distCache = Vector2.Distance(transform.position, player.position);  // 플레이어와 보스간 거리 캐싱
-        canSee = distCache <= stat.detectRange; 
+        canSee = distCache <= stat.detectRange;
     }
 
     // 공용 유틸 (상태에서 호출)
@@ -163,8 +162,6 @@ public class BossController : MonoBehaviour
     // 투사체 스폰
     public void FireProjectile()
     {
-
-
         Vector3 spawnPos = stat.firePoint ? stat.firePoint.position : transform.position;
         float dx = player ? (player.position.x - spawnPos.x) : (transform.localScale.x >= 0 ? 1f : -1f);
         bool faceLeft = dx < 0f;
@@ -173,7 +170,6 @@ public class BossController : MonoBehaviour
 
         GameObject go = ObjectPoolingManager.Instance.AddObject("Skill_3", spawnPos, rot);
         Debug.Log($"풀링에 담은것 : {go}");
-
 
         if (player && go.TryGetComponent<Rigidbody2D>(out var rb2))
         {
@@ -221,11 +217,14 @@ public class BossController : MonoBehaviour
             }
         }
     }
-    private void  OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-                TakeDamage(1);
+            TakeDamage(1);
+            hitEffect.transform.position = collision.ClosestPoint(transform.position);
+            hitEffect.SetActive(true);
+            StartCoroutine(OnHitEffectRoutine());
         }
     }
     IEnumerator OnTakeDamageRoutine()
@@ -233,12 +232,11 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         canHurt = true;
     }
-
-    public void ApplyDamage()
+    IEnumerator OnHitEffectRoutine()
     {
-
+        yield return new WaitForSeconds(0.8f);
+        hitEffect.SetActive(false);
     }
-
 
     // Gizmos (거리/사정/대시/투사체 예상거리)
     void OnDrawGizmosSelected()
