@@ -20,6 +20,7 @@ public class PlayerStat : MonoBehaviour
     [field: SerializeField] public float SpeedModifier { get; set; }
     [field: SerializeField] public float SpeedModifierInput { get; set; }
     [field: SerializeField] public float JumpPower { get; set; }
+    //[field: SerializeField] public float KnockbackPower { get; set; }
     [field: SerializeField] public bool CanJump { get; set; }
     private Dictionary<StatType, float> stats = new();
     private string userName;
@@ -31,6 +32,7 @@ public class PlayerStat : MonoBehaviour
 
     public void InitStats()
     {
+        CharacterManager.Instance.PlayerStat = this;
         userName = gameObject.name;
         stats.Add(StatType.Attack, attack); 
         stats.Add(StatType.Health, currentHealth);
@@ -44,9 +46,12 @@ public class PlayerStat : MonoBehaviour
         return stats[statType];
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage()
     {
-        currentHealth -= damage;
+        Debug.Log("데미지 입음");
+        Debug.Log($"기존 체력: {currentHealth}");
+        currentHealth -= 1;
+        Debug.Log($"바뀐 체력: {currentHealth}");
 
         if (currentHealth <= 0)
             currentHealth = 0;
