@@ -26,7 +26,7 @@ public class AttackDashState : AttackSuper
             t = 0f;
             sup.locked = true; ctx.StopMove();
             ctx.OnPreAttackEffect();
-            //ctx.Play("Dash_Windup"); 
+            SoundManager.Instance.PlayEFXSound("BossRush_EFX");
         } 
         public override void Tick(float dt)
         {
@@ -83,9 +83,6 @@ public class AttackDashState : AttackSuper
 
                 else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) 
                     fsm.Change(ctx.SChoose);
-
-                else 
-                    fsm.Change(ctx.SChase);
             }
         }
     }

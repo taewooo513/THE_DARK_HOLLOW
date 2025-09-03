@@ -22,7 +22,8 @@ public class AttackRangedState : AttackSuper
             t = 0; 
             sup.locked = true; 
             ctx.StopMove(); 
-            ctx.Play("SetRangedAttack"); 
+            ctx.Play("SetRangedAttack");
+            SoundManager.Instance.PlayEFXSound("BatSkill_EFX");
         }
         public override void Tick(float dt)
         {
@@ -69,7 +70,6 @@ public class AttackRangedState : AttackSuper
                 ctx.StartCD_Ranged();
                 if (!ctx.CanSeePlayer()) fsm.Change(ctx.SIdle);
                 else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) fsm.Change(ctx.SChoose);
-                else fsm.Change(ctx.SChase);
             }
         }
     }
