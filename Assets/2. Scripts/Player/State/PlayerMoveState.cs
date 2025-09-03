@@ -5,25 +5,30 @@ public class PlayerMoveState : BaseState
 {
     private PlayerController playerController;
 
-    public override void EnterState(StateManager stateManager)
+    public override void EnterState(StateMachine stateMachine)
     {
         Debug.Log("Hello from the Move State");
-        this.playerController = stateManager.PlayerController;
+        this.playerController = stateMachine.PlayerController;
     }
 
-    public override void UpdateState(StateManager stateManager)
+    public override void UpdateState(StateMachine stateMachine)
     {
         
     }
 
-    public override void OnCollisionEnter(StateManager stateManager, Collision2D collision)
+    public override void OnCollisionEnter(StateMachine stateMachine, Collision2D collision)
     {
 
     }
 
-    public override void FixedUpdateState(StateManager stateManager)
+    public override void OnTriggerEnter(StateMachine stateMachine, Collision2D collision)
     {
-        Debug.Log("(FixedUpdateState): Player Move!!");
+
+    }
+
+    public override void FixedUpdateState(StateMachine stateMachine)
+    {
+        //Debug.Log("(FixedUpdateState): Player Move!!");
         Move();
     }
 
@@ -33,7 +38,7 @@ public class PlayerMoveState : BaseState
         playerController.MovementDirection = playerController.MovementInput;
 
         // 이동 속도 설정
-        playerController.MovementDirection *= (playerController.MoveSpeed * playerController.SpeedModifier);
+        playerController.MovementDirection *= (CharacterManager.Instance.PlayerStat.MoveSpeed * CharacterManager.Instance.PlayerStat.SpeedModifier);
 
         // 중력은 velocity.y값으로 설정
         Vector2 dir = playerController.MovementDirection;
