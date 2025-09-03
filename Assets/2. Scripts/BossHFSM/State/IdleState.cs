@@ -13,6 +13,6 @@ public class IdleState : BossStateBase
     public override void Tick(float dt)
     {
         if (ctx.CanSeePlayer())
-            fsm.Change(ctx.SChase);
+            fsm.Change(ctx.SChoose);
     }
 }

@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1. Scenes/MainSceneCGH.unity
     guid: 170fd76c9c2123b49b9849960d0c8e9c
+  - enabled: 1
+    path: Assets/1. Scenes/Lee.BossTestScene.unity
+    guid: 1c61eabad7f993e41bf9728224bb273a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 479071fdfa5952543990e36549a87ea3, type: 2}
