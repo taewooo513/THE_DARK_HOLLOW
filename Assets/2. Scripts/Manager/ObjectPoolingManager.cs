@@ -45,6 +45,7 @@ public class ObjectPoolingManager : Singleton<ObjectPoolingManager>
         {
             var obj = ObjectManager.Instance.AddObject(key, Vector3.zero, Quaternion.identity, parent);
             obj.SetActive(false);
+            poolingObjectsQueues[key].Enqueue(obj);
         }
     }
 
@@ -60,6 +61,7 @@ public class ObjectPoolingManager : Singleton<ObjectPoolingManager>
                     GameObject val = ObjectManager.Instance.AddObject(key, Vector3.zero, Quaternion.identity);
                     poolingObjectQueue.Enqueue(val);
                     val.SetActive(false);
+                    Debug.Log(poolingObjectQueue.Count);
                 }
             }
             obj = poolingObjectQueue.Dequeue();
