@@ -307,13 +307,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Rigid>k__BackingField: {fileID: 0}
-  <MoveSpeed>k__BackingField: 1
-  <SpeedModifier>k__BackingField: 1
-  <SpeedModifierInput>k__BackingField: 1.5
   <MovementInput>k__BackingField: {x: 0, y: 0}
   <MovementDirection>k__BackingField: {x: 0, y: 0}
-  <JumpPower>k__BackingField: 5
   <CanJump>k__BackingField: 0
+  <IsMoving>k__BackingField: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -342,6 +339,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: 0
-  maxHealth: 0
-  currentHealth: 0
-  moveSpeed: 0
+  maxHealth: 100
+  currentHealth: 100
+  MoveSpeed: 1
+  <SpeedModifier>k__BackingField: 1
+  <SpeedModifierInput>k__BackingField: 1.5
+  <JumpPower>k__BackingField: 5
+  <CanJump>k__BackingField: 0
