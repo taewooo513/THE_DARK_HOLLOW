@@ -11,7 +11,7 @@ public class StartButton : MonoBehaviour
     // 버튼에서  함수 호출
     public void LoadScene()
     {
-        SceneManager.LoadScene(MainSceneCGH);
+        SceneLoadManager.Instance.LoadScene(SceneKey.mainScene);
     }
 
 }

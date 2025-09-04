@@ -5,15 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GoToStartButton : MonoBehaviour
 {
-    public string StartSceneCGH = "StartSceneCGH";
-
-    public string StartSceneAfterClear = "StartSceneAfterClear";
+    public string StartSceneCGH;
 
     public void LoadScene()
     {
-        bool cleared = (BossDeadWatcher.I != null) && BossDeadWatcher.I.IsBossCleared;
-        string target = cleared ? StartSceneAfterClear : StartSceneCGH;
-
-        SceneManager.LoadScene(target);
+        SceneLoadManager.Instance.LoadScene(SceneKey.mainScene);
     }
 }
