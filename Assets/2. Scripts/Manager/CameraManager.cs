@@ -48,27 +48,17 @@ public class CameraManager : Singleton<CameraManager>
         shackCoroutine = StartCoroutine(CameraShacking(amplitude, frequency, duration));
     }
 
-    public void ZoolInOut(Transform ts, float time, float zoomScale, float zoomMinScale, float zoomSpeed)
+    public void ZoolInOut(CinemachineVirtualCamera targetCam, float delay)
     {
-        StartCoroutine(CameraZooming(ts, time, zoomScale, zoomMinScale, zoomSpeed));
+        cinemachine.Priority = 1;
+        targetCam.Priority = 2;
+        StartCoroutine(CameraZooming(targetCam, delay));
     }
-    IEnumerator CameraZooming(Transform ts, float time, float zoomScale, float zoomMinScale, float zoomSpeed) // 
+    IEnumerator CameraZooming(CinemachineVirtualCamera targetCam, float delay) // 
     {
-        cinemachine.Follow = ts;
-        float scale = cinemachine.m_Lens.OrthographicSize;
-        while (zoomMinScale < cinemachine.m_Lens.OrthographicSize)
-        {
-            cinemachine.m_Lens.OrthographicSize -= Time.deltaTime * zoomSpeed;
-            yield return null;
-        }
-        yield return new WaitForSeconds(time);
-
-        cinemachine.Follow = CharacterManager.Instance.PlayerStat.transform;
-        while (scale > cinemachine.m_Lens.OrthographicSize)
-        {
-            cinemachine.m_Lens.OrthographicSize += Time.deltaTime * zoomSpeed;
-            yield return null;
-        }
+        yield return new WaitForSeconds(delay);
+        cinemachine.Priority = 2;
+        targetCam.Priority = 1;
     }
     IEnumerator CameraShacking(float amplitude, float frequency, float duration) // 
     {
