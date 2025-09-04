@@ -263,6 +263,7 @@ public class BossController : MonoBehaviour
          _object.SetActive(true);
         yield return new WaitForSeconds(0.8f);
         canHurt = true;
+        _object.SetActive(false);
     }
 
     // ---------------------------[Gizmos (거리/사정/대시/투사체 예상거리)]---------------------------
