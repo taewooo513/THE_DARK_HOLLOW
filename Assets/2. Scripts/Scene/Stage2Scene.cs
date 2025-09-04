@@ -11,6 +11,7 @@ public class Stage2Scene : MonoScene
 
         ObjectManager.Instance.AddObject("MainUI", Vector3.zero, Quaternion.identity);
         SoundManager.Instance.PlayBGMSound("BossBGM1");
+        CameraManager.Instance.Init();
     }
     public override AsyncOperationHandle LoadPrefabs()
     {
@@ -26,5 +27,6 @@ public class Stage2Scene : MonoScene
     {
         SoundManager.Instance.Release();
         ObjectManager.Instance.Release();
+        CameraManager.Instance.Release();
     }
 }
