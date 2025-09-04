@@ -8,11 +8,29 @@ public class PlayerRunState : BaseState
     {
         Debug.Log("Hello from the Run State");
         this.playerController = stateMachine.PlayerController;
+
+        // 이전 상태 저장 
+        stateMachine.SetPreState(stateMachine);
+
         ChangeSpeed();
+
+        playerController.GetComponentInChildren<SpriteRenderer>().flipX = playerController.MovementInput.x < 0 ? true : false;
+
+        // Run Animation
+        playerController.AnimationController.Move(Vector2.zero);
+        playerController.AnimationController.Run(playerController.MovementInput);
     }
 
     public override void UpdateState(StateMachine stateMachine)
     {
+        // 보스에게 맞았으면
+        if (playerController.IsHit)
+        {
+            // Hit상태로 진입 
+            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Hit));
+        }
+
+        // 달리기 키를 떼면
 
     }
 

@@ -18,14 +18,24 @@ public class PlayerController : MonoBehaviour
     [Header("Etc")]
     [SerializeField] private LayerMask groundLayer;
     private StateMachine stateMachine;
-    private PlayerStat playerStat;
+    [field: SerializeField] public PlayerStat PlayerStat { get; set; }
+    [SerializeField] public AnimationController AnimationController { get; set; }
+    [field: SerializeField] public bool IsHit { get; set; }
+    //[field: SerializeField] public bool IsInvincible { get; set; }
+    [field: SerializeField] public SpriteRenderer SpriteRenderer;
+    [field: SerializeField] public GameObject hitObj {  get; set; }
+
+    [Header("Collision Info")]
+    [field: SerializeField] public Collider2D collider;
 
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         stateMachine = GetComponent<StateMachine>();
-        playerStat = GetComponent<PlayerStat>();
+        PlayerStat = GetComponent<PlayerStat>();
+        AnimationController = GetComponent<AnimationController>();
+        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void Update()
     {
@@ -69,6 +79,7 @@ public class PlayerController : MonoBehaviour
             CanJump = true;
 
             // Jump 상태로 전환
+            stateMachine.SetStateBeforeJump(stateMachine);
             stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Jump));
         }
     }
@@ -85,8 +96,43 @@ public class PlayerController : MonoBehaviour
         // 달리기키(shift)를 뗐을 때 
         else if(context.phase == InputActionPhase.Canceled)
         {
-            // Idle 상태로 전환 -> SpeedModifier = 1.0f;
-            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+            // 아직 달리고 있으면
+            if (IsMoving)
+            {
+                // 계속 달릴 수 있도록 Move 상태로 전환 
+                // Walk 애니메이션으로 전환 
+                //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+                stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Move));
+            }
+            // 그게 아니면
+            else
+            {
+                // Idle 상태로 전환 -> SpeedModifier = 1.0f
+                stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+            }
+
+            //// Idle 상태로 전환 -> SpeedModifier = 1.0f;
+            //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        // 공격키(x)를 누르기 시작했고, 땅에 있으면
+        if (context.phase == InputActionPhase.Started && IsGrounded())
+        {
+            // 공격상태로 전환한다. 
+            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Attack));
+        }
+    }
+
+    public void OnSpecialAttack(InputAction.CallbackContext context)
+    {
+        // 특수공격키(space)를 누르기 시작했고, 땅에 있으면
+        if(context.phase == InputActionPhase.Started && IsGrounded())
+        {
+            // 특수공격상태로 전환한다. 
+            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.SpecialAttack));
         }
     }
 
@@ -109,5 +155,14 @@ public class PlayerController : MonoBehaviour
     public void DetractHealth()
     {
         Debug.Log("Detract Health!!");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Boss"))
+        {
+            IsHit = true;
+            this.collider = collider;
+        }
     }
 }

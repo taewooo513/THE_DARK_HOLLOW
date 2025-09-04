@@ -15,14 +15,15 @@ public class AttackRangedState : AttackSuper
 
     class A_Windup : BossStateBase
     {
-        readonly AttackRangedState sup; float t;
+        readonly AttackRangedState sup; 
+        float t;
         public A_Windup(BossController c, BossStateMachine f, AttackRangedState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
             t = 0; 
             sup.locked = true; 
             ctx.StopMove(); 
-            ctx.Play("SetRangedAttack");
+            ctx.AnimatianPlay_Trigger("SetRangedAttack");
             SoundManager.Instance.PlayEFXSound("BatSkill_EFX");
         }
         public override void Tick(float dt)
@@ -34,12 +35,12 @@ public class AttackRangedState : AttackSuper
 
     class A_Execute : BossStateBase
     {
-        readonly AttackRangedState sup; bool fired;
+        readonly AttackRangedState sup; 
+        bool fired;
         public A_Execute(BossController c, BossStateMachine f, AttackRangedState s) : base(c, f) { sup = s; }
         public override void OnEnter()
         {
             fired = false;
-            ctx.FaceToPlayer();
         }
         public override void Tick(float dt)
         {
@@ -55,7 +56,8 @@ public class AttackRangedState : AttackSuper
 
     class A_Recover : BossStateBase
     {
-        readonly AttackRangedState sup; float t;
+        readonly AttackRangedState sup; 
+        float t;
         public A_Recover(BossController c, BossStateMachine f, AttackRangedState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
@@ -68,8 +70,10 @@ public class AttackRangedState : AttackSuper
             {
                 sup.locked = false;
                 ctx.StartCD_Ranged();
-                if (!ctx.CanSeePlayer()) fsm.Change(ctx.SIdle);
-                else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) fsm.Change(ctx.SChoose);
+                if (!ctx.CanSeePlayer()) 
+                    fsm.Change(ctx.SIdle);
+                else 
+                    fsm.Change(ctx.SChoose);
             }
         }
     }

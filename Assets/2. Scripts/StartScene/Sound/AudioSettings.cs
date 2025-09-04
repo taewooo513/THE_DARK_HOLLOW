@@ -28,21 +28,28 @@ public class AudioSettings : MonoBehaviour
         seSlider.onValueChanged.AddListener(SetSEVolume);
     }
 
+    private float ToDb_Gamma(float value, float minDb = -80f, float gamma = 0.4f)
+    {
+        value = Mathf.Clamp01(value);
+        float t = Mathf.Pow(value, gamma);      // 커브 적용
+        return Mathf.Lerp(minDb, 0f, t);        // dB 선형 보간
+    }
+
     public void SetMasterVolume(float value)
     {
-        audioMixer.SetFloat("Master", Mathf.Log10(value) * 20); // dB 변환
+        audioMixer.SetFloat("Master", ToDb_Gamma(value, -80f, 0.4f)); // dB 변환
         PlayerPrefs.SetFloat("Master", value);
     }
 
     public void SetBGMVolume(float value)
     {
-        audioMixer.SetFloat("BGM", Mathf.Log10(value) * 20);
+        audioMixer.SetFloat("BGM", ToDb_Gamma(value, -80f, 0.4f));
         PlayerPrefs.SetFloat("BGM", value);
     }
 
     public void SetSEVolume(float value)
     {
-        audioMixer.SetFloat("SE", Mathf.Log10(value) * 20);
+        audioMixer.SetFloat("SE", ToDb_Gamma(value, -80f, 0.4f));
         PlayerPrefs.SetFloat("SE", value);
     }
 }

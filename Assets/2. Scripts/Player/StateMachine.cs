@@ -7,7 +7,9 @@ public enum PlayerStateType
     Move,
     Run,
     Jump,
-    Hit
+    Hit,
+    Attack,
+    SpecialAttack,
 }
 
 // context = 상태 데이터 전달 역할 = StateMachine 
@@ -15,6 +17,8 @@ public class StateMachine : MonoBehaviour
 {
     // 상태 머신은 하나의 상태만 가짐. 
     private BaseState currentState;
+    private BaseState preState;
+    private BaseState stateBeforeJump;
 
     // 구체적인 상태들을 저장할 Dictionary 
     private Dictionary<PlayerStateType, BaseState> states = new();
@@ -28,6 +32,8 @@ public class StateMachine : MonoBehaviour
         states.Add(PlayerStateType.Run, new PlayerRunState());
         states.Add(PlayerStateType.Jump, new PlayerJumpState());
         states.Add(PlayerStateType.Hit, new PlayerHitState());
+        states.Add(PlayerStateType.Attack, new PlayerAttackState());
+        states.Add(PlayerStateType.SpecialAttack, new PlayerSpecialAttackState());
     }
 
     private void Start()
@@ -48,7 +54,12 @@ public class StateMachine : MonoBehaviour
         switch (currentState)
         {
             case PlayerIdleState:
+            case PlayerJumpState:
+            case PlayerMoveState:
+            case PlayerRunState:
             case PlayerHitState:
+            case PlayerAttackState:
+            case PlayerSpecialAttackState:
                 // 매 프레임마다 실행될 상태
                 currentState.UpdateState(this);
                 break;
@@ -63,19 +74,20 @@ public class StateMachine : MonoBehaviour
             case PlayerJumpState:
             case PlayerRunState:
             case PlayerHitState:
+            case PlayerAttackState:
                 currentState.FixedUpdateState(this);
                 break;
         }
     }
 
-    // 상태 전환 => 상태 매니저가 구체적인 상태들을 가지고 있으니까 
+    // 상태 전환 => 상태 머신이 구체적인 상태들을 가지고 있으니까 
     public void SwitchState(BaseState state)
     {
         currentState = state; 
-        state.EnterState(this); // 상태 매니저를 알려줘서 상태 진입 
+        state.EnterState(this); // 상태 머신을 알려줘서 상태 진입 
     }
 
-    // 상태 매니저를 가진 오브젝트에서 충돌이 발생하면 충돌 상태로 진입한다 
+    // 상태 머신을 가진 오브젝트에서 충돌이 발생하면 충돌 상태로 진입한다 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentState.OnCollisionEnter(this, collision);
@@ -84,5 +96,30 @@ public class StateMachine : MonoBehaviour
     public BaseState Getstates(PlayerStateType type)
     {
         return states[type];
+    }
+
+    public BaseState GetCurrentState()
+    {
+        return currentState;
+    }
+
+    public BaseState GetPreState()
+    {
+        return preState;
+    }
+
+    public void SetPreState(StateMachine statMachine)
+    {
+        preState = statMachine.GetCurrentState();
+    }
+
+    public void SetStateBeforeJump(StateMachine stateMachine)
+    {
+        stateBeforeJump = stateMachine.GetCurrentState();
+    }
+
+    public BaseState GetStateBeforeJump()
+    {
+        return stateBeforeJump;
     }
 }

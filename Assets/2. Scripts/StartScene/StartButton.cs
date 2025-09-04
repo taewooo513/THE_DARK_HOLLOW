@@ -14,8 +14,4 @@ public class StartButton : MonoBehaviour
         SceneManager.LoadScene(MainSceneCGH);
     }
 
-    public void OpenOption()
-    {
-
-    }
 }
