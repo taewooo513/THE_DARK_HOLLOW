@@ -65,6 +65,13 @@ public class PlayerHitState : BaseState
             stateMachine.PlayerController.IsHit = false;
             stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
         }
+
+        // »ç¸Á Ã¼Å© 
+        if(stateMachine.PlayerController.PlayerStat.CurrentHealth <= 0.0f)
+        {
+            Debug.Log("ÇÃ·¹ÀÌ¾î Á×À½");
+            SceneLoadManager.instance.LoadScene(SceneKey.titleScene);
+        }
     }
 
     public override void FixedUpdateState(StateMachine stateMachine)
