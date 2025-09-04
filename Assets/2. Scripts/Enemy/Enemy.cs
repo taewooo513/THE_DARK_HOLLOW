@@ -18,39 +18,50 @@ public class Enemy : MonoBehaviour
     public float dmg;
     public float speed;
     public float attackSpeed;
+    public bool isDie = false;
     protected EnemyState enemyState;
 
-    public virtual void Attack()
+    public virtual void AttackTrigger()
     {
 
     }
-    public virtual void Damaged()
+    public virtual void DamagedTrigger(float dmg)
     {
 
     }
-    public virtual void Movement()
+    public virtual void MovementTrigger()
     {
 
     }
-    public virtual void Die()
+    public virtual void DieTrigger()
     {
 
     }
 
-    public virtual void SwitchState(EnemyState state) // 상태 전환시 한번실행되어야하는 함수 ex.) 공격, 애니메이션 전환등
+    public virtual void IdleTrigger()
+    {
+
+    }
+
+    public virtual void SwitchState(EnemyState state, float val = 0) // 상태 전환시 한번실행되어야하는 함수 ex.) 공격, 애니메이션 전환등
     {
         enemyState = state;
         switch (enemyState)
         {
             case EnemyState.Idle:
+                IdleTrigger();
                 break;
             case EnemyState.walk:
+                MovementTrigger();
                 break;
             case EnemyState.Attack:
+                AttackTrigger();
                 break;
             case EnemyState.Damaged:
+                DamagedTrigger(val);
                 break;
             case EnemyState.Die:
+                DieTrigger();
                 break;
         }
     }
