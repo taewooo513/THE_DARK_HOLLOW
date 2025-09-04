@@ -95,7 +95,7 @@ public class PlayerStat : MonoBehaviour
     public Dictionary<StatType, float> GetPlayerStat()
     {
         return stats;
-
+    }
     public void SetCheckPoint()
     {
         transform.position = playerCheckPoint;
