@@ -7,7 +7,9 @@ public class MainStageScene : MonoScene
 {
     public override void Init()
     {
-        ObjectManager.Instance.AddObject("MainScene", Vector3.zero, Quaternion.identity);
+        ObjectManager.Instance.AddObject("Stage1Scene", Vector3.zero, Quaternion.identity);
+        ObjectManager.Instance.AddObject("Stage2Scene", Vector3.zero, Quaternion.identity);
+
         ObjectManager.Instance.AddObject("MainUI", Vector3.zero, Quaternion.identity);
         SoundManager.Instance.PlayBGMSound("BossBGM1");
     }

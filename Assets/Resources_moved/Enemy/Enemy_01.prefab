@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28602ea6a759054c82d35b1ece86a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftColl: {fileID: 8303955132304816570}
-  rightColl: {fileID: 772261841655386668}
+  leftColl: {fileID: 772261841655386668}
+  rightColl: {fileID: 8303955132304816570}
 --- !u!1 &4455919652323003072
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75cb39fa453a7647a97db93662395d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1
+  hp: 3
   dmg: 1
   speed: 1
   attackSpeed: 5
@@ -319,6 +319,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  particle: {fileID: 7029061968503843326, guid: c5f5d4ac65ee7244993309608c2221bf, type: 3}
 --- !u!50 &417302272440866386
 Rigidbody2D:
   serializedVersion: 4

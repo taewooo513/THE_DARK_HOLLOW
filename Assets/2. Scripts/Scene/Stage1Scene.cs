@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class BossStage : MonoScene
+public class Stage1Scene : MonoScene
 {
     public override void Init()
     {
-        ObjectManager.Instance.AddObject("BossScene", Vector3.zero, Quaternion.identity);
-        ObjectManager.Instance.AddObject("MainUI", Vector3.zero, Quaternion.identity);
-        SoundManager.Instance.PlayBGMSound("BossBGM2");
-        CameraManager.Instance.Init();
+        ObjectManager.Instance.AddObject("Stage1Scene", Vector3.zero, Quaternion.identity);
 
+        ObjectManager.Instance.AddObject("MainUI", Vector3.zero, Quaternion.identity);
+        SoundManager.Instance.PlayBGMSound("BossBGM1");
+        CameraManager.Instance.Init();
     }
 
     public override AsyncOperationHandle LoadPrefabs()
     {
-        return ObjectManager.Instance.LoadGameObject("Boss");
+        return ObjectManager.Instance.LoadGameObject("Stage1");
     }
 
     public override AsyncOperationHandle LoadSounds()
     {
-        return SoundManager.Instance.LoadSound("Boss");
+        return SoundManager.Instance.LoadSound("Stage1");
     }
 
     public override void Release()

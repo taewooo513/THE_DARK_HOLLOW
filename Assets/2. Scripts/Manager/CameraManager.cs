@@ -1,4 +1,5 @@
 using Cinemachine;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -35,11 +36,8 @@ public class CameraManager : Singleton<CameraManager>
             noise = val.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             if (mainCamera.TryGetComponent(out Cinemachine.CinemachineConfiner2D val2))
             {
-                if (collider2D != null)
-                {
-                    confiner2D = val2;
-                    confiner2D.m_BoundingShape2D = collider2D;
-                }
+                confiner2D = val2;
+                confiner2D.m_BoundingShape2D = collider2D;
             }
         }
     }
@@ -50,6 +48,28 @@ public class CameraManager : Singleton<CameraManager>
         shackCoroutine = StartCoroutine(CameraShacking(amplitude, frequency, duration));
     }
 
+    public void ZoolInOut(Transform ts, float time, float zoomScale, float zoomMinScale, float zoomSpeed)
+    {
+        StartCoroutine(CameraZooming(ts, time, zoomScale, zoomMinScale, zoomSpeed));
+    }
+    IEnumerator CameraZooming(Transform ts, float time, float zoomScale, float zoomMinScale, float zoomSpeed) // 
+    {
+        cinemachine.Follow = ts;
+        float scale = cinemachine.m_Lens.OrthographicSize;
+        while (zoomMinScale < cinemachine.m_Lens.OrthographicSize)
+        {
+            cinemachine.m_Lens.OrthographicSize -= Time.deltaTime * zoomSpeed;
+            yield return null;
+        }
+        yield return new WaitForSeconds(time);
+
+        cinemachine.Follow = CharacterManager.Instance.PlayerStat.transform;
+        while (scale > cinemachine.m_Lens.OrthographicSize)
+        {
+            cinemachine.m_Lens.OrthographicSize += Time.deltaTime * zoomSpeed;
+            yield return null;
+        }
+    }
     IEnumerator CameraShacking(float amplitude, float frequency, float duration) // 
     {
         noise.m_AmplitudeGain = amplitude;
@@ -68,6 +88,7 @@ public class CameraManager : Singleton<CameraManager>
         collider2D = null;
         confiner2D = null;
         shackCoroutine = null;
-        StopCoroutine("shackCoroutine");
+        if (shackCoroutine != null)
+            StopCoroutine(shackCoroutine);
     }
 }
