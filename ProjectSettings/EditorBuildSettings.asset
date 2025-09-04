@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/1. Scenes/Terminal.unity
+    guid: d726e4f900e42e7498ea6c3a4f9dcea1
+  - enabled: 1
     path: Assets/1. Scenes/Main/StartScene.unity
     guid: e62dc2e4fdf09b5498247efed69df50b
   - enabled: 1
@@ -14,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1. Scenes/Main/BossScene.unity
     guid: cf90251a8cc798c48a266a025ca23e7b
+  - enabled: 1
+    path: Assets/1. Scenes/Main/StartSceneAfterClear.unity
+    guid: eb21feffd18635449a7dd93bc6dd069e
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 479071fdfa5952543990e36549a87ea3, type: 2}

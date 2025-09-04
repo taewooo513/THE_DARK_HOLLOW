@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class BossDeadWatcher : MonoBehaviour
 {
-    public string StartSceneCGH;
+    public string StartScene;
 
     public static BossDeadWatcher I { get; private set; }
     public bool IsBossCleared { get; private set; } = false;
@@ -68,6 +68,6 @@ public class BossDeadWatcher : MonoBehaviour
         IsBossCleared = false;
         PlayerPrefs.DeleteKey(PPKey);
         Debug.Log("[BossDeadWatcher] Boss Cleared √ ±‚»≠");
-        SceneManager.LoadScene(StartSceneCGH);
+        SceneManager.LoadScene(StartScene);
     }
 }
