@@ -19,7 +19,8 @@ public class AttackDashState : AttackSuper
     // - dashWindup 경과 후 Execute로 전환
     class A_Windup : BossStateBase
     {
-        readonly AttackDashState sup; float t;
+        readonly AttackDashState sup;
+        float t;
         public A_Windup(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
@@ -38,14 +39,15 @@ public class AttackDashState : AttackSuper
 
     class A_Execute : BossStateBase
     {
-        readonly AttackDashState sup; float t; Vector2 dir;
+        readonly AttackDashState sup; 
+        float t; 
+        Vector2 dir;
         public A_Execute(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
         public override void OnEnter()
         {
             t = 0;
             if (ctx.player) dir = (ctx.player.position - ctx.transform.position).normalized;
             else dir = new Vector2(ctx.transform.localScale.x, 0f);
-            //ctx.AnimatianPlay_Trigger("Dash");
         }
         public override void Tick(float dt)
         {
@@ -62,12 +64,12 @@ public class AttackDashState : AttackSuper
 
     class A_Recover : BossStateBase
     {
-        readonly AttackDashState sup; float t;
+        readonly AttackDashState sup; 
+        float t;
         public A_Recover(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
             t = 0; 
-            //ctx.AnimatianPlay_Trigger("Dash_Recover"); 
         } 
         public override void Tick(float dt)
         {
@@ -76,12 +78,9 @@ public class AttackDashState : AttackSuper
             {
                 sup.locked = false;
                 ctx.StartCD_Dash();
-                // 다음으로
-                if (!ctx.CanSeePlayer()) 
-                    fsm.Change(ctx.SIdle);
 
-                else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) 
-                    fsm.Change(ctx.SChoose);
+                if (!ctx.CanSeePlayer()) fsm.Change(ctx.SIdle);
+                else fsm.Change(ctx.SChoose); 
             }
         }
     }

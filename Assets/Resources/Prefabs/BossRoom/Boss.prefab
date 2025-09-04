@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1396888096463638685}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,22 +57,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preAttack: {fileID: 1238154396340138914}
   hitEffect: {fileID: 445882645041924348}
-  detectRange: 15
-  nearRange: 10
-  midRange: 3
-  farRange: 5.5
+  decisionDelay: 1.5
+  detectRange: 20
+  nearRange: 8
+  midRange: 10
+  farRange: 15
   perceptionHz: 1
   dashSpeed: 12
   dashWindup: 1
   dashActive: 1.26
   dashRecover: 0.35
-  dashCooldown: 5.07
-  midWindup: 0.5
+  dashCooldown: 8
+  midWindup: 1
   midActive: 0
   midRecover: 0.35
-  midCooldown: 1.8
+  midCooldown: 5
   midAttackPrefab: {fileID: 3488295262734343570}
-  midOffsetX: 22
+  midOffsetX: 2.2
   rangedWindup: 0.2
   rangedActive: 0
   rangedRecover: 0.35
@@ -81,18 +82,6 @@ MonoBehaviour:
   bulletLifetime: 2
   firePoint: {fileID: 4390913238621973653}
   hp01: 100
-  minScoreToAct: 0.35
-  stickiness: 0.15
-  utilityNoise: 0.02
-  nearSigmaFrac: 0.6
-  midSigmaFrac: 0.6
-  farSigmaFrac: 0.6
-  weightDash: 1
-  weightMid: 1
-  weightRanged: 1
-  baseBiasDash: 0.05
-  baseBiasMid: 0.05
-  baseBiasRanged: 0.05
 --- !u!114 &1481520039354108700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossStat: {fileID: 7463462234159839159}
+  controller: {fileID: 0}
 --- !u!50 &2486494017034777118
 Rigidbody2D:
   serializedVersion: 4
@@ -556,9 +546,10 @@ GameObject:
   - component: {fileID: 3369791215985422652}
   - component: {fileID: 7934174498829177915}
   - component: {fileID: 6729801714179610241}
+  - component: {fileID: 1366516207136120848}
   m_Layer: 0
   m_Name: Skill_5
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -651,6 +642,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &1366516207136120848
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992599382017788967}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.3875, y: 0.5875}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.0001, y: 0.6}
+  m_EdgeRadius: 0
 --- !u!1 &3488295262734343570
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,7 +698,7 @@ GameObject:
   - component: {fileID: 350200332576350282}
   m_Layer: 0
   m_Name: MidPoint
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

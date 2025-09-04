@@ -15,7 +15,8 @@ public class AttackRangedState : AttackSuper
 
     class A_Windup : BossStateBase
     {
-        readonly AttackRangedState sup; float t;
+        readonly AttackRangedState sup; 
+        float t;
         public A_Windup(BossController c, BossStateMachine f, AttackRangedState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
@@ -34,7 +35,8 @@ public class AttackRangedState : AttackSuper
 
     class A_Execute : BossStateBase
     {
-        readonly AttackRangedState sup; bool fired;
+        readonly AttackRangedState sup; 
+        bool fired;
         public A_Execute(BossController c, BossStateMachine f, AttackRangedState s) : base(c, f) { sup = s; }
         public override void OnEnter()
         {
@@ -54,7 +56,8 @@ public class AttackRangedState : AttackSuper
 
     class A_Recover : BossStateBase
     {
-        readonly AttackRangedState sup; float t;
+        readonly AttackRangedState sup; 
+        float t;
         public A_Recover(BossController c, BossStateMachine f, AttackRangedState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
@@ -67,8 +70,10 @@ public class AttackRangedState : AttackSuper
             {
                 sup.locked = false;
                 ctx.StartCD_Ranged();
-                if (!ctx.CanSeePlayer()) fsm.Change(ctx.SIdle);
-                else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) fsm.Change(ctx.SChoose);
+                if (!ctx.CanSeePlayer()) 
+                    fsm.Change(ctx.SIdle);
+                else 
+                    fsm.Change(ctx.SChoose);
             }
         }
     }

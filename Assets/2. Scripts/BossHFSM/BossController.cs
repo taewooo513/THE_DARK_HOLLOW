@@ -40,13 +40,14 @@ public class BossController : MonoBehaviour
     public DeadState SDead => dead;
 
     // 쿨다운
-    float readyDash,readyMid, readyRanged;
+    float readyDash, readyMid, readyRanged;
 
     // 변수들
     bool canSee;
     bool canHurt = true;
     bool isDead = false;
     float pAcc;
+    float nextDecisionReadyAt = 0f;
     int hp01;
 
     Animator animator;
@@ -132,26 +133,15 @@ public class BossController : MonoBehaviour
 
     // 공용 유틸 (상태에서 호출)
     public bool CanSeePlayer() => canSee;
-    public void StartCD_Dash() => readyDash = Time.time + stat.dashCooldown;
-    public void StartCD_Mid() => readyMid = Time.time + stat.midCooldown;
-    public void StartCD_Ranged() => readyRanged = Time.time + stat.rangedCooldown;
+    public bool DecisionReady() => Time.time >= nextDecisionReadyAt;
+    public void StartDecisionDelay() => nextDecisionReadyAt = Time.time + stat.decisionDelay;
     public bool CDReadyDash() => Time.time >= readyDash;
     public bool CDReadyMid() => Time.time >= readyMid;
     public bool CDReadyRanged() => Time.time >= readyRanged;
+    public void StartCD_Dash() => readyDash = Time.time + stat.dashCooldown;
+    public void StartCD_Mid() => readyMid = Time.time + stat.midCooldown;
+    public void StartCD_Ranged() => readyRanged = Time.time + stat.rangedCooldown;
     public void StopMove() => rb.velocity = Vector2.zero;       // 제자리 정지
-
-    // 플레이어를 바라보게 함
-    public void FaceToPlayerFireMidAttack()
-    {
-        if (!player || !stat.midAttackPrefab) return;
-
-        // 플레이어가 보스 기준 왼쪽/오른쪽인지 판단
-        float dx = player.position.x - transform.position.x;
-        bool playerLeft = dx < 0f;
-
-        // 왼쪽이면 -, 오른쪽이면 +
-        float targetX = playerLeft ? -stat.midOffsetX : +stat.midOffsetX;
-    }
 
     // 애니메이션 재생
     public void AnimatianPlay_Trigger(string trigger)
@@ -161,7 +151,11 @@ public class BossController : MonoBehaviour
         animator.SetTrigger(trigger);
     }
 
-    // 돌진 예고 이펙트
+    // ─────────────────────────────────────────────────────────────
+    // [Attack관련 유틸 함수들]
+    // ─────────────────────────────────────────────────────────────
+
+    // ---------------------------[RushAttack]---------------------------
     public void OnPreAttackEffect()
     {
         stat.preAttack.SetActive(true);
@@ -174,6 +168,35 @@ public class BossController : MonoBehaviour
         stat.preAttack.SetActive(false);
     }
 
+    // ---------------------------[MidAttack]---------------------------
+    // 플레이어를 바라보게 함
+    public void FaceToPlayerFireMidAttack()
+    {
+        if (!player || !stat.midAttackPrefab) return;
+
+        // 플레이어가 보스 기준 왼쪽/오른쪽인지 판단
+        float dx = player ? (player.position.x - transform.position.x) : (transform.localScale.x >= 0 ? 1f : -1f);
+        bool playerLeft = dx < 0f;
+
+        // 왼쪽이면 -, 오른쪽이면 +
+        float targetX = playerLeft ? -stat.midOffsetX : stat.midOffsetX;
+        stat.midAttackPrefab.transform.localPosition = new Vector2(targetX, -0.95f);
+        stat.midAttackPrefab.SetActive(true);
+    }
+
+    public void OnMidAttackEffect()
+    {
+        stat.midAttackPrefab.SetActive(true);
+        StartCoroutine(OnMidAttackRoutine());
+    }
+
+    IEnumerator OnMidAttackRoutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        stat.midAttackPrefab.SetActive(false);
+    }
+
+    // ---------------------------[RangedAttack]---------------------------
     // 투사체 스폰
     public void FireProjectile()
     {
@@ -200,13 +223,14 @@ public class BossController : MonoBehaviour
         ObjectPoolingManager.Instance.DestoryObject("Skill_3", go);
     }
 
+    // ---------------------------[보스 피격 및 죽는로직]---------------------------
     public void ToDie()
     {
         Debug.Log("보스 곧 사라짐");
         Destroy(this.gameObject, 3f);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject _object)
     {
         if (canHurt == true)
         {
@@ -229,17 +253,19 @@ public class BossController : MonoBehaviour
             else
             {
                 AnimatianPlay_Trigger("TakeDamage");
-                StartCoroutine(OnTakeDamageRoutine());
+                StartCoroutine(OnTakeDamageRoutine(_object));
             }
         }
     }
 
-    IEnumerator OnTakeDamageRoutine()
+    IEnumerator OnTakeDamageRoutine(GameObject _object)
     {
+         _object.SetActive(true);
         yield return new WaitForSeconds(0.8f);
         canHurt = true;
     }
-    // Gizmos (거리/사정/대시/투사체 예상거리)
+
+    // ---------------------------[Gizmos (거리/사정/대시/투사체 예상거리)]---------------------------
     void OnDrawGizmosSelected()
     {
         // 레퍼런스가 에디터에서 비어있을 수 있으므로 안전 체크
@@ -250,16 +276,18 @@ public class BossController : MonoBehaviour
         Vector3 c = transform.position;
 
         // 1) 범위 링
-        // detectRange : 노랑, nearRange : 초록, farRange : 파랑
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(c, s.detectRange);
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(c, s.nearRange);
 
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(c, s.midRange);
+
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(c, s.farRange);
-
+        
         // 2) 돌진 예상 이동거리
         float dashDist = s.dashSpeed * s.dashActive;
         Vector3 dashDir = (transform.localScale.x >= 0) ? Vector3.right : Vector3.left;
