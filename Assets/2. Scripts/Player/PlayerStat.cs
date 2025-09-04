@@ -26,6 +26,8 @@ public class PlayerStat : MonoBehaviour
     public bool isMoved = true;
     private Dictionary<StatType, float> stats = new();
 
+    public Vector2 playerCheckPoint;
+
     private void Awake()
     {
         InitStats();
@@ -59,5 +61,11 @@ public class PlayerStat : MonoBehaviour
 
         if (CurrentHealth <= 0)
             CurrentHealth = 0;
+    }
+
+    // 플레이어 체크 포인트 저장 (작성자:이영신)
+    public void SetCheckPoint()
+    {
+        transform.position = playerCheckPoint;
     }
 }

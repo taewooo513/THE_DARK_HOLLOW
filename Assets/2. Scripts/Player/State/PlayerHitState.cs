@@ -70,7 +70,7 @@ public class PlayerHitState : BaseState
         if(stateMachine.PlayerController.PlayerStat.CurrentHealth <= 0.0f)
         {
             Debug.Log("플레이어 죽음");
-            SceneLoadManager.instance.LoadScene(SceneKey.titleScene);
+           // SceneLoadManager.instance.LoadScene(SceneKey.titleScene);
         }
     }
 
