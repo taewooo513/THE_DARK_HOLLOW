@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Address: Sounds/little-slimex27s-adventure-151007
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Stage1
+    - Boss
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 123844dfde5c9a84c831cff99dd31551
     m_Address: Sounds/MainBGM
@@ -61,6 +61,30 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36cdb201d9fdf5b4281cf0d32607d983
     m_Address: Prefabs/BossRoom/Skill/Skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a62dea5bbe5acb94aa2d738909044feb
+    m_Address: Assets/Resources_moved/Sounds/BossRush_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03f0d3fe63cbe814ca2f0d948cb290c6
+    m_Address: Assets/Resources_moved/Sounds/BossRangedAttack_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07930705cfa3e364da47dfde808038a7
+    m_Address: Assets/Resources_moved/Sounds/BossHit_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc7ecf9c3c607444a820a5790ceed6ed
+    m_Address: Assets/Resources_moved/Sounds/BossDead_EFX.mp3
     m_ReadOnly: 0
     m_SerializedLabels:
     - Boss
