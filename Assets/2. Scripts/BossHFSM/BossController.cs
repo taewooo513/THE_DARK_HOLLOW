@@ -46,6 +46,7 @@ public class BossController : MonoBehaviour
     bool canSee;
     bool canHurt = true;
     bool isDead = false;
+    public bool IsDead => isDead;
     float pAcc;
     float nextDecisionReadyAt = 0f;
     int hp01;
@@ -144,7 +145,7 @@ public class BossController : MonoBehaviour
     public void StopMove() => rb.velocity = Vector2.zero;       // 제자리 정지
 
     // 애니메이션 재생
-    public void AnimatianPlay_Trigger(string trigger)
+    public void AnimationPlay_Trigger(string trigger)
     {
         if (!animator || string.IsNullOrEmpty(trigger)) return;
         animator.ResetTrigger(trigger);
@@ -223,7 +224,7 @@ public class BossController : MonoBehaviour
         ObjectPoolingManager.Instance.DestoryObject("Skill_3", go);
     }
 
-    // ---------------------------[보스 피격 및 죽는로직]---------------------------
+    // ---------------------------[보스 라이프와 콜라이더 상호작용 관련]---------------------------
     public void ToDie()
     {
         Debug.Log("보스 곧 사라짐");
@@ -252,7 +253,7 @@ public class BossController : MonoBehaviour
             }
             else
             {
-                AnimatianPlay_Trigger("TakeDamage");
+                AnimationPlay_Trigger("TakeDamage");
                 StartCoroutine(OnTakeDamageRoutine(_object));
             }
         }
@@ -264,6 +265,15 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         canHurt = true;
         _object.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            Debug.Log("Boss Hit Player");
+            CharacterManager.instance.PlayerStat.TakeDamage();
+        }
     }
 
     // ---------------------------[Gizmos (거리/사정/대시/투사체 예상거리)]---------------------------

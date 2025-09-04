@@ -23,7 +23,7 @@ public class AttackMidState : AttackSuper
             sup.locked = true;
             ctx.StopMove();
             SoundManager.Instance.PlayEFXSound("BossRangedAttack_EFX");
-            ctx.AnimatianPlay_Trigger("SetMidAttack");
+            ctx.AnimationPlay_Trigger("SetMidAttack");
         }
         public override void Tick(float dt)
         {

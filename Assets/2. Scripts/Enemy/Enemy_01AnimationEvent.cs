@@ -16,7 +16,6 @@ public class Enemy_01AnimationEvent : MonoBehaviour
 
     public void AbleAttackCollision()
     {
-        Debug.Log("asgd;mlp");
         if (enemy.isRight == true)
         {
             rightColl.SetActive(true);
@@ -37,5 +36,15 @@ public class Enemy_01AnimationEvent : MonoBehaviour
     public void EndAttack()
     {
         enemy.AttackEnd();
+    }
+
+    public void EndDamaged()
+    {
+        enemy.SwitchState(EnemyState.Idle);
+    }
+
+    public void EndDie()
+    {
+        Destroy(enemy.gameObject);
     }
 }

@@ -15,4 +15,12 @@ public class Skill_3 : MonoBehaviour
     {
         animator.Play("PreAction");
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            CharacterManager.instance.PlayerStat.TakeDamage();
+        }
+    }
 }

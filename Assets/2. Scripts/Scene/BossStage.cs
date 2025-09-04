@@ -7,7 +7,9 @@ public class BossStage : MonoScene
 {
     public override void Init()
     {
-        ObjectManager.Instance.AddObject("BossStage", Vector3.zero, Quaternion.identity);
+        ObjectManager.Instance.AddObject("BossScene", Vector3.zero, Quaternion.identity);
+        ObjectManager.Instance.AddObject("MainUI", Vector3.zero, Quaternion.identity);
+        SoundManager.Instance.PlayBGMSound("BossBGM2");
     }
 
     public override AsyncOperationHandle LoadPrefabs()
@@ -22,6 +24,7 @@ public class BossStage : MonoScene
 
     public override void Release()
     {
+        SoundManager.Instance.Release();
+        ObjectManager.Instance.Release();
     }
-
 }

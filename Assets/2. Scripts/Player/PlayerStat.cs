@@ -29,6 +29,8 @@ public class PlayerStat : MonoBehaviour
     public bool isMoved = true;
     private Dictionary<StatType, float> stats = new();
 
+    public Vector2 playerCheckPoint;
+
     private void Awake()
     {
         InitStats();
@@ -93,5 +95,9 @@ public class PlayerStat : MonoBehaviour
     public Dictionary<StatType, float> GetPlayerStat()
     {
         return stats;
+
+    public void SetCheckPoint()
+    {
+        transform.position = playerCheckPoint;
     }
 }

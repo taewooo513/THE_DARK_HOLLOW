@@ -36,10 +36,10 @@ MonoBehaviour:
     - Boss
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f746d4cc23cda264d9dc575b026b82eb
-    m_Address: Sounds/little-slimex27s-adventure-151007
+    m_Address: Assets/Resources_moved/Sounds/StartBGM.mp3
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Stage1
+    - StartScene
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 123844dfde5c9a84c831cff99dd31551
     m_Address: Sounds/MainBGM
@@ -95,7 +95,50 @@ MonoBehaviour:
     m_SerializedLabels:
     - Boss
     - Stage1
-    - default
+    - StartScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96833dd9a9f45c94a92ef83ae25811f8
+    m_Address: Enemy/Enemy_01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b74361fcf45d0164d956e4c0e482df87
+    m_Address: Scene/StartScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - StartScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b6fc9fbe030c6e4f84d7a0f4088db76
+    m_Address: Assets/Resources_moved/Scene/MainScene.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f00d16ab807d054bb1d9f2c773b3392
+    m_Address: Assets/Resources_moved/Scene/BossScene.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3371c5cea75b9c4aac1b045cf7e69f6
+    m_Address: Prefabs/UI/MainUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    - StartScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d6c1dc74af41504eb4390fa415e5180
+    m_Address: Assets/Resources_moved/Sounds/BatSkill_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58826da7839004b48927b852405a0e14
+    m_Address: Assets/Resources_moved/Sounds/BossAppear_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ed5694c84ebdf1941b0f5ef7c6b83e5f, type: 2}

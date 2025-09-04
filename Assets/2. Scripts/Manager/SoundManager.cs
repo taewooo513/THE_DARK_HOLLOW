@@ -32,7 +32,6 @@ public class SoundManager : Singleton<SoundManager>
         bgmAudio.loop = true;
         sounds = new Dictionary<string, AudioClip>();
 
-        SceneLoadManager.Instance.LoadScene("TaewoongTest");
     }
 
     public override void Release()
