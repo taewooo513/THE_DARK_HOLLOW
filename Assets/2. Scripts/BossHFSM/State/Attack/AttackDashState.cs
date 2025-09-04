@@ -14,7 +14,7 @@ public class AttackDashState : AttackSuper
 
     protected override IBossState DefaultSub() => new A_Windup(ctx, fsm, this);
 
-    //A_Windup : 돌진 준비 단계
+    // A_Windup : 돌진 준비 단계
     // - 이동을 멈춤, 애니 트리거, 방향을 미리 계산/고정(래치)
     // - dashWindup 경과 후 Execute로 전환
     class A_Windup : BossStateBase
@@ -43,10 +43,9 @@ public class AttackDashState : AttackSuper
         public override void OnEnter()
         {
             t = 0;
-            ctx.FaceToPlayer();
             if (ctx.player) dir = (ctx.player.position - ctx.transform.position).normalized;
             else dir = new Vector2(ctx.transform.localScale.x, 0f);
-            //ctx.Play("Dash");
+            //ctx.AnimatianPlay_Trigger("Dash");
         }
         public override void Tick(float dt)
         {
@@ -68,7 +67,7 @@ public class AttackDashState : AttackSuper
         public override void OnEnter() 
         { 
             t = 0; 
-            //ctx.Play("Dash_Recover"); 
+            //ctx.AnimatianPlay_Trigger("Dash_Recover"); 
         } 
         public override void Tick(float dt)
         {
