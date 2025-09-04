@@ -14,6 +14,7 @@ public class FadeInOutManager : MonoUI
     public float alpha = 1;
     void Start()
     {
+        DontDestroyOnLoad(this);
         UIManager.Instance.ClearUIManager();
         uiKey = "FadeManager";
         UIManager.Instance.AddUIManager(uiKey, this);

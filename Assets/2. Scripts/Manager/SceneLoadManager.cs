@@ -53,15 +53,17 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     IEnumerator AsyncLoadScene(string key)
     {
-        //UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").alpha = 0;
-        //while (true)
-        //{
-        //    if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeIn() == true)
-        //    {
-        //        break;
-        //    }
-        //    yield return null;
-        //}
+        yield return new WaitForSeconds(0.1f);
+        UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").SetActive(true);
+        UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").alpha = 0;
+        while (true)
+        {
+            if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeIn() == true)
+            {
+                break;
+            }
+            yield return null;
+        }
 
         if (nowScene != null)
         {
@@ -89,13 +91,14 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
         nowScene.Init();
 
-        //while (true)
-        //{
-        //    if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeOut() == true)
-        //    {
-        //        break;
-        //    }
-        //    yield return null;
-        //}
+        while (true)
+        {
+            if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeOut() == true)
+            {
+                break;
+            }
+            yield return null;
+        }
+        UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").SetActive(false);
     }
 }

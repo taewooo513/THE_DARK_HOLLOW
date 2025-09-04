@@ -7,8 +7,8 @@ public class BossStage : MonoScene
 {
     public override void Init()
     {
-        ObjectManager.Instance.AddObject("BossStage", Vector3.zero, Quaternion.identity);
-        SoundManager.Instance.PlayEFXSound("BossBGM2");
+        ObjectManager.Instance.AddObject("BossScene", Vector3.zero, Quaternion.identity);
+        SoundManager.Instance.PlayBGMSound("BossBGM2");
     }
 
     public override AsyncOperationHandle LoadPrefabs()
