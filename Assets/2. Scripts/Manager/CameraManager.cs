@@ -48,6 +48,9 @@ public class CameraManager : Singleton<CameraManager>
         shackCoroutine = StartCoroutine(CameraShacking(amplitude, frequency, duration));
     }
 
+    //줌인아웃 사용법
+    // 1. 대상에게 버츄얼 카메라를 달아준다 
+    // 1. 넣는다 
     public void ZoolInOut(CinemachineVirtualCamera targetCam, float delay)
     {
         cinemachine.Priority = 1;
