@@ -12,13 +12,13 @@ public class BossStat : MonoBehaviour
 
 
     [Header("보스 범위(인식, 공격)")]
-    [Tooltip("인식 범위")]
+    [Tooltip("인식 범위(노랑색)")]
     public float detectRange = 10f;   // (이 범위를 벗어나면 Idle 강제)
-    [Tooltip("돌진패턴 범위")]
+    [Tooltip("돌진패턴 범위(초록색)")]
     public float nearRange = 1.8f;
-    [Tooltip("중거리 공격 범위")]
+    [Tooltip("중거리 공격 범위(빨간색)")]
     public float midRange = 3.0f;
-    [Tooltip("원거리 공격 범위")]
+    [Tooltip("원거리 공격 범위(파란색)")]
     public float farRange = 5.5f;
 
     [Header("보스 인식 주기")]
@@ -33,14 +33,14 @@ public class BossStat : MonoBehaviour
     public float dashCooldown = 8f;
 
     [Header("중거리 공격 속성 설정")]
-    public float midWindup = 0.5f;
+    public float midWindup = 0.25f;
     public float midActive = 0.0f;
     public float midRecover = 0.35f;
     public float midCooldown = 5f;
     [Tooltip("중거리 공격 프리팹(위치변환용)")]
     public GameObject midAttackPrefab;
     [Tooltip("중거리 공격 프리팹 위치 오프셋")]
-    public float midOffsetX = 22f;
+    public float midOffsetX = 2.2f;
 
     [Header("원거리 공격 설정")]
     public float rangedWindup = 0.20f;

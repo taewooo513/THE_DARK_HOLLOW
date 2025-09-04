@@ -19,16 +19,16 @@ public class ChooseState : BossStateBase
         // 새로운 공격 패턴이 생길때 마다 여기에 추가
         // 거리 → 가우시안 점수
         float sigmaNear = Mathf.Max(0.01f, s.nearRange * s.nearSigmaFrac);
-        float sigmaMid = Mathf.Max(0.01f, s.nearRange * s.nearSigmaFrac);
+        float sigmaMid = Mathf.Max(0.01f, s.midRange * s.midSigmaFrac);
         float sigmaFar = Mathf.Max(0.01f, s.farRange * s.farSigmaFrac);
         // 가우시안 점수 * 쿨타임 가능 여부(0/1) * 가중치
         float scoreDash = Gauss(d, s.nearRange, sigmaNear) * (ctx.CDReadyDash() ? 1f : 0f) * s.weightDash;
-        float scoreMid = Gauss(d, s.nearRange, sigmaNear) * (ctx.CDReadyDash() ? 1f : 0f) * s.weightDash;
+        float scoreMid = Gauss(d, s.midRange, sigmaMid) * (ctx.CDReadyMid() ? 1f : 0f) * s.weightMid; 
         float scoreRng = Gauss(d, s.farRange, sigmaFar) * (ctx.CDReadyRanged() ? 1f : 0f) * s.weightRanged;
 
         // 이전에 선택된 공격 패턴이 다시 선택될 확률 증가
         if (ctx.lastChosen == BossController.AttackChoice.Dash) scoreDash *= (1f + s.stickiness);
-        if (ctx.lastChosen == BossController.AttackChoice.Mid) scoreDash *= (1f + s.stickiness);
+        if (ctx.lastChosen == BossController.AttackChoice.Mid) scoreMid *= (1f + s.stickiness);
         if (ctx.lastChosen == BossController.AttackChoice.Ranged) scoreRng *= (1f + s.stickiness);
 
         // 미세한 무작위성 추가로 겹침 방지
@@ -36,7 +36,8 @@ public class ChooseState : BossStateBase
         scoreMid += Random.Range(-s.utilityNoise, s.utilityNoise);
         scoreRng += Random.Range(-s.utilityNoise, s.utilityNoise);
 
-        float best = Mathf.Max(scoreDash, scoreRng, scoreMid);
+       //Max 3개 비교(두 개씩 중첩)
+        float best = Mathf.Max(scoreDash, Mathf.Max(scoreMid, scoreRng));
         //===============[유틸리티 계산]===============
 
         // 실행할 만큼 점수가 낮으면 거리 조정로 복귀
@@ -51,17 +52,16 @@ public class ChooseState : BossStateBase
             ctx.lastChosen = BossController.AttackChoice.Dash;
             fsm.Change(ctx.SAtkDash);
         }
-        else if (best == scoreRng)
-        {
-            ctx.lastChosen = BossController.AttackChoice.Ranged;
-            fsm.Change(ctx.SAtkRng);
-        }
         else if (best == scoreMid)
         {
             ctx.lastChosen = BossController.AttackChoice.Mid;
             fsm.Change(ctx.SAtkMid);
         }
-
+        else if (best == scoreRng)
+        {
+            ctx.lastChosen = BossController.AttackChoice.Ranged;
+            fsm.Change(ctx.SAtkRng);
+        }
     }
     // 가우시안 유틸리티 함수: μ 중심, σ 폭
     // x가 μ에 가까울수록 1에 가까운 점수, 멀어질수록 0에 가까운 점수
