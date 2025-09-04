@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAttackState : BaseState
 {
+    private PlayerController playerController;
+
     private float coolTime;
     private float lastAttackTime;
     private float lastInputTime;
@@ -11,10 +13,13 @@ public class PlayerAttackState : BaseState
     public override void EnterState(StateMachine stateMachine)
     {
         Debug.Log("Hello From The Attack State");
+        this.playerController = stateMachine.PlayerController;
+
+        // 공격 쿨타임 설정 
         coolTime = Constants.CoolTime.ATTACK;
         lastAttackTime = 0.0f;
 
-        // Gauge count
+        // 게이지 채우기 
         stateMachine.PlayerController.PlayerStat.Gauge += 1;
         if(stateMachine.PlayerController.PlayerStat.Gauge > 5)
             stateMachine.PlayerController.PlayerStat.Gauge = 5;
@@ -22,42 +27,46 @@ public class PlayerAttackState : BaseState
 
     public override void UpdateState(StateMachine stateMachine)
     {
-        // 공격 쿨타임이 끝나면 
-        if (Time.time - lastAttackTime > coolTime)
-        {
-            lastAttackTime = Time.time;
-
-            // 공격 애니메이션 실행
-            //Debug.Log("공격 애니메이션 실행");
-            stateMachine.PlayerController.AnimationController.Attack();
-            lastInputTime = Time.time; // 공격 애니메이션 이후 시간을 기록 
-            //Debug.Log($"마지막 입력 시간 = {lastInputTime}");
-        }
-
         // 공격 애니메이션 이후에 공격키(x)를 입력하면 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            // 그 시간을 기록 
-            lastInputTime = Time.time;
+            Debug.Log($"Time.time = {Time.time}");
+            Debug.Log($"lastAttackTime = {lastAttackTime}");
+            Debug.Log($"Time.time - lastAttackTime = {Time.time - lastAttackTime}");
+            if (Time.time - lastAttackTime > coolTime)
+            {
+                lastAttackTime = Time.time;
+
+                stateMachine.PlayerController.AnimationController.Attack();
+                Debug.Log("애니메이션 실행됨!");
+                lastInputTime = Time.time;
+            }
         }
 
-        Debug.Log("전환 전");
-        Debug.Log($"Time - lastInputTime = {Time.time - lastAttackTime}");  
+        //Debug.Log("전환 전");
+        //Debug.Log($"Time - lastInputTime = {Time.time - lastAttackTime}");  
 
         //Debug.Log($"현재 시간 - 마지막 입력 시간 = {Time.time - lastAttackTime}");
         // 0.5초가 지났는데 아무런 입력이 없으면
         if (Time.time - lastInputTime > coolTime)
         {
-            Debug.Log("0.5초가 지났으나 아무런 입력이 없습니다. Idle 상태로 전환합니다.");
-            stateMachine.PlayerController.AnimationController.CancelAttack();
-            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+            //// 예전 코드 
+            ////Debug.Log("0.5초가 지났으나 아무런 입력이 없습니다. Idle 상태로 전환합니다.");
+            //stateMachine.PlayerController.AnimationController.CancelAttack();
+            //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+            //return;
+
+            // 공격 이전 상태로 전환 
+            Debug.Log("이전 상태 전환!");
+            //stateMachine.PlayerController.AnimationController.CancelAttack();
+            stateMachine.SwitchState(stateMachine.GetPreState());
             return;
         }
     }
 
     public override void FixedUpdateState(StateMachine stateMachine)
     {
-
+        Move();
     }
 
     public override void OnCollisionEnter(StateMachine stateMachine, Collision2D collision)
@@ -70,4 +79,20 @@ public class PlayerAttackState : BaseState
 
     }
 
+    private void Move()
+    {
+        // 이동 방향 설정
+        playerController.MovementDirection = playerController.MovementInput;
+
+        // 이동 속도 설정
+        playerController.MovementDirection *= (CharacterManager.Instance.PlayerStat.MoveSpeed * CharacterManager.Instance.PlayerStat.SpeedModifier);
+
+        // 중력은 velocity.y값으로 설정
+        Vector2 dir = playerController.MovementDirection;
+        dir.y = playerController.Rigid.velocity.y;
+        playerController.MovementDirection = dir;
+        
+        // 이동 처리
+        playerController.Rigid.velocity = playerController.MovementDirection;
+    }
 }

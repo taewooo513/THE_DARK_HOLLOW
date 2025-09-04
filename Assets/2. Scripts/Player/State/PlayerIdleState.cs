@@ -9,12 +9,15 @@ public class PlayerIdleState : BaseState
         Debug.Log("Hello from the Idle State");
         this.playerController = stateMachine.PlayerController;
 
+        // 이전 상태 저장 
+        stateMachine.SetPreState(stateMachine);
+
         // Idle Animation
         //playerController.AnimationController.Move(playerController.MovementInput);
         //playerController.AnimationController.Run(playerController.MovementInput);
         playerController.AnimationController.Move(Vector2.zero);
         playerController.AnimationController.Run(Vector2.zero);
-        playerController.AnimationController.CancelAttack();
+        //playerController.AnimationController.CancelAttack();
 
         ChangeSpeed();
     }
@@ -40,9 +43,17 @@ public class PlayerIdleState : BaseState
             // 점프 이전 상태가 달리기 상태이면
             //if (stateMachine.GetPreState().Equals(Constants.State.RUN))
             //if(stateMachine.GetStateBeforeJump().Equals(Constants.State.RUN))
-            if(stateMachine.GetStateBeforeJump().ToString().Equals(Constants.State.RUN))
+            //if(stateMachine.GetStateBeforeJump().ToString().Equals(Constants.State.RUN))
+            //{
+            //    //Debug.Log("이전 상태가 달리기 상태임");
+            //    // 달리기 상태로 전환
+            //    stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Run));
+            //}
+
+            // 이전 상태가 Jump이고, 점프 이전 상태가 Run이면 
+            if(stateMachine.GetPreState().ToString().Equals(Constants.State.JUMP) &&
+                stateMachine.GetStateBeforeJump().ToString().Equals(Constants.State.RUN))
             {
-                //Debug.Log("이전 상태가 달리기 상태임");
                 // 달리기 상태로 전환
                 stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Run));
             }
@@ -50,9 +61,17 @@ public class PlayerIdleState : BaseState
             // 점프 이전 상태가 걷기 상태이면
             //else if (stateMachine.GetPreState().Equals(Constants.State.MOVE))
             //else if (stateMachine.GetStateBeforeJump().Equals(Constants.State.MOVE))
-            else if (stateMachine.GetStateBeforeJump().ToString().Equals(Constants.State.MOVE))
+            //else if (stateMachine.GetStateBeforeJump().ToString().Equals(Constants.State.MOVE))
+            //{
+            //    //Debug.Log("이전 상태가 걷기 상태임");
+            //    // 걷기 상태로 전환
+            //    stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Move));
+            //}
+
+            // 이전 상태가 Jump이고, 점프 이전 상태가 Move이면 
+            else if (stateMachine.GetPreState().ToString().Equals(Constants.State.JUMP) &&
+                stateMachine.GetStateBeforeJump().ToString().Equals(Constants.State.MOVE))
             {
-                //Debug.Log("이전 상태가 걷기 상태임");
                 // 걷기 상태로 전환
                 stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Move));
             }

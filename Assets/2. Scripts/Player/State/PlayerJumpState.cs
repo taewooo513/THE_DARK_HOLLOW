@@ -8,6 +8,9 @@ public class PlayerJumpState : BaseState
     {
         Debug.Log("Hello from the Jump State");
         this.playerController = stateMachine.PlayerController;
+
+        // 이전 상태 저장 
+        stateMachine.SetPreState(stateMachine);
     }
 
     public override void UpdateState(StateMachine stateMachine)
@@ -38,7 +41,7 @@ public class PlayerJumpState : BaseState
     private void Jump(StateMachine stateMachine)
     {
         //stateMachine.SetStateBeforeJump(stateMachine);
-        stateMachine.SetPreState(stateMachine);
+        
 
         if (playerController.CanJump)
         {
