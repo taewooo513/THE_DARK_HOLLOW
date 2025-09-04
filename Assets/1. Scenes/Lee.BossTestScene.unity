@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 550706594}
   - component: {fileID: 550706593}
   - component: {fileID: 550706595}
+  - component: {fileID: 550706596}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -345,63 +346,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1001 &4245982617601087131
-PrefabInstance:
+--- !u!114 &550706596
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2002116264690746254, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5436767600320010548, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
-      propertyPath: m_Name
-      value: Skill_3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 36cdb201d9fdf5b4281cf0d32607d983, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550706592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ec0b2579c238b4f957dcd9d72c6d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Attack>k__BackingField: 0
+  maxHealth: 100
+  currentHealth: 100
+  MoveSpeed: 0
+  <SpeedModifier>k__BackingField: 0
+  <SpeedModifierInput>k__BackingField: 0
+  <JumpPower>k__BackingField: 0
+  <CanJump>k__BackingField: 0
+  <Gauge>k__BackingField: 0
 --- !u!1001 &9025297110373570075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6027,6 +5992,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 1366516207136120848, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7909842
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366516207136120848, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.00000008940697
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488295262734343570, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4202443844225021835, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.59
@@ -6080,4 +6057,3 @@ SceneRoots:
   - {fileID: 550706594}
   - {fileID: 9025297110373570075}
   - {fileID: 9148196727777323072}
-  - {fileID: 4245982617601087131}

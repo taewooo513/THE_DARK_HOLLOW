@@ -38,4 +38,9 @@ public class Enemy_01AnimationEvent : MonoBehaviour
     {
         enemy.AttackEnd();
     }
+
+    public void EndDamaged()
+    {
+        enemy.SwitchState(EnemyState.Idle);
+    }
 }

@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/1. Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/1. Scenes/StartSceneCGH.unity
-    guid: 764410d435f0c88459b9ae1e8813d427
+    path: Assets/1. Scenes/Main/StartScene.unity
+    guid: e62dc2e4fdf09b5498247efed69df50b
   - enabled: 1
-    path: Assets/1. Scenes/MainSceneCGH.unity
-    guid: 170fd76c9c2123b49b9849960d0c8e9c
+    path: Assets/1. Scenes/Main/MainScene.unity
+    guid: dc34761571afcbc4bbd42cec4d19b1d6
   - enabled: 1
-    path: Assets/1. Scenes/Lee.BossTestScene.unity
-    guid: 1c61eabad7f993e41bf9728224bb273a
+    path: Assets/1. Scenes/Main/BossScene.unity
+    guid: cf90251a8cc798c48a266a025ca23e7b
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 479071fdfa5952543990e36549a87ea3, type: 2}
