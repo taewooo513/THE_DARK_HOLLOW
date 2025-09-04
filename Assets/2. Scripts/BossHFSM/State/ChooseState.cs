@@ -7,10 +7,10 @@ public class ChooseState : BossStateBase
     public ChooseState(BossController c, BossStateMachine f) : base(c, f) { }
     enum Zone 
     { 
-        Outside, 
-        Blue, 
-        Red, 
-        Green 
+        Outside,
+        NearRange,
+        MidRange,
+        FarRange, 
     }
     public override void OnEnter()
     {
@@ -29,18 +29,18 @@ public class ChooseState : BossStateBase
         Zone z = GetZone(d, s);
         switch (z)
         {
-            case Zone.Green: // Dash > Mid > Ranged
+            case Zone.NearRange: // Dash > Mid > Ranged
                 if (ctx.CDReadyDash()) { ctx.lastChosen = BossController.AttackChoice.Dash; fsm.Change(ctx.SAtkDash); return; }
                 if (ctx.CDReadyMid()) { ctx.lastChosen = BossController.AttackChoice.Mid; fsm.Change(ctx.SAtkMid); return; }
                 if (ctx.CDReadyRanged()) { ctx.lastChosen = BossController.AttackChoice.Ranged; fsm.Change(ctx.SAtkRng); return; }
                 break;
 
-            case Zone.Red:   // Mid > Ranged
+            case Zone.MidRange:   // Mid > Ranged
                 if (ctx.CDReadyMid()) { ctx.lastChosen = BossController.AttackChoice.Mid; fsm.Change(ctx.SAtkMid); return; }
                 if (ctx.CDReadyRanged()) { ctx.lastChosen = BossController.AttackChoice.Ranged; fsm.Change(ctx.SAtkRng); return; }
                 break;
 
-            case Zone.Blue:  // Ranged only
+            case Zone.FarRange:  // Ranged only
                 if (ctx.CDReadyRanged()) { ctx.lastChosen = BossController.AttackChoice.Ranged; fsm.Change(ctx.SAtkRng); return; }
                 break;
 
@@ -53,9 +53,9 @@ public class ChooseState : BossStateBase
     }
     static Zone GetZone(float d, BossStat s)
     {
-        if (d <= s.nearRange) return Zone.Green;
-        if (d <= s.midRange) return Zone.Red;
-        if (d <= s.farRange) return Zone.Blue;
+        if (d <= s.nearRange) return Zone.NearRange;
+        if (d <= s.midRange) return Zone.MidRange;
+        if (d <= s.farRange) return Zone.FarRange;
         return Zone.Outside;
     }
 }

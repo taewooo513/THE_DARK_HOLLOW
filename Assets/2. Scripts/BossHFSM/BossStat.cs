@@ -58,35 +58,4 @@ public class BossStat : MonoBehaviour
     [Header("HP")]
     [Range(1, 100)] public int hp01;
 
-    // 상태 변환 가중치 
-    [Header("Utility")]
-    [Range(0f, 1f)] public float minScoreToAct = 0.35f; // 이 점수 미만이면 공격하지 않고 거리 조절(Chase)
-    [Range(0f, 0.5f)] public float stickiness = 0.15f;  // 직전 선택 패턴에 주는 보너스(플리커 방지)
-    [Range(0f, 0.25f)] public float utilityNoise = 0.02f; // 미세 랜덤(동점 깨기)
-
-    [Header("가우시안 폭(σ)을 선호거리의 몇 배로 둘지")]
-    [Range(0.05f, 2f)] public float nearSigmaFrac = 0.6f;
-    [Range(0.05f, 2f)] public float midSigmaFrac = 0.6f;
-    [Range(0.05f, 2f)] public float farSigmaFrac = 0.6f;
-
-    [Header("공격별 가중치(기본=1). 페이즈/디자인 의도에 따라 조절")]
-    public float weightDash = 1f;
-    public float weightMid = 1f;
-    public float weightRanged = 1f;
-
-    [Header("바닥 점수(멀어도 완전 0은 방지)")]
-    [Range(0f, 0.5f)] public float baseBiasDash = 0.05f;
-    [Range(0f, 0.5f)] public float baseBiasMid = 0.05f;
-    [Range(0f, 0.5f)] public float baseBiasRanged = 0.05f;
-
-    void OnValidate()
-    {
-        perceptionHz = Mathf.Max(0.1f, perceptionHz);
-        detectRange = Mathf.Max(0f, detectRange);
-        nearRange = Mathf.Max(0f, nearRange);
-        farRange = Mathf.Max(0f, farRange);
-        dashSpeed = Mathf.Max(0f, dashSpeed);
-        bulletSpeed = Mathf.Max(0f, bulletSpeed);
-        bulletLifetime = Mathf.Max(0f, bulletLifetime);
-    }
 }

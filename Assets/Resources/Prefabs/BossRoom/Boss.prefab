@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preAttack: {fileID: 1238154396340138914}
   hitEffect: {fileID: 445882645041924348}
+  decisionDelay: 1.5
   detectRange: 20
   nearRange: 8
   midRange: 10
@@ -67,7 +68,7 @@ MonoBehaviour:
   dashActive: 1.26
   dashRecover: 0.35
   dashCooldown: 8
-  midWindup: 0.5
+  midWindup: 1
   midActive: 0
   midRecover: 0.35
   midCooldown: 5
@@ -81,18 +82,6 @@ MonoBehaviour:
   bulletLifetime: 2
   firePoint: {fileID: 4390913238621973653}
   hp01: 100
-  minScoreToAct: 0.35
-  stickiness: 0.15
-  utilityNoise: 0.02
-  nearSigmaFrac: 0.6
-  midSigmaFrac: 0.6
-  farSigmaFrac: 0.6
-  weightDash: 1
-  weightMid: 1
-  weightRanged: 1
-  baseBiasDash: 0.05
-  baseBiasMid: 0.05
-  baseBiasRanged: 0.05
 --- !u!114 &1481520039354108700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +671,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
