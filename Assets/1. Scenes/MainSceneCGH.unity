@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 54303377}
   - component: {fileID: 54303376}
   - component: {fileID: 54303378}
+  - component: {fileID: 54303379}
   m_Layer: 5
   m_Name: Life1
   m_TagString: Untagged
@@ -401,6 +402,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &54303379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54303374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae902b29c0353d041993a7ef4bb17e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 54303378}
+  damagedBoolName: IsDamaged
+  destroyDelay: 0.8
 --- !u!1 &64698576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1531,7 @@ GameObject:
   - component: {fileID: 314544841}
   - component: {fileID: 314544840}
   - component: {fileID: 314544842}
+  - component: {fileID: 314544843}
   m_Layer: 5
   m_Name: Life2
   m_TagString: Untagged
@@ -1600,6 +1617,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &314544843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314544838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae902b29c0353d041993a7ef4bb17e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 314544842}
+  damagedBoolName: IsDamaged
+  destroyDelay: 0.8
 --- !u!1001 &325090069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1674,6 +1706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 326110003}
+  - component: {fileID: 326110004}
   - component: {fileID: 326110002}
   m_Layer: 0
   m_Name: CharacterManager
@@ -1711,6 +1744,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &326110004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326110001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283582b5d63b0244eae7926b744f7d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStat: {fileID: 1848863916}
+  pollInterval: 0.05
+  maxGauge: 5
 --- !u!1 &329807711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 456662693}
+  - component: {fileID: 456662694}
   m_Layer: 5
   m_Name: LifeUI
   m_TagString: Untagged
@@ -2170,6 +2219,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 600, y: 340}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &456662694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456662692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e1fa89d1877c342aa68fbb7b18a280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeIcons: []
+  observer: {fileID: 326110004}
 --- !u!1 &457968688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2350,6 +2413,7 @@ GameObject:
   - component: {fileID: 538325146}
   - component: {fileID: 538325145}
   - component: {fileID: 538325147}
+  - component: {fileID: 538325148}
   m_Layer: 5
   m_Name: Life5
   m_TagString: Untagged
@@ -2435,6 +2499,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &538325148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538325143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae902b29c0353d041993a7ef4bb17e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 538325147}
+  damagedBoolName: IsDamaged
+  destroyDelay: 0.8
 --- !u!1 &588202797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,6 +2848,7 @@ GameObject:
   - component: {fileID: 633509271}
   - component: {fileID: 633509270}
   - component: {fileID: 633509272}
+  - component: {fileID: 633509273}
   m_Layer: 5
   m_Name: Life3
   m_TagString: Untagged
@@ -2854,6 +2934,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &633509273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633509268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae902b29c0353d041993a7ef4bb17e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 633509272}
+  damagedBoolName: IsDamaged
+  destroyDelay: 0.8
 --- !u!1 &638921656
 GameObject:
   m_ObjectHideFlags: 0
@@ -5497,6 +5592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1574517363}
+  - component: {fileID: 1574517364}
   m_Layer: 5
   m_Name: SpecialAttackGage
   m_TagString: Untagged
@@ -5525,6 +5621,29 @@ RectTransform:
   m_AnchoredPosition: {x: -190, y: 140}
   m_SizeDelta: {x: 200, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1574517364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574517362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1add62554b4b55b478efc3cf92eb59a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observer: {fileID: 326110004}
+  uiImage: {fileID: 1812237433}
+  spriteRenderer: {fileID: 0}
+  gaugeSprites:
+  - {fileID: -806530383, guid: 49a14bb5f9f72b548a41aafdab11214c, type: 3}
+  - {fileID: 133162669, guid: 49a14bb5f9f72b548a41aafdab11214c, type: 3}
+  - {fileID: -2005302670, guid: 49a14bb5f9f72b548a41aafdab11214c, type: 3}
+  - {fileID: 829335598, guid: 49a14bb5f9f72b548a41aafdab11214c, type: 3}
+  - {fileID: 1637649756, guid: 49a14bb5f9f72b548a41aafdab11214c, type: 3}
+  - {fileID: 1023595985, guid: 49a14bb5f9f72b548a41aafdab11214c, type: 3}
+  borderHighlight: {fileID: 1553127317}
 --- !u!1 &1612081450
 GameObject:
   m_ObjectHideFlags: 0
@@ -6212,6 +6331,7 @@ GameObject:
   - component: {fileID: 1771970632}
   - component: {fileID: 1771970631}
   - component: {fileID: 1771970633}
+  - component: {fileID: 1771970634}
   m_Layer: 5
   m_Name: Life4
   m_TagString: Untagged
@@ -6297,6 +6417,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1771970634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771970629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae902b29c0353d041993a7ef4bb17e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1771970633}
+  damagedBoolName: IsDamaged
+  destroyDelay: 0.8
 --- !u!1 &1777857429
 GameObject:
   m_ObjectHideFlags: 0
