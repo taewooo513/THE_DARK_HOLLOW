@@ -41,6 +41,7 @@ public class PlayerAttackState : BaseState
             {
                 Debug.Log("적이 맞음");
                 enemy.SwitchState(EnemyState.Damaged, CharacterManager.Instance.PlayerStat.Attack);
+
             }
             // 보스 데미지 처리 
             else if (collider.TryGetComponent(out BossController boss))
