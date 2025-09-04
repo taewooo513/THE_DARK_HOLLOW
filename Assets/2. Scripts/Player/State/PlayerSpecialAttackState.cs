@@ -16,6 +16,42 @@ public class PlayerSpecialAttackState : BaseState
         if(stateMachine.PlayerController.PlayerStat.Gauge == Constants.SpecialAttack.GUAGE)
         {
             specialAttack = true;
+
+            // OverlapBox 생성
+            Collider2D[] colliders;
+            if (playerController.SpriteRenderer.flipX)
+            {
+                colliders = Physics2D.OverlapBoxAll(playerController.transform.position + new Vector3(-0.5f, 0.3f, 0), new Vector3(0.5f, 0.5f, 0.5f), 0); // 플레이어 flipX에 따라 다르게 
+            }
+            else
+            {
+                colliders = Physics2D.OverlapBoxAll(playerController.transform.position + new Vector3(0.5f, 0.3f, 0), new Vector3(0.5f, 0.5f, 0.5f), 0); // 플레이어 flipX에 따라 다르게 
+            }
+            foreach (Collider2D collider in colliders)
+            {
+                // 적 데미지 처리 
+                if (collider.TryGetComponent(out Enemy enemy))
+                {
+                    Debug.Log("적이 맞음");
+                    enemy.SwitchState(EnemyState.Damaged, CharacterManager.Instance.PlayerStat.Attack);
+                }
+                // 보스 데미지 처리 
+                else if (collider.TryGetComponent(out BossController boss))
+                {
+                    Debug.Log("보스가 맞음");
+                    boss.TakeDamage(CharacterManager.Instance.PlayerStat.Attack);
+                }
+            }
+
+            //// OverlapBox 생성
+            //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(playerController.transform.position + new Vector3(0.5f, 0.3f, 0), new Vector3(0.5f, 0.5f, 0.5f), 0); // 플레이어 flipX에 따라 다르게 
+            //foreach (Collider2D collider in collider2Ds)
+            //{
+            //    if (collider.gameObject.CompareTag("Boss"))
+            //    {
+            //        Debug.Log("보스가 맞음");
+            //    }
+            //}
         }
         else
         {
