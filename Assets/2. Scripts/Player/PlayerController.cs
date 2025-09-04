@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header("Etc")]
     [SerializeField] private LayerMask groundLayer;
     private StateMachine stateMachine;
-    private PlayerStat playerStat;
+    [field: SerializeField] public PlayerStat PlayerStat { get; set; }
     [SerializeField] public AnimationController AnimationController { get; set; }
     [field: SerializeField] public bool IsHit { get; set; }
     //[field: SerializeField] public bool IsInvincible { get; set; }
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         Rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         stateMachine = GetComponent<StateMachine>();
-        playerStat = GetComponent<PlayerStat>();
+        PlayerStat = GetComponent<PlayerStat>();
         AnimationController = GetComponent<AnimationController>();
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }

@@ -39,8 +39,6 @@ public class PlayerHitState : BaseState
             // 0.8초 카운팅 -> 0.8초 동안 반투명 상태, 무적 상태 유지 
             hitCount -= Time.deltaTime;
 
-            Debug.Log($"hitCount = {hitCount}"); 
-
             // 0.1초 간격으로 깜빡이게 하기 
             if (Mathf.FloorToInt(hitCount / Constants.CountValue.INVINCIBLE_BLINK_TIME) % 2 == 0)
             {
@@ -50,16 +48,6 @@ public class PlayerHitState : BaseState
             {
                 SetColorAlpha(spriteRenderer, Constants.ColorAlpha.HALF);
             }
-
-            //// 예전 방식 
-            //if (hitCount % 0.1f == 0)
-            //{
-            //    SetColorAlpha(spriteRenderer, Constants.ColorAlpha.ONE);
-            //}
-            //else
-            //{
-            //    SetColorAlpha(spriteRenderer, Constants.ColorAlpha.HALF);
-            //}
         }
         // 0.8초가 지나면 
         else

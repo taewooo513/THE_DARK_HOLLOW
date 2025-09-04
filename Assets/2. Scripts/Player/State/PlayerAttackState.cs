@@ -13,12 +13,17 @@ public class PlayerAttackState : BaseState
         Debug.Log("Hello From The Attack State");
         coolTime = Constants.CoolTime.ATTACK;
         lastAttackTime = 0.0f;
+
+        // Gauge count
+        stateMachine.PlayerController.PlayerStat.Gauge += 1;
+        if(stateMachine.PlayerController.PlayerStat.Gauge > 5)
+            stateMachine.PlayerController.PlayerStat.Gauge = 5;
     }
 
     public override void UpdateState(StateMachine stateMachine)
     {
         // 공격 쿨타임이 끝나면 
-        if (Input.GetKeyDown(KeyCode.X) && Time.time - lastAttackTime > coolTime)
+        if (Time.time - lastAttackTime > coolTime)
         {
             lastAttackTime = Time.time;
 
