@@ -145,7 +145,7 @@ public class BossController : MonoBehaviour
     public void StopMove() => rb.velocity = Vector2.zero;       // 제자리 정지
 
     // 애니메이션 재생
-    public void AnimatianPlay_Trigger(string trigger)
+    public void AnimationPlay_Trigger(string trigger)
     {
         if (!animator || string.IsNullOrEmpty(trigger)) return;
         animator.ResetTrigger(trigger);
@@ -253,7 +253,7 @@ public class BossController : MonoBehaviour
             }
             else
             {
-                AnimatianPlay_Trigger("TakeDamage");
+                AnimationPlay_Trigger("TakeDamage");
                 StartCoroutine(OnTakeDamageRoutine(_object));
             }
         }

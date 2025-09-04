@@ -14,4 +14,5 @@ public class Boss : MonoBehaviour
         bossStat = GetComponent<BossStat>();
         controller  = GetComponent<BossController>();
     }
+
 }
