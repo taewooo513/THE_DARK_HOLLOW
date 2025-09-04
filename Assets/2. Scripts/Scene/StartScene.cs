@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class BossStage : MonoScene
+public class StartScene : MonoScene
 {
     public override void Init()
     {
-        ObjectManager.Instance.AddObject("BossStage", Vector3.zero, Quaternion.identity);
-        SoundManager.Instance.PlayEFXSound("BossBGM2");
+        ObjectManager.Instance.AddObject("StartScene", Vector3.zero, Quaternion.identity);
     }
 
     public override AsyncOperationHandle LoadPrefabs()
     {
-        return ObjectManager.Instance.LoadGameObject("Boss");
+        return ObjectManager.Instance.LoadGameObject("StartScene");
     }
 
     public override AsyncOperationHandle LoadSounds()
     {
-        return SoundManager.Instance.LoadSound("Boss");
+        return SoundManager.Instance.LoadSound("StartScene");
     }
 
     public override void Release()

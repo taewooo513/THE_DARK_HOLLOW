@@ -46,7 +46,7 @@ public class PlayerAttackState : BaseState
             else if (collider.TryGetComponent(out BossController boss))
             {
                 Debug.Log("보스가 맞음");
-                boss.TakeDamage(CharacterManager.Instance.PlayerStat.Attack);
+                //boss.TakeDamage(CharacterManager.Instance.PlayerStat.Attack);
             }
         }
 
