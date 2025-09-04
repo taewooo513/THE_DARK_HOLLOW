@@ -114,7 +114,7 @@ public class Enemy_01 : Enemy
     }
     public override void DieTrigger()
     {
-        animator.SetBool("IsDie", isDie);
+        animator.SetBool("IsDie", true);
     }
 
     public override void IdleTrigger()
