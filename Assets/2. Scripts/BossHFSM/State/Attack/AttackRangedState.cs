@@ -23,7 +23,7 @@ public class AttackRangedState : AttackSuper
             t = 0; 
             sup.locked = true; 
             ctx.StopMove(); 
-            ctx.AnimatianPlay_Trigger("SetRangedAttack");
+            ctx.AnimationPlay_Trigger("SetRangedAttack");
             SoundManager.Instance.PlayEFXSound("BatSkill_EFX");
         }
         public override void Tick(float dt)
