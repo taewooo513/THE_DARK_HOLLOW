@@ -65,10 +65,41 @@ MonoBehaviour:
     m_SerializedLabels:
     - Boss
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 20410fec2127b054eb7dcd7bcf0d5589
-    m_Address: Assets/Resources_moved/Prefabs/Map/Stage/BossStage.prefab
+  - m_GUID: a62dea5bbe5acb94aa2d738909044feb
+    m_Address: Sounds/BossRush_EFX
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58826da7839004b48927b852405a0e14
+    m_Address: Sounds/BossAppear_EFX
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d6c1dc74af41504eb4390fa415e5180
+    m_Address: Sounds/BatSkill_EFX
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc7ecf9c3c607444a820a5790ceed6ed
+    m_Address: Sounds/BossDead_EFX
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03f0d3fe63cbe814ca2f0d948cb290c6
+    m_Address: Sounds/BossRangedAttack_EFX
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07930705cfa3e364da47dfde808038a7
+    m_Address: Sounds/BossHit_EFX
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ed5694c84ebdf1941b0f5ef7c6b83e5f, type: 2}

@@ -14,7 +14,7 @@ public class AttackDashState : AttackSuper
 
     protected override IBossState DefaultSub() => new A_Windup(ctx, fsm, this);
 
-    //A_Windup : 돌진 준비 단계
+    // A_Windup : 돌진 준비 단계
     // - 이동을 멈춤, 애니 트리거, 방향을 미리 계산/고정(래치)
     // - dashWindup 경과 후 Execute로 전환
     class A_Windup : BossStateBase

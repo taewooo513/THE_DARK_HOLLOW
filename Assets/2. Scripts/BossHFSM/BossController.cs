@@ -5,9 +5,17 @@ using System.Xml;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class BossController : MonoBehaviour
 {
+    public enum AttackChoice
+    {
+        None,
+        Dash,
+        Ranged,
+        Mid
+    }
+    [HideInInspector] public AttackChoice lastChosen = AttackChoice.None;   // 공격진적 선택
+
     [Header("직렬화요소")]
     [SerializeField] Animator preAnimator;
     [SerializeField] GameObject preAttack;
@@ -23,12 +31,14 @@ public class BossController : MonoBehaviour
     IdleState idle;
     ChooseState choose;
     AttackDashState atkDash;
+    AttackMidState atkMid;
     AttackRangedState atkRanged;
     RecoverState recover;
     DeadState dead;
     public IdleState SIdle => idle;
     public ChooseState SChoose => choose;
     public AttackDashState SAtkDash => atkDash;
+    public AttackMidState SAtMid => atkMid;
     public AttackRangedState SAtkRng => atkRanged;
     public RecoverState SRecover => recover;
     public DeadState SDead => dead;
@@ -42,7 +52,6 @@ public class BossController : MonoBehaviour
     bool isDead = false;
     float pAcc;
     int hp01;
-
 
     Animator animator;
 
