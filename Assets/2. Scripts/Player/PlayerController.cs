@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] public Vector2 MovementDirection { get; set; }
     [field: SerializeField] public bool CanJump { get; set; }
     [field: SerializeField] public bool IsMoving { get; set; }
+    [field: SerializeField] public bool IsClimbable { get; set; }
 
     [Header("Etc")]
     [SerializeField] private LayerMask groundLayer;
@@ -24,6 +25,9 @@ public class PlayerController : MonoBehaviour
     //[field: SerializeField] public bool IsInvincible { get; set; }
     [field: SerializeField] public SpriteRenderer SpriteRenderer;
     [field: SerializeField] public GameObject hitObj {  get; set; }
+    
+
+    // lockInput==true -> return 
 
     [Header("Collision Info")]
     [field: SerializeField] public Collider2D collider;
@@ -46,8 +50,10 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!PlayerStat.isMoved) return;
+
         // 키를 누르고 있으면 (땅에 있든 없든 상관X -> 이동은 땅에서, 공중에서 다 가능)
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
         {
             // 이동 중이라는 걸 표시
             IsMoving = true;
@@ -164,5 +170,12 @@ public class PlayerController : MonoBehaviour
             IsHit = true;
             this.collider = collider;
         }
+        else if (collider.gameObject.CompareTag("Ladder"))
+        {
+            Debug.Log("사다리 닿음");
+            IsClimbable = true;   
+        }
     }
+
+    
 }

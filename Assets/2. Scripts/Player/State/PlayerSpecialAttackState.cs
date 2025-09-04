@@ -39,19 +39,9 @@ public class PlayerSpecialAttackState : BaseState
                 else if (collider.TryGetComponent(out BossController boss))
                 {
                     Debug.Log("보스가 맞음");
-                    boss.TakeDamage(CharacterManager.Instance.PlayerStat.Attack);
+                    boss.TakeDamage(CharacterManager.Instance.PlayerStat.Attack, playerController.hitObj);
                 }
             }
-
-            //// OverlapBox 생성
-            //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(playerController.transform.position + new Vector3(0.5f, 0.3f, 0), new Vector3(0.5f, 0.5f, 0.5f), 0); // 플레이어 flipX에 따라 다르게 
-            //foreach (Collider2D collider in collider2Ds)
-            //{
-            //    if (collider.gameObject.CompareTag("Boss"))
-            //    {
-            //        Debug.Log("보스가 맞음");
-            //    }
-            //}
         }
         else
         {

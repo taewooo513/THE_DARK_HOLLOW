@@ -46,18 +46,9 @@ public class PlayerAttackState : BaseState
             else if (collider.TryGetComponent(out BossController boss))
             {
                 Debug.Log("보스가 맞음");
-                boss.TakeDamage(CharacterManager.Instance.PlayerStat.Attack);
+                boss.TakeDamage(CharacterManager.Instance.PlayerStat.Attack, playerController.hitObj);
             }
         }
-
-        //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(playerController.transform.position + new Vector3(0.5f, 0.3f, 0), new Vector3(0.5f, 0.5f, 0.5f), 0); // 플레이어 flipX에 따라 다르게 
-        //foreach (Collider2D collider in collider2Ds)
-        //{
-        //    if (collider.gameObject.CompareTag("Boss"))
-        //    {
-        //        Debug.Log("보스가 맞음");
-        //    }
-        //}
     }
 
     public override void UpdateState(StateMachine stateMachine)
@@ -78,19 +69,9 @@ public class PlayerAttackState : BaseState
             }
         }
 
-        //Debug.Log("전환 전");
-        //Debug.Log($"Time - lastInputTime = {Time.time - lastAttackTime}");  
-
-        //Debug.Log($"현재 시간 - 마지막 입력 시간 = {Time.time - lastAttackTime}");
         // 0.5초가 지났는데 아무런 입력이 없으면
         if (Time.time - lastInputTime > coolTime)
         {
-            //// 예전 코드 
-            ////Debug.Log("0.5초가 지났으나 아무런 입력이 없습니다. Idle 상태로 전환합니다.");
-            //stateMachine.PlayerController.AnimationController.CancelAttack();
-            //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
-            //return;
-
             // 공격 이전 상태로 전환 
             Debug.Log("이전 상태 전환!");
             //stateMachine.PlayerController.AnimationController.CancelAttack();
@@ -98,7 +79,7 @@ public class PlayerAttackState : BaseState
             return;
         }
 
-        
+        // 
     }
 
     public override void FixedUpdateState(StateMachine stateMachine)
@@ -132,4 +113,6 @@ public class PlayerAttackState : BaseState
         // 이동 처리
         playerController.Rigid.velocity = playerController.MovementDirection;
     }
+
+
 }

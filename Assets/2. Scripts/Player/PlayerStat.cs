@@ -15,7 +15,7 @@ public class PlayerStat : MonoBehaviour
 {
     [field: SerializeField] public int Attack {  get; set; }
     [SerializeField] private float maxHealth;
-    [SerializeField] private float currentHealth;
+    [field: SerializeField] public float CurrentHealth { get; set; }
     [field: SerializeField] public float MoveSpeed;
     [field: SerializeField] public float SpeedModifier { get; set; }
     [field: SerializeField] public float SpeedModifierInput { get; set; }
@@ -23,8 +23,8 @@ public class PlayerStat : MonoBehaviour
     //[field: SerializeField] public float KnockbackPower { get; set; }
     [field: SerializeField] public bool CanJump { get; set; }
     [field: SerializeField] public int Gauge { get; set; }
+    public bool isMoved = true;
     private Dictionary<StatType, float> stats = new();
-    private string userName;
 
     private void Awake()
     {
@@ -34,9 +34,12 @@ public class PlayerStat : MonoBehaviour
     public void InitStats()
     {
         CharacterManager.Instance.PlayerStat = this;
-        userName = gameObject.name;
+
+        maxHealth = 5;
+        CurrentHealth = 5;
+
         stats.Add(StatType.Attack, Attack); 
-        stats.Add(StatType.Health, currentHealth);
+        stats.Add(StatType.Health, CurrentHealth);
         stats.Add(StatType.MoveSpeed, MoveSpeed);
         stats.Add(StatType.SpeedModifier, SpeedModifier);
         stats.Add(StatType.JumpPower, JumpPower);
@@ -50,11 +53,11 @@ public class PlayerStat : MonoBehaviour
     public void TakeDamage()
     {
         Debug.Log("데미지 입음");
-        Debug.Log($"기존 체력: {currentHealth}");
-        currentHealth -= 1;
-        Debug.Log($"바뀐 체력: {currentHealth}");
+        Debug.Log($"기존 체력: {CurrentHealth}");
+        CurrentHealth -= 1;
+        Debug.Log($"바뀐 체력: {CurrentHealth}");
 
-        if (currentHealth <= 0)
-            currentHealth = 0;
+        if (CurrentHealth <= 0)
+            CurrentHealth = 0;
     }
 }
