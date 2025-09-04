@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,6 +13,7 @@ public class CameraManager : Singleton<CameraManager>
     CinemachineBasicMultiChannelPerlin noise;
     public CompositeCollider2D collider2D;
     Cinemachine.CinemachineConfiner2D confiner2D;
+    Coroutine shackCoroutine;
 
     protected override void Awake()
     {
@@ -29,6 +31,7 @@ public class CameraManager : Singleton<CameraManager>
         {
             cinemachine = val;
             cinemachine.Follow = CharacterManager.Instance.PlayerStat.transform;
+
             noise = val.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             if (mainCamera.TryGetComponent(out Cinemachine.CinemachineConfiner2D val2))
             {
@@ -61,5 +64,10 @@ public class CameraManager : Singleton<CameraManager>
     public override void Release()
     {
         cinemachine = null;
+        noise = null;
+        collider2D = null;
+        confiner2D = null;
+        shackCoroutine = null;
+        StopCoroutine("shackCoroutine");
     }
 }
