@@ -47,6 +47,7 @@ public class BossController : MonoBehaviour
     bool canHurt = true;
     bool isDead = false;
     float pAcc;
+    float nextDecisionReadyAt = 0f;
     int hp01;
 
     Animator animator;
@@ -132,6 +133,8 @@ public class BossController : MonoBehaviour
 
     // 공용 유틸 (상태에서 호출)
     public bool CanSeePlayer() => canSee;
+    public bool DecisionReady() => Time.time >= nextDecisionReadyAt;
+    public void StartDecisionDelay() => nextDecisionReadyAt = Time.time + stat.decisionDelay;
     public bool CDReadyDash() => Time.time >= readyDash;
     public bool CDReadyMid() => Time.time >= readyMid;
     public bool CDReadyRanged() => Time.time >= readyRanged;

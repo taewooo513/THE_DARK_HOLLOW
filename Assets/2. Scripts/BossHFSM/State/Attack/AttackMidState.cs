@@ -24,6 +24,7 @@ public class AttackMidState : AttackSuper
             ctx.StopMove();
             ctx.OnPreAttackEffect();        // 대쉬 공격과 같은 이펙트 사용
             SoundManager.Instance.PlayEFXSound("BossRangedAttack_EFX");
+            ctx.AnimatianPlay_Trigger("SetMidAttack");
         }
         public override void Tick(float dt)
         {

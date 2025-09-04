@@ -57,8 +57,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preAttack: {fileID: 1238154396340138914}
   hitEffect: {fileID: 445882645041924348}
-  detectRange: 4.2
-  nearRange: 5
+  detectRange: 20
+  nearRange: 8
   midRange: 10
   farRange: 15
   perceptionHz: 1
@@ -66,13 +66,13 @@ MonoBehaviour:
   dashWindup: 1
   dashActive: 1.26
   dashRecover: 0.35
-  dashCooldown: 5.07
+  dashCooldown: 8
   midWindup: 0.5
   midActive: 0
   midRecover: 0.35
-  midCooldown: 1.8
+  midCooldown: 5
   midAttackPrefab: {fileID: 3488295262734343570}
-  midOffsetX: 22
+  midOffsetX: 2.2
   rangedWindup: 0.2
   rangedActive: 0
   rangedRecover: 0.35
@@ -713,7 +713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &350200332576350282
 Transform:
   m_ObjectHideFlags: 0

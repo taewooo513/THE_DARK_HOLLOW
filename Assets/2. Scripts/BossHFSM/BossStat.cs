@@ -10,6 +10,9 @@ public class BossStat : MonoBehaviour
     [Tooltip("피격 애니메이션 프리팹")]
     public GameObject hitEffect;
 
+    [Header("다음 패턴 딜레이")]
+    [Tooltip("어떤 공격 후에도 다음 선택까지 최소 대기")]
+    public float decisionDelay = 1.5f;
 
     [Header("보스 범위(인식, 공격)")]
     [Tooltip("인식 범위(노랑색)")]
