@@ -43,10 +43,9 @@ public class AttackDashState : AttackSuper
         public override void OnEnter()
         {
             t = 0;
-            ctx.FaceToPlayer();
             if (ctx.player) dir = (ctx.player.position - ctx.transform.position).normalized;
             else dir = new Vector2(ctx.transform.localScale.x, 0f);
-            //ctx.Play("Dash");
+            //ctx.AnimatianPlay_Trigger("Dash");
         }
         public override void Tick(float dt)
         {
@@ -68,7 +67,7 @@ public class AttackDashState : AttackSuper
         public override void OnEnter() 
         { 
             t = 0; 
-            //ctx.Play("Dash_Recover"); 
+            //ctx.AnimatianPlay_Trigger("Dash_Recover"); 
         } 
         public override void Tick(float dt)
         {

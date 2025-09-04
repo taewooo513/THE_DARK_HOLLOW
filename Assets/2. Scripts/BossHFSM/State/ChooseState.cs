@@ -59,7 +59,7 @@ public class ChooseState : BossStateBase
         else if (best == scoreMid)
         {
             ctx.lastChosen = BossController.AttackChoice.Mid;
-            fsm.Change(ctx.SAtMid);
+            fsm.Change(ctx.SAtkMid);
         }
 
     }

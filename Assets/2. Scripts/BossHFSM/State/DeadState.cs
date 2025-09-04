@@ -9,7 +9,7 @@ public class DeadState : BossStateBase
     {
         ctx.StopMove();
         SoundManager.Instance.PlayEFXSound("BossDead_EFX");
-        ctx.Play("Dead");
+        ctx.AnimatianPlay_Trigger("Dead");
         var col = ctx.GetComponent<Collider2D>(); 
         if (col) col.enabled = false;
         ctx.ToDie();
