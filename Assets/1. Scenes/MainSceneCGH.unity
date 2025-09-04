@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 54303375}
   - component: {fileID: 54303377}
   - component: {fileID: 54303376}
+  - component: {fileID: 54303378}
   m_Layer: 5
   m_Name: Life1
   m_TagString: Untagged
@@ -379,6 +380,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54303374}
   m_CullTransparentMesh: 1
+--- !u!95 &54303378
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54303374}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f0657979b6ae7954c8940b95e796106f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &64698576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1514,7 @@ GameObject:
   - component: {fileID: 314544839}
   - component: {fileID: 314544841}
   - component: {fileID: 314544840}
+  - component: {fileID: 314544842}
   m_Layer: 5
   m_Name: Life2
   m_TagString: Untagged
@@ -1556,6 +1579,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314544838}
   m_CullTransparentMesh: 1
+--- !u!95 &314544842
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314544838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: abbdb634b2126e44f935e3bc91c0c256, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &325090069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2305,6 +2349,7 @@ GameObject:
   - component: {fileID: 538325144}
   - component: {fileID: 538325146}
   - component: {fileID: 538325145}
+  - component: {fileID: 538325147}
   m_Layer: 5
   m_Name: Life5
   m_TagString: Untagged
@@ -2369,6 +2414,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538325143}
   m_CullTransparentMesh: 1
+--- !u!95 &538325147
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538325143}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65f1b98f71b2a0b47b87854a577dca5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &588202797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,6 +2768,7 @@ GameObject:
   - component: {fileID: 633509269}
   - component: {fileID: 633509271}
   - component: {fileID: 633509270}
+  - component: {fileID: 633509272}
   m_Layer: 5
   m_Name: Life3
   m_TagString: Untagged
@@ -2766,6 +2833,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633509268}
   m_CullTransparentMesh: 1
+--- !u!95 &633509272
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633509268}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: effa47a42467fd942938783c47dc6aae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &638921656
 GameObject:
   m_ObjectHideFlags: 0
@@ -6123,6 +6211,7 @@ GameObject:
   - component: {fileID: 1771970630}
   - component: {fileID: 1771970632}
   - component: {fileID: 1771970631}
+  - component: {fileID: 1771970633}
   m_Layer: 5
   m_Name: Life4
   m_TagString: Untagged
@@ -6187,6 +6276,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771970629}
   m_CullTransparentMesh: 1
+--- !u!95 &1771970633
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771970629}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 948904c264da5bf46a25e488542bd943, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1777857429
 GameObject:
   m_ObjectHideFlags: 0
