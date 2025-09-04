@@ -19,7 +19,7 @@ public class Constants : MonoBehaviour
 
     public static class CountValue
     {
-        public const float HIT = 0.8f; // 梭緇歜 衛除
+        public const float HIT = 1.5f; // 梭緇歜 衛除
         public const float INVINCIBLE_BLINK_TIME = 0.1f; // 奩癱貲 衛除 除問
     }
 
