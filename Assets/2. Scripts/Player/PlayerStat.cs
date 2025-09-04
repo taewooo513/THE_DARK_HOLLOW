@@ -22,6 +22,7 @@ public class PlayerStat : MonoBehaviour
     [field: SerializeField] public float JumpPower { get; set; }
     //[field: SerializeField] public float KnockbackPower { get; set; }
     [field: SerializeField] public bool CanJump { get; set; }
+    [field: SerializeField] public int Gauge { get; set; }
     private Dictionary<StatType, float> stats = new();
     private string userName;
 

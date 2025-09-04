@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header("Etc")]
     [SerializeField] private LayerMask groundLayer;
     private StateMachine stateMachine;
-    private PlayerStat playerStat;
+    [field: SerializeField] public PlayerStat PlayerStat { get; set; }
     [SerializeField] public AnimationController AnimationController { get; set; }
     [field: SerializeField] public bool IsHit { get; set; }
     //[field: SerializeField] public bool IsInvincible { get; set; }
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         Rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         stateMachine = GetComponent<StateMachine>();
-        playerStat = GetComponent<PlayerStat>();
+        PlayerStat = GetComponent<PlayerStat>();
         AnimationController = GetComponent<AnimationController>();
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
@@ -113,6 +113,16 @@ public class PlayerController : MonoBehaviour
 
             //// Idle 상태로 전환 -> SpeedModifier = 1.0f;
             //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        // 공격키(x)를 누르기 시작했고, 땅에 있으면
+        if (context.phase == InputActionPhase.Started && IsGrounded())
+        {
+            // 공격상태로 전환한다. 
+            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Attack));
         }
     }
 
