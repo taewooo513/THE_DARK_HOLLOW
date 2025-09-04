@@ -29,4 +29,16 @@ public class AnimationController : MonoBehaviour
     //    // 한번만 실행 
     //    animator.SetBool(Constants.AnimationParameter.HIT, true);
     //}
+
+    // Attack Animation
+    public void Attack()
+    {
+        animator.SetBool(Constants.AnimationParameter.ATTACK, true);
+    }
+
+    // Cancel Attack Animation
+    public void CancelAttack()
+    {
+        animator.SetBool(Constants.AnimationParameter.ATTACK, false);
+    }
 }
