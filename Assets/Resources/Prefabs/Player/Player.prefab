@@ -123,7 +123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1629296793058953499
 Transform:
   m_ObjectHideFlags: 0
@@ -397,6 +397,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5ba3f798-5e70-47b9-8051-6fe8b0179159
     m_ActionName: Player/Run[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1305001086230289907}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 66824b93-5643-4e61-a339-c76f72ee8de4
+    m_ActionName: Player/Attack[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8912753368016021934}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e8227832-bc27-4a2c-950c-99dccd38d572
+    m_ActionName: Player/SpecialAttack[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Player
   m_DefaultActionMap: Player
@@ -422,8 +454,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  <PlayerStat>k__BackingField: {fileID: 0}
   <IsHit>k__BackingField: 0
   SpriteRenderer: {fileID: 0}
+  <hitObj>k__BackingField: {fileID: 1430510205191701724}
   collider: {fileID: 0}
 --- !u!114 &1059548940587308246
 MonoBehaviour:
@@ -457,6 +491,7 @@ MonoBehaviour:
   <SpeedModifierInput>k__BackingField: 1.5
   <JumpPower>k__BackingField: 5
   <CanJump>k__BackingField: 0
+  <Gauge>k__BackingField: 0
 --- !u!114 &4444595822574195986
 MonoBehaviour:
   m_ObjectHideFlags: 0

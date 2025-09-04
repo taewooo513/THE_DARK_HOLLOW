@@ -29,6 +29,7 @@ public class Constants : MonoBehaviour
         public const string RUN = "Run";
         public const string HIT = "Hit";
         public const string ATTACK = "Attack";
+        public const string SPECIALATTACK = "SpecialAttack";
     }
 
     public static class State
@@ -44,5 +45,10 @@ public class Constants : MonoBehaviour
     {
         //public const float ATTACK = 0.5f;
         public const float ATTACK = 1.05f;
+    }
+
+    public static class SpecialAttack
+    {
+        public const int GUAGE = 5;
     }
 }

@@ -8,6 +8,10 @@ public class PlayerRunState : BaseState
     {
         Debug.Log("Hello from the Run State");
         this.playerController = stateMachine.PlayerController;
+
+        // 이전 상태 저장 
+        stateMachine.SetPreState(stateMachine);
+
         ChangeSpeed();
 
         playerController.GetComponentInChildren<SpriteRenderer>().flipX = playerController.MovementInput.x < 0 ? true : false;
