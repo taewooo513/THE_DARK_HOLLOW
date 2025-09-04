@@ -28,10 +28,10 @@ public class PlayerAttackState : BaseState
             lastAttackTime = Time.time;
 
             // 공격 애니메이션 실행
-            Debug.Log("공격 애니메이션 실행");
+            //Debug.Log("공격 애니메이션 실행");
             stateMachine.PlayerController.AnimationController.Attack();
             lastInputTime = Time.time; // 공격 애니메이션 이후 시간을 기록 
-            Debug.Log($"마지막 입력 시간 = {lastInputTime}");
+            //Debug.Log($"마지막 입력 시간 = {lastInputTime}");
         }
 
         // 공격 애니메이션 이후에 공격키(x)를 입력하면 
@@ -41,7 +41,10 @@ public class PlayerAttackState : BaseState
             lastInputTime = Time.time;
         }
 
-        Debug.Log($"현재 시간 - 마지막 입력 시간 = {Time.time - lastAttackTime}");
+        Debug.Log("전환 전");
+        Debug.Log($"Time - lastInputTime = {Time.time - lastAttackTime}");  
+
+        //Debug.Log($"현재 시간 - 마지막 입력 시간 = {Time.time - lastAttackTime}");
         // 0.5초가 지났는데 아무런 입력이 없으면
         if (Time.time - lastInputTime > coolTime)
         {
