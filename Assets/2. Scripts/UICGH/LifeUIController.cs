@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class LifeUIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Tooltip("왼쪽→오른쪽 순서로, 현재 살아있는 칸들이 들어있는 배열(최대 5개)")]
+    [SerializeField] private List<LifeIcon> lifeIcons = new List<LifeIcon>();
+
+    [Tooltip("플레이어 스탯 참조")]
+    [SerializeField] private PlayerStat playerStat;
+
+    private void Awake()
+    {
+        if(!playerStat) playerStat = FindObjectOfType<PlayerStat>();
+    }
+
+    private void OnEnable()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
         
     }
+
+    private void HandleHealthChanged(int current, int max)
+    {
+        // 현재 살아있는 아이콘 수가 current가 되도록 맞춘다.
+        // 줄어든 만큼 뒤쪽(오른쪽 끝)부터 터뜨린다.
+        // 예) 5→4면 마지막 인덱스 4를 파괴
+        
+    }
+
 }
