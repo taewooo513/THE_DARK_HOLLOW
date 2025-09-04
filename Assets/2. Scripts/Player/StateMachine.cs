@@ -10,6 +10,7 @@ public enum PlayerStateType
     Hit,
     Attack,
     SpecialAttack,
+    Climb
 }
 
 // context = 상태 데이터 전달 역할 = StateMachine 
@@ -34,6 +35,7 @@ public class StateMachine : MonoBehaviour
         states.Add(PlayerStateType.Hit, new PlayerHitState());
         states.Add(PlayerStateType.Attack, new PlayerAttackState());
         states.Add(PlayerStateType.SpecialAttack, new PlayerSpecialAttackState());
+        states.Add(PlayerStateType.Climb, new PlayerClimbingState());
     }
 
     private void Start()
@@ -75,6 +77,7 @@ public class StateMachine : MonoBehaviour
             case PlayerRunState:
             case PlayerHitState:
             case PlayerAttackState:
+            case PlayerClimbingState:
                 currentState.FixedUpdateState(this);
                 break;
         }

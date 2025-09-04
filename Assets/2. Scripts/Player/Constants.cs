@@ -30,6 +30,7 @@ public class Constants : MonoBehaviour
         public const string HIT = "Hit";
         public const string ATTACK = "Attack";
         public const string SPECIALATTACK = "SpecialAttack";
+        public const string CLIMB = "Climb";
     }
 
     public static class State

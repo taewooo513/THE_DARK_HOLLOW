@@ -429,6 +429,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e8227832-bc27-4a2c-950c-99dccd38d572
     m_ActionName: Player/SpecialAttack[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1305001086230289907}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnClimb
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ea036b45-19c7-49c2-b61e-56565db00622
+    m_ActionName: Player/Climb[/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Player
   m_DefaultActionMap: Player
@@ -451,6 +467,7 @@ MonoBehaviour:
   <MovementDirection>k__BackingField: {x: 0, y: 0}
   <CanJump>k__BackingField: 0
   <IsMoving>k__BackingField: 0
+  <IsClimbable>k__BackingField: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -485,13 +502,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Attack>k__BackingField: 0
   maxHealth: 5
-  currentHealth: 5
+  <CurrentHealth>k__BackingField: 0
   MoveSpeed: 1
   <SpeedModifier>k__BackingField: 1
   <SpeedModifierInput>k__BackingField: 1.5
   <JumpPower>k__BackingField: 5
   <CanJump>k__BackingField: 0
   <Gauge>k__BackingField: 0
+  isMoved: 1
 --- !u!114 &4444595822574195986
 MonoBehaviour:
   m_ObjectHideFlags: 0

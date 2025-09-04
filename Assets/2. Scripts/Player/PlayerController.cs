@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour
         if (!PlayerStat.isMoved) return;
 
         // 키를 누르고 있으면 (땅에 있든 없든 상관X -> 이동은 땅에서, 공중에서 다 가능)
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && 
+            (context.control.name == "leftArrow" || context.control.name == "rightArrow"))
         {
             // 이동 중이라는 걸 표시
             IsMoving = true;
@@ -65,7 +66,8 @@ public class PlayerController : MonoBehaviour
             stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Move));
         }
         // 키를 떼면 
-        else if (context.phase == InputActionPhase.Canceled)
+        else if (context.phase == InputActionPhase.Canceled &&
+            (context.control.name == "leftArrow" || context.control.name == "rightArrow"))
         {
             // 이동 중 X
             IsMoving = false;
@@ -142,6 +144,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnClimb(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed && IsClimbable)
+        {
+            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Climb));
+        }
+    }
+
     public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundLayer);
@@ -170,12 +180,22 @@ public class PlayerController : MonoBehaviour
             IsHit = true;
             this.collider = collider;
         }
-        else if (collider.gameObject.CompareTag("Ladder"))
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder"))
         {
             Debug.Log("사다리 닿음");
-            IsClimbable = true;   
+            IsClimbable = true;
         }
     }
 
-    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            IsClimbable = false;
+        }
+    }
 }
