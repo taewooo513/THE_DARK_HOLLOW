@@ -9,6 +9,6 @@ public class GoToStartButton : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(StartSceneCGH);
+        SceneLoadManager.Instance.LoadScene(SceneKey.mainScene);
     }
 }
