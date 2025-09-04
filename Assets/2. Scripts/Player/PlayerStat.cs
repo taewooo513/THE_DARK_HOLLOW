@@ -5,10 +5,13 @@ using UnityEngine;
 public enum StatType
 {
     Attack,
+    MaxHealth,
     Health,
     MoveSpeed,
     SpeedModifier,
-    JumpPower
+    SpeedModifierInput,
+    JumpPower,
+    Gauge
 }
 
 public class PlayerStat : MonoBehaviour
@@ -40,11 +43,37 @@ public class PlayerStat : MonoBehaviour
         maxHealth = 5;
         CurrentHealth = 5;
 
-        stats.Add(StatType.Attack, Attack); 
+        stats.Add(StatType.Attack, Attack);
+        stats.Add(StatType.MaxHealth, maxHealth);
         stats.Add(StatType.Health, CurrentHealth);
         stats.Add(StatType.MoveSpeed, MoveSpeed);
         stats.Add(StatType.SpeedModifier, SpeedModifier);
+        stats.Add(StatType.SpeedModifierInput, SpeedModifierInput);
         stats.Add(StatType.JumpPower, JumpPower);
+        stats.Add(StatType.Gauge, Gauge);
+    }
+
+    public void ReInitStats(float b)
+    {
+        CharacterManager.Instance.PlayerStat = this;
+
+        CurrentHealth = b;
+
+        stats.Add(StatType.Attack, Attack);
+        stats.Add(StatType.MaxHealth, maxHealth);
+        stats.Add(StatType.Health, CurrentHealth);
+        stats.Add(StatType.MoveSpeed, MoveSpeed);
+        stats.Add(StatType.SpeedModifier, SpeedModifier);
+        stats.Add(StatType.SpeedModifierInput, SpeedModifierInput);
+        stats.Add(StatType.JumpPower, JumpPower);
+        stats.Add(StatType.Gauge, Gauge);
+    }
+
+    public float SetHealth(float b)
+    {
+        b = CurrentHealth;
+
+        return b;
     }
 
     public float GetStat(StatType statType)
@@ -63,7 +92,10 @@ public class PlayerStat : MonoBehaviour
             CurrentHealth = 0;
     }
 
-    // 플레이어 체크 포인트 저장 (작성자:이영신)
+    public Dictionary<StatType, float> GetPlayerStat()
+    {
+        return stats;
+
     public void SetCheckPoint()
     {
         transform.position = playerCheckPoint;

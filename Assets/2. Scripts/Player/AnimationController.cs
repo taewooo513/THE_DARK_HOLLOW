@@ -48,4 +48,9 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetTrigger(Constants.AnimationParameter.SPECIALATTACK);
     }
+
+    public void Climb()
+    {
+        animator.SetTrigger(Constants.AnimationParameter.CLIMB);
+    }
 }
