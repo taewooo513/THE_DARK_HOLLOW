@@ -128,6 +128,18 @@ MonoBehaviour:
     - Boss
     - StartScene
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d6c1dc74af41504eb4390fa415e5180
+    m_Address: Assets/Resources_moved/Sounds/BatSkill_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58826da7839004b48927b852405a0e14
+    m_Address: Assets/Resources_moved/Sounds/BossAppear_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ed5694c84ebdf1941b0f5ef7c6b83e5f, type: 2}
   m_SchemaSet:
