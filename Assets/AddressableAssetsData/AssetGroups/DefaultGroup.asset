@@ -127,6 +127,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - Boss
     - StartScene
+    - Stage1
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d6c1dc74af41504eb4390fa415e5180
     m_Address: Assets/Resources_moved/Sounds/BatSkill_EFX.mp3

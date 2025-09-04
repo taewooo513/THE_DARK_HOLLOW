@@ -16,7 +16,7 @@ public enum StatType
 
 public class PlayerStat : MonoBehaviour
 {
-    [field: SerializeField] public int Attack {  get; set; }
+    [field: SerializeField] public int Attack { get; set; }
     [SerializeField] private float maxHealth;
     [field: SerializeField] public float CurrentHealth { get; set; }
     [field: SerializeField] public float MoveSpeed;
@@ -98,6 +98,7 @@ public class PlayerStat : MonoBehaviour
     }
     public void SetCheckPoint()
     {
+        TakeDamage();
         transform.position = playerCheckPoint;
     }
 }
