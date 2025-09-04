@@ -51,4 +51,8 @@ public class UIManager : Singleton<UIManager>
             uiManagers.Remove(key);
         }
     }
+    public void ClearUIManager()
+    {
+        uiManagers.Clear();
+    }
 }

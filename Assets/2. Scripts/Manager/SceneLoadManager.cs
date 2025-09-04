@@ -18,6 +18,8 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     MonoScene nowScene;
     Coroutine asyncLoadScene;
+    private GameObject fadeObject;
+
     protected override void Awake()
     {
         base.Awake();
@@ -50,21 +52,21 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     IEnumerator AsyncLoadScene(string key)
     {
-        //while (true)
-        //{
-        //    if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeIn() == true)
-        //    {
-        //        break;
-        //    }
-        //    yield return null;
-        //}
+        UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").alpha = 0;
+        while (true)
+        {
+            if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeIn() == true)
+            {
+                break;
+            }
+            yield return null;
+        }
 
         if (nowScene != null)
         {
             nowScene.Release();
         }
         nowScene = scenes[key];
-        Debug.Log(6);
 
         var operation = SceneManager.LoadSceneAsync(key);
         operation.allowSceneActivation = false;
@@ -86,13 +88,13 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
         nowScene.Init();
 
-        //while (true)
-        //{
-        //    if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeOut() == true)
-        //    {
-        //        break;
-        //    }
-        //    yield return null;
-        //}
+        while (true)
+        {
+            if (UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").FadeOut() == true)
+            {
+                break;
+            }
+            yield return null;
+        }
     }
 }

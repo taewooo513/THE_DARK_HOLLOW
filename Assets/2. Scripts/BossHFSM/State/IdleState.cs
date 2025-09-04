@@ -8,7 +8,7 @@ public class IdleState : BossStateBase
     public override void OnEnter()
     {
         ctx.StopMove();
-       //ctx.Play("Idle"); // 애니 트리거명 맞추기
+       //ctx.AnimatianPlay_Trigger("Idle"); // 애니 트리거명 맞추기
     }
     public override void Tick(float dt)
     {

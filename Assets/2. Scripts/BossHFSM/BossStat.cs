@@ -4,48 +4,58 @@ using UnityEngine;
 
 public class BossStat : MonoBehaviour
 {
-    [Header("Aggro / Perception")]
-    public float detectRange = 10f;   // 인식 범위(이 범위를 벗어나면 Idle 강제)
-    public float nearRange = 1.8f;  // 돌진(근접) 임계
-    public float farRange = 5.5f;  // 원거리 임계
+    [Header("애니메이션용")]
+    [Tooltip("예고동작 애니메이션 프리팹")]
+    public GameObject preAttack;
+    [Tooltip("피격 애니메이션 프리팹")]
+    public GameObject hitEffect;
+
+    [Header("다음 패턴 딜레이")]
+    [Tooltip("어떤 공격 후에도 다음 선택까지 최소 대기")]
+    public float decisionDelay = 1.5f;
+
+    [Header("보스 범위(인식, 공격)")]
+    [Tooltip("인식 범위(노랑색)")]
+    public float detectRange = 10f;   // (이 범위를 벗어나면 Idle 강제)
+    [Tooltip("돌진패턴 범위(초록색)")]
+    public float nearRange = 1.8f;
+    [Tooltip("중거리 공격 범위(빨간색)")]
+    public float midRange = 3.0f;
+    [Tooltip("원거리 공격 범위(파란색)")]
+    public float farRange = 5.5f;
+
+    [Header("보스 인식 주기")]
     [Tooltip("시야/거리 계산 주기(Hz). 8~10 권장")]
     public float perceptionHz = 8f; // 눈깜빡임 주기
 
-    [Header("Move Speeds")]
-    public float moveSpeed = 3.5f;
+    [Header("돌진공격 속성 설정")]
     public float dashSpeed = 12f;
-
-    [Header("Dash Timings")]
     public float dashWindup = 0.5f;
-    public float dashActive = 0.28f;
+    public float dashActive = 0.28f;    // 돌진 지속시간
     public float dashRecover = 0.35f;
-    public float dashCooldown = 1.8f;
+    public float dashCooldown = 8f;
 
-    [Header("Ranged Timings")]
+    [Header("중거리 공격 속성 설정")]
+    public float midWindup = 0.25f;
+    public float midActive = 0.0f;
+    public float midRecover = 0.35f;
+    public float midCooldown = 5f;
+    [Tooltip("중거리 공격 프리팹(위치변환용)")]
+    public GameObject midAttackPrefab;
+    [Tooltip("중거리 공격 프리팹 위치 오프셋")]
+    public float midOffsetX = 2.2f;
+
+    [Header("원거리 공격 설정")]
     public float rangedWindup = 0.20f;
-    public float rangedActive = 0.00f;     // 투사체면 Active=0도 OK
+    public float rangedActive = 0.00f;     // 투사체면 0도 OK
     public float rangedRecover = 0.35f;
     public float rangedCooldown = 1.4f;
-
-    [Header("Ranged Projectile")]
+    public float bulletSpeed = 10f;
+    public float bulletLifetime = 3f;       // 예상 이동거리 = speed * lifetime
+    [Tooltip("원거리공격 포인트(시작 위치용)")]
     public Transform firePoint;
 
-    [Tooltip("기즈모 미리보기용(발사 속도)")]
-    public float bulletSpeed = 10f;         // FireProjectile에서도 사용하도록 권장
-    [Tooltip("기즈모 미리보기용(투사체 생존 시간)")]
-    public float bulletLifetime = 3f;       // 예상 이동거리 = speed * lifetime
+    [Header("HP")]
+    [Range(1, 100)] public int hp01;
 
-    [Header("Phase / HP")]
-    [Range(1, 100)] public int hp01;   
-
-    void OnValidate()
-    {
-        perceptionHz = Mathf.Max(0.1f, perceptionHz);
-        detectRange = Mathf.Max(0f, detectRange);
-        nearRange = Mathf.Max(0f, nearRange);
-        farRange = Mathf.Max(0f, farRange);
-        dashSpeed = Mathf.Max(0f, dashSpeed);
-        bulletSpeed = Mathf.Max(0f, bulletSpeed);
-        bulletLifetime = Mathf.Max(0f, bulletLifetime);
-    }
 }

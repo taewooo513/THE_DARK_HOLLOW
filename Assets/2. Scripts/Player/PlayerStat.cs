@@ -13,7 +13,7 @@ public enum StatType
 
 public class PlayerStat : MonoBehaviour
 {
-    [SerializeField] private float attack;
+    [field: SerializeField] public int Attack {  get; set; }
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
     [field: SerializeField] public float MoveSpeed;
@@ -35,7 +35,7 @@ public class PlayerStat : MonoBehaviour
     {
         CharacterManager.Instance.PlayerStat = this;
         userName = gameObject.name;
-        stats.Add(StatType.Attack, attack); 
+        stats.Add(StatType.Attack, Attack); 
         stats.Add(StatType.Health, currentHealth);
         stats.Add(StatType.MoveSpeed, MoveSpeed);
         stats.Add(StatType.SpeedModifier, SpeedModifier);

@@ -14,12 +14,13 @@ public class AttackDashState : AttackSuper
 
     protected override IBossState DefaultSub() => new A_Windup(ctx, fsm, this);
 
-    //A_Windup : 돌진 준비 단계
+    // A_Windup : 돌진 준비 단계
     // - 이동을 멈춤, 애니 트리거, 방향을 미리 계산/고정(래치)
     // - dashWindup 경과 후 Execute로 전환
     class A_Windup : BossStateBase
     {
-        readonly AttackDashState sup; float t;
+        readonly AttackDashState sup;
+        float t;
         public A_Windup(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
@@ -38,15 +39,15 @@ public class AttackDashState : AttackSuper
 
     class A_Execute : BossStateBase
     {
-        readonly AttackDashState sup; float t; Vector2 dir;
+        readonly AttackDashState sup; 
+        float t; 
+        Vector2 dir;
         public A_Execute(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
         public override void OnEnter()
         {
             t = 0;
-            ctx.FaceToPlayer();
             if (ctx.player) dir = (ctx.player.position - ctx.transform.position).normalized;
             else dir = new Vector2(ctx.transform.localScale.x, 0f);
-            //ctx.Play("Dash");
         }
         public override void Tick(float dt)
         {
@@ -63,12 +64,12 @@ public class AttackDashState : AttackSuper
 
     class A_Recover : BossStateBase
     {
-        readonly AttackDashState sup; float t;
+        readonly AttackDashState sup; 
+        float t;
         public A_Recover(BossController c, BossStateMachine f, AttackDashState s) : base(c, f) { sup = s; }
         public override void OnEnter() 
         { 
             t = 0; 
-            //ctx.Play("Dash_Recover"); 
         } 
         public override void Tick(float dt)
         {
@@ -77,12 +78,9 @@ public class AttackDashState : AttackSuper
             {
                 sup.locked = false;
                 ctx.StartCD_Dash();
-                // 다음으로
-                if (!ctx.CanSeePlayer()) 
-                    fsm.Change(ctx.SIdle);
 
-                else if (ctx.Dist <= ctx.stat.nearRange || ctx.Dist >= ctx.stat.farRange) 
-                    fsm.Change(ctx.SChoose);
+                if (!ctx.CanSeePlayer()) fsm.Change(ctx.SIdle);
+                else fsm.Change(ctx.SChoose); 
             }
         }
     }
