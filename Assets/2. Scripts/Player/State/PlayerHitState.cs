@@ -33,13 +33,23 @@ public class PlayerHitState : BaseState
 
     public override void UpdateState(StateMachine stateMachine)
     {
-        // 0.1초가 지날때까지 플레이어를 반투명 상태(무적 상태)로 만들기 
+        // 0.8초가 지날때까지 플레이어를 반투명 상태(무적 상태)로 만들기 
         if(hitCount >= 0)
         {
-            // 0.1초 카운팅 -> 0.1초 동안 반투명 상태, 무적 상태 유지 
+            // 0.8초 카운팅 -> 0.8초 동안 반투명 상태, 무적 상태 유지 
             hitCount -= Time.deltaTime;
+
+            // 0.1초 간격으로 깜빡이게 하기 
+            if (Mathf.FloorToInt(hitCount / Constants.CountValue.INVINCIBLE_BLINK_TIME) % 2 == 0)
+            {
+                SetColorAlpha(spriteRenderer, Constants.ColorAlpha.ONE);
+            }
+            else
+            {
+                SetColorAlpha(spriteRenderer, Constants.ColorAlpha.HALF);
+            }
         }
-        // 0.1초가 지나면 
+        // 0.8초가 지나면 
         else
         {
             // 반투명 상태 해제 
