@@ -13,6 +13,9 @@ public class PlayerHitState : BaseState
     {
         Debug.Log("Hello From The Hit State");
 
+        // 이전 상태 저장 
+        stateMachine.SetPreState(stateMachine);
+
         Debug.Log("Set hit count");
         hitCount = Constants.CountValue.HIT;
 

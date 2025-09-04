@@ -10,6 +10,9 @@ public class PlayerMoveState : BaseState
         Debug.Log("Hello from the Move State");
         this.playerController = stateMachine.PlayerController;
 
+        // 이전 상태 저장 
+        stateMachine.SetPreState(stateMachine);
+
         playerController.GetComponentInChildren<SpriteRenderer>().flipX = playerController.MovementInput.x < 0 ? true : false;
 
         // Move Animation
@@ -26,6 +29,13 @@ public class PlayerMoveState : BaseState
         {
             // Hit상태로 진입 
             stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Hit));
+        }
+
+        // 이동 중 공격키(x)를 누르면 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            // 공격 상태로 전환 
+            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Attack));
         }
     }
 

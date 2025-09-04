@@ -8,7 +8,8 @@ public enum PlayerStateType
     Run,
     Jump,
     Hit,
-    Attack
+    Attack,
+    SpecialAttack,
 }
 
 // context = 상태 데이터 전달 역할 = StateMachine 
@@ -32,6 +33,7 @@ public class StateMachine : MonoBehaviour
         states.Add(PlayerStateType.Jump, new PlayerJumpState());
         states.Add(PlayerStateType.Hit, new PlayerHitState());
         states.Add(PlayerStateType.Attack, new PlayerAttackState());
+        states.Add(PlayerStateType.SpecialAttack, new PlayerSpecialAttackState());
     }
 
     private void Start()
@@ -57,6 +59,7 @@ public class StateMachine : MonoBehaviour
             case PlayerRunState:
             case PlayerHitState:
             case PlayerAttackState:
+            case PlayerSpecialAttackState:
                 // 매 프레임마다 실행될 상태
                 currentState.UpdateState(this);
                 break;

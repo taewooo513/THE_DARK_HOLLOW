@@ -120,6 +120,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnSpecialAttack(InputAction.CallbackContext context)
+    {
+        // 특수공격키(space)를 누르기 시작했고, 땅에 있으면
+        if(context.phase == InputActionPhase.Started && IsGrounded())
+        {
+            // 특수공격상태로 전환한다. 
+            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.SpecialAttack));
+        }
+    }
+
     public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundLayer);

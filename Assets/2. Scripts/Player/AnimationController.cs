@@ -33,12 +33,19 @@ public class AnimationController : MonoBehaviour
     // Attack Animation
     public void Attack()
     {
-        animator.SetBool(Constants.AnimationParameter.ATTACK, true);
+        //animator.SetBool(Constants.AnimationParameter.ATTACK, true);
+        animator.SetTrigger(Constants.AnimationParameter.ATTACK);
     }
 
-    // Cancel Attack Animation
-    public void CancelAttack()
+    //// Cancel Attack Animation
+    //public void CancelAttack()
+    //{
+    //    animator.SetBool(Constants.AnimationParameter.ATTACK, false);
+    //}
+
+    // Special Attack Animation
+    public void SpecialAttack()
     {
-        animator.SetBool(Constants.AnimationParameter.ATTACK, false);
+        animator.SetTrigger(Constants.AnimationParameter.SPECIALATTACK);
     }
 }
