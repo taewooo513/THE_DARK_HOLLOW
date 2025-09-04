@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1. Scenes/Lee.BossTestScene.unity
     guid: 1c61eabad7f993e41bf9728224bb273a
+  - enabled: 1
+    path: Assets/1. Scenes/StartSceneAfterClear.unity
+    guid: 5f87234b860831549b6f894e021c18f4
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 479071fdfa5952543990e36549a87ea3, type: 2}
