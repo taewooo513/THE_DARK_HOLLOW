@@ -173,6 +173,41 @@ MonoBehaviour:
     - Boss
     - StartScene
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de234776fd2b4804f834eaf232e71f42
+    m_Address: Assets/Resources_moved/Sounds/PlayerAttack_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4629acada00252649b90c068f66cc44b
+    m_Address: Assets/Resources_moved/Sounds/PlayerHit_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bb423d242658d04faaaeaba7b5f4c63
+    m_Address: Assets/Resources_moved/Sounds/PlayerDead_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e47b0be74894fd45a30aa49205ec918
+    m_Address: Assets/Resources_moved/Sounds/PlayerHpLow_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb77c8d0fc8450549a0fa2d443860022
+    m_Address: Assets/Resources_moved/Sounds/PlayerSpecialAttack_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ed5694c84ebdf1941b0f5ef7c6b83e5f, type: 2}
   m_SchemaSet:

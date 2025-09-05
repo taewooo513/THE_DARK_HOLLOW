@@ -54,4 +54,13 @@ public class Constants : MonoBehaviour
     {
         public const int GUAGE = 5;
     }
+
+    public static class SFX
+    {
+        public const string PLAYER_ATTACK = "PlayerAttack_SFX";
+        public const string PLAYER_DEAD = "PlayerDead_SFX";
+        public const string PLAYER_HIT = "PlayerHit_SFX";
+        public const string PLAYER_HPLOW = "PlayerHpLow_SFX";
+        public const string PLAYER_SPECIALATTACK = "PlayerSpecialAttack_SFX";
+    }
 }
