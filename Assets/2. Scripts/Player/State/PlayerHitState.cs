@@ -13,7 +13,7 @@ public class PlayerHitState : BaseState
     {
         Debug.Log("Hello From The Hit State");
 
-        playerController.Rigid.gravityScale = 1.0f;
+        stateMachine.PlayerController.Rigid.gravityScale = 1.0f;
 
         // 피격 사운드 
         SoundManager.instance.PlayEFXSound(Constants.SFX.PLAYER_HIT);
