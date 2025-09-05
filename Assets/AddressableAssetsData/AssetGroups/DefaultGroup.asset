@@ -167,6 +167,12 @@ MonoBehaviour:
     - Boss
     - StartScene
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1c1ef08039e13e44bf272e3507930f7
+    m_Address: Assets/Resources_moved/Prefabs/UI/StartSceneAfterClear.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - StartSceneAfterClear
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: de234776fd2b4804f834eaf232e71f42
     m_Address: Assets/Resources_moved/Sounds/PlayerAttack_SFX.mp3
     m_ReadOnly: 0
