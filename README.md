@@ -17,6 +17,11 @@
 - **Version Control**: Git + GitHub
 
 ---
+## 🎀 와이어 프레임
+- <img width="1590" height="868" alt="image" src="https://github.com/user-attachments/assets/d46abab3-b1c6-4ecc-9de2-ce83c96a4584" />
+
+
+
 ## 🧩 게임 주요 기능
 
 ### 1) 플레이어
