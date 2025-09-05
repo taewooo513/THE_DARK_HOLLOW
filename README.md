@@ -31,4 +31,10 @@
 - 또한 Scene에 들어가는 모든 오브젝트를 Prefab화 하여 관리
 
 ### 3) 보스의 다양한 패턴
-- HFSM을 이용한 공격패턴 세부화
+- HFSM을 이용한 공격패턴 세부화 : 돌진공격, 중거리공격, 장거리공격
+- 중거리공격
+- <img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/b8bff08d-86e7-425f-a5d9-8ed0e471ecc0" />
+- 장거리공격
+- <img width="100" height="200" alt="image" src="https://github.com/user-attachments/assets/15dd45ba-faac-478b-a801-3158580245c3" />
+
+
