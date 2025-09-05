@@ -188,18 +188,6 @@ public class PlayerController : MonoBehaviour
         return null;
     }
 
-    // test
-    public void AddHealth()
-    {
-        Debug.Log("Add Health!!");
-    }
-
-    // test
-    public void DetractHealth()
-    {
-        Debug.Log("Detract Health!!");
-    }
-
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Boss"))

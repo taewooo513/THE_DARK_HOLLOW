@@ -15,6 +15,9 @@ public class PlayerAttackState : BaseState
         Debug.Log("Hello From The Attack State");
         this.playerController = stateMachine.PlayerController;
 
+        // 공격 사운드
+        SoundManager.Instance.PlayEFXSound(Constants.SFX.PLAYER_ATTACK);
+
         // 공격 쿨타임 설정 
         coolTime = Constants.CoolTime.ATTACK;
         lastAttackTime = 0.0f;

@@ -12,6 +12,8 @@ public class PlayerSpecialAttackState : BaseState
         Debug.Log("Hello From The Special Attack State");
         this.playerController = stateMachine.PlayerController;
 
+        SoundManager.Instance.PlayEFXSound(Constants.SFX.PLAYER_SPECIALATTACK);
+
         // 게이지가 충분한지 검사 
         if(stateMachine.PlayerController.PlayerStat.Gauge == Constants.SpecialAttack.GUAGE)
         {
