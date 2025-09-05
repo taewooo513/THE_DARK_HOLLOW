@@ -291,7 +291,7 @@ public class BossController : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         hp01 = stat.hp01;
-        SceneLoadManager.instance.LoadScene("StartScene");
+        SceneLoadManager.instance.LoadScene("StartSceneAfterClear");
     }
     public void TakeDamage(int damage, GameObject _object)
     {
