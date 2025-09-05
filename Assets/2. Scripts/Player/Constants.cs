@@ -15,6 +15,7 @@ public class Constants : MonoBehaviour
     {
         public const int DEFAULT = 0;
         public const int INVINCIBLE = 7;
+        public const int GROUND = 6;
     }
 
     public static class CountValue
