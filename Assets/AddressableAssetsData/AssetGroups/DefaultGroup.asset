@@ -1,0 +1,214 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: DefaultGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: DefaultGroup
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 0f737f3bac888c94b952c9412ee45faf
+  m_SerializeEntries:
+  - m_GUID: f85929130ead51041a4572df7eef0e73
+    m_Address: Sounds/BossBGM1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b76a826bf52ffd346b58e691d498b4c4
+    m_Address: Sounds/BossBGM12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f2c784af3061f84d91c928bca456320
+    m_Address: Sounds/BossBGM2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f746d4cc23cda264d9dc575b026b82eb
+    m_Address: Assets/Resources_moved/Sounds/StartBGM.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - StartScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 123844dfde5c9a84c831cff99dd31551
+    m_Address: Sounds/MainBGM
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7facceb30beb27b45954cdaaca4d2413
+    m_Address: Sounds/retro-8bit-happy-videogame-music-246631
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24ef70b7f0759544fbd3d2651debcbb6
+    m_Address: Assets/Resources_moved/Prefabs/Map/Stage1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36cdb201d9fdf5b4281cf0d32607d983
+    m_Address: Prefabs/BossRoom/Skill/Skill_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a62dea5bbe5acb94aa2d738909044feb
+    m_Address: Assets/Resources_moved/Sounds/BossRush_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03f0d3fe63cbe814ca2f0d948cb290c6
+    m_Address: Assets/Resources_moved/Sounds/BossRangedAttack_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07930705cfa3e364da47dfde808038a7
+    m_Address: Assets/Resources_moved/Sounds/BossHit_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc7ecf9c3c607444a820a5790ceed6ed
+    m_Address: Assets/Resources_moved/Sounds/BossDead_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e97e51d08310d846b72ec9e273f79a6
+    m_Address: Assets/Resources_moved/Prefabs/UI/FadeImage.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    - Stage1
+    - StartScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96833dd9a9f45c94a92ef83ae25811f8
+    m_Address: Enemy/Enemy_01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b74361fcf45d0164d956e4c0e482df87
+    m_Address: Scene/StartScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - StartScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b6fc9fbe030c6e4f84d7a0f4088db76
+    m_Address: Assets/Resources_moved/Scene/MainScene.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3371c5cea75b9c4aac1b045cf7e69f6
+    m_Address: Prefabs/UI/MainUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d6c1dc74af41504eb4390fa415e5180
+    m_Address: Assets/Resources_moved/Sounds/BatSkill_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58826da7839004b48927b852405a0e14
+    m_Address: Assets/Resources_moved/Sounds/BossAppear_EFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2d8eba61d3372c439f9e3ca88a5dcde
+    m_Address: Prefabs/Map/Stage/Stage1Scene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a43ee2a18d3e4ef4b904c3228957f28e
+    m_Address: Prefabs/Map/Stage/Stage2Scene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2eb7707ca8da5f74e88860f0d229d9ad
+    m_Address: Prefabs/Player/Player
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7361104e120134a4bbb1df189ec669b7
+    m_Address: Assets/Resources_moved/Prefabs/BossRoom/Skill/Skill_6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1c1ef08039e13e44bf272e3507930f7
+    m_Address: Assets/Resources_moved/Prefabs/UI/StartSceneAfterClear.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - StartSceneAfterClear
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de234776fd2b4804f834eaf232e71f42
+    m_Address: Assets/Resources_moved/Sounds/PlayerAttack_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4629acada00252649b90c068f66cc44b
+    m_Address: Assets/Resources_moved/Sounds/PlayerHit_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bb423d242658d04faaaeaba7b5f4c63
+    m_Address: Assets/Resources_moved/Sounds/PlayerDead_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e47b0be74894fd45a30aa49205ec918
+    m_Address: Assets/Resources_moved/Sounds/PlayerHpLow_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb77c8d0fc8450549a0fa2d443860022
+    m_Address: Assets/Resources_moved/Sounds/PlayerSpecialAttack_SFX.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04360182318a34c46a60659d2dc05c2a
+    m_Address: Assets/Resources_moved/Scene/BossStage.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ed5694c84ebdf1941b0f5ef7c6b83e5f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d277c3df4fa390e448568b53e61ddbbe, type: 2}
+    - {fileID: 11400000, guid: 9e60534e2dcde634582671c4f36e75cb, type: 2}
