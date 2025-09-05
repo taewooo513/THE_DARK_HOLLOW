@@ -32,10 +32,10 @@ public class PlayerIdleState : BaseState
 
         // 추가
         // 방향키가 계속 눌려져 있으면
-        if (!playerController.IsMoving) return;
-
-        // 이전 상태가 Jump이고, 점프 이전 상태가 Run이면 
-        if (stateMachine.GetPreState().ToString().Equals(Constants.State.JUMP) &&
+        if (playerController.IsMoving)
+        {
+            // 이전 상태가 Jump이고, 점프 이전 상태가 Run이면 
+            if (stateMachine.GetPreState().ToString().Equals(Constants.State.JUMP) &&
                 stateMachine.GetStateBeforeJump().ToString().Equals(Constants.State.RUN))
             {
                 // 달리기 상태로 전환
@@ -49,6 +49,8 @@ public class PlayerIdleState : BaseState
                 // 걷기 상태로 전환
                 stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Move));
             }
+        }
+           
         
     }           
 
