@@ -53,4 +53,14 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetTrigger(Constants.AnimationParameter.CLIMB);
     }
+
+    public void Climb(bool flag)
+    {
+        animator.SetBool(Constants.AnimationParameter.CLIMB, flag);
+    }
+
+    public void Idle()
+    {
+        animator.SetTrigger(Constants.AnimationParameter.IDLE);
+    }
 }

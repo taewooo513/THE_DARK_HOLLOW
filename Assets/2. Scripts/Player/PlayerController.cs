@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
             // 이동 중 X
             IsMoving = false;
 
-            MovementInput = Vector2.zero;
+            //MovementInput = Vector2.zero;
 
             // Idle 상태 전환
             stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
@@ -115,11 +115,11 @@ public class PlayerController : MonoBehaviour
             // 그게 아니면
             else
             {
-                // Idle 상태로 전환 -> SpeedModifier = 1.0f
+                // Idle 상태로 전환 -> SpeedModifier = 3.0f
                 stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
             }
 
-            //// Idle 상태로 전환 -> SpeedModifier = 1.0f;
+            //// Idle 상태로 전환 -> SpeedModifier = 3.0f;
             //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
         }
     }
@@ -146,9 +146,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnClimb(InputAction.CallbackContext context)
     {
+        //Debug.Log("클라이밍");
         if(context.phase == InputActionPhase.Performed && IsClimbable)
         {
+            // 이동할 수 있게 방향을 부여 
+            MovementInput = context.ReadValue<Vector2>();
+
             stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Climb));
+        }
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            // 방향키를 떼면 이동할 수 없게 하기
+            MovementInput = Vector2.zero;
         }
     }
 
@@ -195,6 +204,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ladder"))
         {
+            Debug.Log("사다리에서 벗어남");
             IsClimbable = false;
         }
     }

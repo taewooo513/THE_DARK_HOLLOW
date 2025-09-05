@@ -510,6 +510,7 @@ MonoBehaviour:
   <CanJump>k__BackingField: 0
   <Gauge>k__BackingField: 0
   isMoved: 1
+  playerCheckPoint: {x: 0, y: 0}
 --- !u!114 &4444595822574195986
 MonoBehaviour:
   m_ObjectHideFlags: 0

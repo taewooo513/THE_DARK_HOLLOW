@@ -51,6 +51,9 @@ public class PlayerStat : MonoBehaviour
         {
             CurrentHealth = data.hp;
         }
+        CurrentHealth = 5;
+        MoveSpeed = 2;
+        JumpPower = 6;
 
 
         stats.Add(StatType.Attack, Attack);
@@ -130,6 +133,7 @@ public class PlayerStat : MonoBehaviour
     {
         return stats;
     }
+
     public void SetCheckPoint()
     {
         TakeDamage();
