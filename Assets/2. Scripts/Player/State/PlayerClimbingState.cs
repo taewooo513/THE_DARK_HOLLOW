@@ -45,6 +45,8 @@ public class PlayerClimbingState : BaseState
 
             stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
         }
+
+       
     }
 
     public override void FixedUpdateState(StateMachine stateMachine)
@@ -92,5 +94,12 @@ public class PlayerClimbingState : BaseState
             // Idle 상태로 전환 
             //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
         }
+
+        // 
+        //if (collision.gameObject.layer == Constants.LayerName.GROUND)
+        //{
+        //    Debug.Log("땅과 충돌함");
+
+        //}
     }
 }

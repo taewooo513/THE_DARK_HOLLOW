@@ -502,7 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Attack>k__BackingField: 0
   maxHealth: 5
-  <CurrentHealth>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 5
   MoveSpeed: 1
   <SpeedModifier>k__BackingField: 1
   <SpeedModifierInput>k__BackingField: 1.5
