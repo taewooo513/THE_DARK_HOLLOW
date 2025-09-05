@@ -110,5 +110,6 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             yield return null;
         }
         UIManager.Instance.FindUIManager<FadeInOutManager>("FadeManager").SetActive(false);
+        nowScene.OnPadeOut();
     }
 }
