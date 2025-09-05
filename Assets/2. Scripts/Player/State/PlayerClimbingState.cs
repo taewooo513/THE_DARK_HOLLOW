@@ -15,23 +15,42 @@ public class PlayerClimbingState : BaseState
         stateMachine.SetPreState(stateMachine);
 
         // Climb Animation
-        playerController.AnimationController.Climb();
         //playerController.AnimationController.Run(Vector2.zero);
         //playerController.AnimationController.Move(playerController.MovementInput);
+        //playerController.AnimationController.Climb();
+        playerController.AnimationController.Climb(true);
 
         // 중력 제거
         playerController.Rigid.gravityScale = 0.0f;
+
+        playerController.PlayerStat.isMoved = false;
     }
 
     public override void UpdateState(StateMachine stateMachine)
     {
-        
+        // 클라이밍 중 땅에 닿으면 Idle상태로 전환
+        //if (playerController.IsGrounded()) // 에러 -> 확인필요. 
+        //{
+        //    stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+        //}
+
+        // 콜라이더에서 벗어나면 Idle상태로 변환 
+        if (!playerController.IsClimbable)
+        {
+            Debug.Log("아이들 상태로 전환");
+
+            playerController.Rigid.gravityScale = 1.0f;
+
+            playerController.PlayerStat.isMoved = true;
+
+            stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+        }
     }
 
     public override void FixedUpdateState(StateMachine stateMachine)
     {
         
-        Move();
+        Move(stateMachine);
     }
 
     public override void OnCollisionEnter(StateMachine stateMachine, Collision2D collision)
@@ -44,7 +63,7 @@ public class PlayerClimbingState : BaseState
 
     }
 
-    private void Move()
+    private void Move(StateMachine stateMachine)
     {
         Debug.Log("사다리 타고 가고 있음");
         // 이동 방향 
@@ -57,27 +76,21 @@ public class PlayerClimbingState : BaseState
         // 이동 처리
         playerController.Rigid.velocity = playerController.MovementDirection;
 
-        //// 중력 없는 움직임. 
-        ////Debug.Log($"{playerController.MovementDirection}");
 
+        // 사다리 타는 중 바닥에 닿고, 아래방향키를 누르면 
+        //if (playerController.IsGrounded() && Input.GetKeyDown(KeyCode.LeftControl))
+        if (playerController.IsGrounded() && Input.GetKey(KeyCode.LeftControl))
+        {
+            Debug.Log("사다리 타는 중 바닥에 닿음");
 
-        //// 이동 방향 설정
-        //playerController.MovementDirection = playerController.MovementInput;
+            playerController.IsClimbable = false;
+            //playerController.PlayerStat.isMoved = true;
 
-        //// 이동 속도 설정
-        //playerController.MovementDirection *= (CharacterManager.Instance.PlayerStat.MoveSpeed * CharacterManager.Instance.PlayerStat.SpeedModifier);
+            //// 이전 상태로 전환
+            //stateMachine.SwitchState(stateMachine.GetPreState());
 
-        //Debug.Log($"{playerController.MovementDirection}");
-
-        ////// 중력은 velocity.y값으로 설정
-        ////Vector2 dir = playerController.MovementDirection;
-        ////dir.y = playerController.Rigid.velocity.y;
-        ////playerController.MovementDirection = dir;
-        //////playerController.MovementDirection.y = playerController.Rigid.velocity.y;
-
-
-
-        //// 이동 처리
-        //playerController.Rigid.velocity = playerController.MovementDirection;
+            // Idle 상태로 전환 
+            //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
+        }
     }
 }

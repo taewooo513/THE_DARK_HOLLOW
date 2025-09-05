@@ -31,6 +31,7 @@ public class Constants : MonoBehaviour
         public const string ATTACK = "Attack";
         public const string SPECIALATTACK = "SpecialAttack";
         public const string CLIMB = "Climb";
+        public const string IDLE = "Idle";
     }
 
     public static class State

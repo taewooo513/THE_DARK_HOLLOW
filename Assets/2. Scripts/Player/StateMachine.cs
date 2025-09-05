@@ -52,7 +52,7 @@ public class StateMachine : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log($"현재 상태 : {currentState.ToString()}");
+        Debug.Log($"현재 상태 : {currentState.ToString()}");
         switch (currentState)
         {
             case PlayerIdleState:
@@ -62,6 +62,7 @@ public class StateMachine : MonoBehaviour
             case PlayerHitState:
             case PlayerAttackState:
             case PlayerSpecialAttackState:
+            case PlayerClimbingState:
                 // 매 프레임마다 실행될 상태
                 currentState.UpdateState(this);
                 break;

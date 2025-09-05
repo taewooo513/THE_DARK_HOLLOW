@@ -73,11 +73,13 @@ public class PlayerMoveState : BaseState
 
         // 이동 처리
         playerController.Rigid.velocity = playerController.MovementDirection;
+
+        Debug.Log($"벨로시티 = {playerController.MovementInput}");
     }
 
     private void ChangeSpeed()
     {
         CharacterManager.instance.PlayerStat.SpeedModifier = 1.0f;
-        //this.playerController.SpeedModifier = 1.0f;
+        //this.playerController.SpeedModifier = 3.0f;
     }
 }
