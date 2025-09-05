@@ -51,6 +51,7 @@ public class BossController : MonoBehaviour
     float nextDecisionReadyAt = 0f;
     int hp01;
 
+    
     Animator animator;
 
     float distCache = Mathf.Infinity;

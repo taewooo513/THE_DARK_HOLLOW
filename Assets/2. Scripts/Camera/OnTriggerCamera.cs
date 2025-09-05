@@ -27,8 +27,8 @@ public class OnTriggerCamera : MonoBehaviour
         else
         {
             CharacterManager.instance.PlayerStat.isMoved = false;
+            gameObject.SetActive(false);
         }
-        Debug.Log("카메라 이벤트 출력확인용");
     }
 
     void SetBossEFX()
