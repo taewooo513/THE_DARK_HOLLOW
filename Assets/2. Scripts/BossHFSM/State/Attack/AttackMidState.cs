@@ -61,6 +61,7 @@ public class AttackMidState : AttackSuper
             {
                 sup.locked = false;
                 ctx.StartCD_Mid();
+                ctx.StartDecisionDelay();
                 if (!ctx.CanSeePlayer()) 
                     fsm.Change(ctx.SIdle);
                 else

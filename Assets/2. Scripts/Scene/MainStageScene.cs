@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class MainStageScene : MonoScene
+public class MainStageScene : MonoScene // 테스트용입니다
 {
     public override void Init()
     {
@@ -22,6 +22,10 @@ public class MainStageScene : MonoScene
     public override AsyncOperationHandle LoadSounds()
     {
         return SoundManager.Instance.LoadSound("Stage1");
+    }
+
+    public override void OnPadeOut()
+    {
     }
 
     public override void Release()

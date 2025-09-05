@@ -70,6 +70,7 @@ public class AttackRangedState : AttackSuper
             {
                 sup.locked = false;
                 ctx.StartCD_Ranged();
+                ctx.StartDecisionDelay();
                 if (!ctx.CanSeePlayer()) 
                     fsm.Change(ctx.SIdle);
                 else 

@@ -57,5 +57,4 @@ public class BossStat : MonoBehaviour
 
     [Header("HP")]
     [Range(1, 100)] public int hp01;
-
 }

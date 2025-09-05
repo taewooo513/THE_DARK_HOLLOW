@@ -34,6 +34,6 @@ public class BackGroundFog : MonoBehaviour
             }
         }
         x += Time.deltaTime * speed * directionX;
-        transform.position = new Vector3(x, transform.position.y, transform.position.z);
+        transform.localPosition = new Vector3(x, transform.localPosition.y, transform.localPosition.z);
     }
 }

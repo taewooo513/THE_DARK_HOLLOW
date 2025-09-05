@@ -78,9 +78,11 @@ public class AttackDashState : AttackSuper
             {
                 sup.locked = false;
                 ctx.StartCD_Dash();
-
-                if (!ctx.CanSeePlayer()) fsm.Change(ctx.SIdle);
-                else fsm.Change(ctx.SChoose); 
+                ctx.StartDecisionDelay();
+                if (!ctx.CanSeePlayer()) 
+                    fsm.Change(ctx.SIdle);
+                else 
+                    fsm.Change(ctx.SChoose); 
             }
         }
     }
