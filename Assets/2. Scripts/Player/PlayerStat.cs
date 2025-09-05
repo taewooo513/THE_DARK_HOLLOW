@@ -33,15 +33,25 @@ public class PlayerStat : MonoBehaviour
 
     private void Awake()
     {
-        InitStats();
+        InitStats(CharacterManager.Instance.playerData);
     }
 
-    public void InitStats()
+    public void InitStats(PlayerData data)
     {
-        CharacterManager.Instance.PlayerStat = this;
 
+        CharacterManager.Instance.PlayerStat = this;
         maxHealth = 5;
-        CurrentHealth = 5;
+        if (data == null)
+        {
+            data = new PlayerData();
+            CurrentHealth = 5;
+            data.hp = CurrentHealth;
+        }
+        else
+        {
+            CurrentHealth = data.hp;
+        }
+
 
         stats.Add(StatType.Attack, Attack);
         stats.Add(StatType.MaxHealth, maxHealth);
