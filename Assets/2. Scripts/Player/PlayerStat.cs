@@ -33,15 +33,25 @@ public class PlayerStat : MonoBehaviour
 
     private void Awake()
     {
-        InitStats();
+        InitStats(CharacterManager.Instance.playerData);
     }
 
-    public void InitStats()
+    public void InitStats(PlayerData data)
     {
-        CharacterManager.Instance.PlayerStat = this;
 
+        CharacterManager.Instance.PlayerStat = this;
         maxHealth = 5;
-        CurrentHealth = 5;
+        if (data == null)
+        {
+            data = new PlayerData();
+            CurrentHealth = 5;
+            data.hp = CurrentHealth;
+        }
+        else
+        {
+            CurrentHealth = data.hp;
+        }
+
 
         stats.Add(StatType.Attack, Attack);
         stats.Add(StatType.MaxHealth, maxHealth);
@@ -89,7 +99,31 @@ public class PlayerStat : MonoBehaviour
         Debug.Log($"¹Ù²ï Ã¼·Â: {CurrentHealth}");
 
         if (CurrentHealth <= 0)
+        {
+            SaveData saveData = CharacterManager.Instance.saveData;
+            if (saveData == null)
+            {
+                if (CharacterManager.Instance.playerData != null)
+                {
+                    CharacterManager.Instance.playerData.hp = 5;
+                }
+                SceneLoadManager.Instance.LoadScene(SceneKey.stage1Scene);
+            }
+            else
+            {
+                if (CharacterManager.Instance.playerData != null)
+                {
+                    CharacterManager.Instance.playerData.hp = saveData.hp;
+                }
+                else
+                {
+                    CharacterManager.Instance.playerData = new PlayerData();
+                    CharacterManager.Instance.playerData.hp = saveData.hp;
+                }
+                SceneLoadManager.Instance.LoadScene(saveData.sceneKey);
+            }
             CurrentHealth = 0;
+        }
     }
 
     public Dictionary<StatType, float> GetPlayerStat()
