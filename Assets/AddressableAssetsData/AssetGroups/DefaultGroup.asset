@@ -160,6 +160,12 @@ MonoBehaviour:
     - Boss
     - Stage1
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7361104e120134a4bbb1df189ec669b7
+    m_Address: Assets/Resources_moved/Prefabs/BossRoom/Skill/Skill_6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ed5694c84ebdf1941b0f5ef7c6b83e5f, type: 2}
   m_SchemaSet:

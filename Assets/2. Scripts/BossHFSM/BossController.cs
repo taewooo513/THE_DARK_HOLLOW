@@ -46,12 +46,13 @@ public class BossController : MonoBehaviour
     bool canSee;
     bool canHurt = true;
     bool isDead = false;
+    bool secondPhase = false;
     public bool IsDead => isDead;
     float pAcc;
     float nextDecisionReadyAt = 0f;
     int hp01;
+    SpriteRenderer spriteRenderer;
 
-    
     Animator animator;
 
     float distCache = Mathf.Infinity;
@@ -61,8 +62,9 @@ public class BossController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
         stat = GetComponent<BossStat>();
+        spriteRenderer= GetComponent<SpriteRenderer>();
 
         // Player 태그 자동 할당
         if (!player)
@@ -90,6 +92,7 @@ public class BossController : MonoBehaviour
 
         // 투사체 스킬 풀링 초기화
         ObjectPoolingManager.Instance.InsertPoolQueue("Skill_3", 5);
+        ObjectPoolingManager.Instance.InsertPoolQueue("Skill_6", 5);
     }
 
     void Update()
@@ -111,13 +114,25 @@ public class BossController : MonoBehaviour
             fsm.Change(idle, reason: "Force");
             return;
         }
-
+        if (hp01 <= stat.hp01 / 2)
+        {
+            StopMove();
+            fsm.Change(idle, reason: "Force");
+            SecondPhaseEffect();
+        }
         fsm.Tick(Time.deltaTime);
     }
 
     void FixedUpdate()
     {
         fsm.FixedTick(Time.fixedDeltaTime);
+    }
+    //2페이즈 진입 연출
+    void SecondPhaseEffect()
+    {
+        secondPhase = true;
+        AnimationPlay_Trigger("SecondPhase");
+        spriteRenderer.color = new Color(1f, 0f, 0f);
     }
 
     // 시야 처리 로직
@@ -136,14 +151,17 @@ public class BossController : MonoBehaviour
     // 공용 유틸 (상태에서 호출)
     public bool CanSeePlayer() => canSee;
     public bool DecisionReady() => Time.time >= nextDecisionReadyAt;
-    public void StartDecisionDelay() => nextDecisionReadyAt = Time.time + stat.decisionDelay;
+    public void StartDecisionDelay() => nextDecisionReadyAt = Time.time + (secondPhase ? SetSecondPhase(stat.decisionDelay) : stat.decisionDelay);
     public bool CDReadyDash() => Time.time >= readyDash;
     public bool CDReadyMid() => Time.time >= readyMid;
     public bool CDReadyRanged() => Time.time >= readyRanged;
-    public void StartCD_Dash() => readyDash = Time.time + stat.dashCooldown;
-    public void StartCD_Mid() => readyMid = Time.time + stat.midCooldown;
-    public void StartCD_Ranged() => readyRanged = Time.time + stat.rangedCooldown;
+    public void StartCD_Dash() => readyDash = Time.time + (secondPhase ? SetSecondPhase(stat.dashCooldown) : stat.dashCooldown);
+    public void StartCD_Mid() => readyMid = Time.time + (secondPhase ? SetSecondPhase(stat.midCooldown) : stat.midCooldown); 
+    public void StartCD_Ranged() => readyRanged = Time.time + (secondPhase ? SetSecondPhase(stat.rangedCooldown) : stat.rangedCooldown);
     public void StopMove() => rb.velocity = Vector2.zero;       // 제자리 정지
+
+    float SetSecondPhase(float v) => secondPhase ? v * 0.5f : v; // 2페이즈면 쿨다운 절반
+
 
     // 애니메이션 재생
     public void AnimationPlay_Trigger(string trigger)
@@ -207,23 +225,55 @@ public class BossController : MonoBehaviour
         bool faceLeft = dx < 0f;
         //부모 오브젝트를 해당 방향으로 회전해 생성 (Y=0 ↔ -180)
         Quaternion rot = Quaternion.Euler(0f, faceLeft ? -180f : 0f, 0f);
-
+        if (secondPhase)
+        {
+            FireBullt2(faceLeft, spawnPos, rot);
+        }
+        else 
+        {
+            FireBullt1(faceLeft, spawnPos, rot);
+        }
+    }
+    void FireBullt1(bool faceLeft, Vector3 spawnPos, Quaternion rot)
+    {
         GameObject go = ObjectPoolingManager.Instance.AddObject("Skill_3", spawnPos, rot);
-        Debug.Log($"풀링에 담은것 : {go}");
 
         if (player && go.TryGetComponent<Rigidbody2D>(out var rb2))
         {
             rb2.velocity = (faceLeft ? Vector2.left : Vector2.right) * stat.bulletSpeed;
         }
         StartCoroutine(DestroyBulltRoutine(go));
-        // 수명은 발사체 스크립트에서 bulletLifetime을 참고해 Destroy하도록 권장
     }
-
     IEnumerator DestroyBulltRoutine(GameObject go)
     {
         yield return new WaitForSeconds(stat.bulletLifetime);
         ObjectPoolingManager.Instance.DestoryObject("Skill_3", go);
     }
+
+    //2페이즈용
+    void FireBullt2(bool faceLeft, Vector3 spawnPos, Quaternion rot)
+    {
+        StartCoroutine(BulltRoutine(faceLeft, spawnPos, rot));
+    }
+    IEnumerator BulltRoutine(bool faceLeft, Vector3 spawnPos, Quaternion rot)
+    {
+        GameObject go1 = ObjectPoolingManager.Instance.AddObject("Skill_6", spawnPos, rot);
+        if (player && go1.TryGetComponent<Rigidbody2D>(out var rb1))
+        {
+            rb1.velocity = (faceLeft ? Vector2.left : Vector2.right) * stat.bulletSpeed;
+        }
+        yield return new WaitForSeconds(1f);
+        GameObject go2 = ObjectPoolingManager.Instance.AddObject("Skill_3", spawnPos, rot);
+        if (player && go2.TryGetComponent<Rigidbody2D>(out var rb2))
+        {
+            rb2.velocity = (faceLeft ? Vector2.left : Vector2.right) * stat.bulletSpeed;
+        }
+        yield return new WaitForSeconds(stat.bulletLifetime);
+        ObjectPoolingManager.Instance.DestoryObject("Skill_6", go1);
+        yield return new WaitForSeconds(0.5f);
+        ObjectPoolingManager.Instance.DestoryObject("Skill_3", go2);
+    }
+
 
     // ---------------------------[보스 라이프와 콜라이더 상호작용 관련]---------------------------
     public void ToDie()
@@ -240,9 +290,12 @@ public class BossController : MonoBehaviour
             hp01 -= damage;
             SoundManager.Instance.PlayEFXSound("BossHit_EFX");
             Debug.Log($"현재 체력 : {hp01}");
+
             if (hp01 <= 0)  //죽음
             {
                 isDead = true;
+                secondPhase = false;
+                spriteRenderer.color = new Color(1f, 1f, 1f);
                 // 어디서든 죽으면 강제 Dead 상태로 전환
                 if (isDead && fsm.Current != null && fsm.Current.Name != "Dead")
                 {
