@@ -346,7 +346,7 @@ MonoBehaviour:
   attackRange: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   particle: {fileID: 7029061968503843326, guid: c5f5d4ac65ee7244993309608c2221bf, type: 3}
 --- !u!50 &417302272440866386
 Rigidbody2D:
