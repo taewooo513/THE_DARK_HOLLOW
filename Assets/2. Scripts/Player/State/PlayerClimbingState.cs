@@ -95,11 +95,17 @@ public class PlayerClimbingState : BaseState
             //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
         }
 
-        // 
+
         //if (collision.gameObject.layer == Constants.LayerName.GROUND)
         //{
         //    Debug.Log("땅과 충돌함");
 
         //}
+
+        if (playerController.IsCeilinged())
+        {
+            Debug.Log("천장에 닿음");
+
+        }
     }
 }
