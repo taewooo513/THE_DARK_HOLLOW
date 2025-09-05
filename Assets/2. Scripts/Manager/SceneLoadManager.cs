@@ -12,6 +12,7 @@ public static class SceneKey
     public const string startScene = "StartScene";
     public const string bossScene = "BossScene";
     public const string endingScene = "EndingScene";
+    public const string startSceneAfterClear = "StartSceneAfterClear";
 }
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
@@ -26,8 +27,9 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         scenes = new Dictionary<string, MonoScene>();
         AddScene(SceneKey.stage1Scene, new Stage1Scene());
         AddScene(SceneKey.stage2Scene, new Stage2Scene());
-        AddScene(SceneKey.bossScene, new BossStage());
+        AddScene(SceneKey.bossScene, new BossScene());
         AddScene(SceneKey.startScene, new StartScene());
+        AddScene(SceneKey.startSceneAfterClear, new StartSceneAfterClear());
     }
 
     public void AddScene(string key, MonoScene monoScene)

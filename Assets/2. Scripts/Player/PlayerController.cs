@@ -179,16 +179,13 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    // test
-    public void AddHealth()
+    public Collider2D GetCeilingCollider()
     {
-        Debug.Log("Add Health!!");
-    }
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 1.0f), Vector2.up, 0.1f, groundLayer);
+        if (hit.collider != null)
+            return hit.collider;
 
-    // test
-    public void DetractHealth()
-    {
-        Debug.Log("Detract Health!!");
+        return null;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

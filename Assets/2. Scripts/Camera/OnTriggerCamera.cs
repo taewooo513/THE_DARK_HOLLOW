@@ -4,29 +4,18 @@ using UnityEngine;
 
 public class OnTriggerCamera : MonoBehaviour
 {
-   public Animator anim;
-
-    private void Awake()
-    {
-        anim = GetComponent<Animator>();
-    }
-
-    public void OnAnimation(string trigger)
-    {
-        if (!anim || string.IsNullOrEmpty(trigger)) return;
-        anim.ResetTrigger(trigger);
-        anim.SetTrigger(trigger);
-    }
+    [SerializeField] GameObject camera;
 
     void SetisMove()
     {
-        if(CharacterManager.instance.PlayerStat.isMoved == false)
+        if(CharacterManager.instance.PlayerStat.isMoved == true)
         {
-            CharacterManager.instance.PlayerStat.isMoved = true;
+            CharacterManager.instance.PlayerStat.isMoved = false;
         }
         else
         {
-            CharacterManager.instance.PlayerStat.isMoved = false;
+            CharacterManager.instance.PlayerStat.isMoved = true;
+            camera.SetActive(true);
             gameObject.SetActive(false);
         }
     }

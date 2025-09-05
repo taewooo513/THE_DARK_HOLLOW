@@ -35,7 +35,7 @@ public class PlayerIdleState : BaseState
         if (playerController.IsMoving)
         {
             // 이전 상태가 Jump이고, 점프 이전 상태가 Run이면 
-            if(stateMachine.GetPreState().ToString().Equals(Constants.State.JUMP) &&
+            if (stateMachine.GetPreState().ToString().Equals(Constants.State.JUMP) &&
                 stateMachine.GetStateBeforeJump().ToString().Equals(Constants.State.RUN))
             {
                 // 달리기 상태로 전환
@@ -50,6 +50,8 @@ public class PlayerIdleState : BaseState
                 stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Move));
             }
         }
+           
+        
     }           
 
     public override void OnCollisionEnter(StateMachine stateMachine, Collision2D collision)

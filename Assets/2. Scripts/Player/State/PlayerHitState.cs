@@ -13,6 +13,9 @@ public class PlayerHitState : BaseState
     {
         Debug.Log("Hello From The Hit State");
 
+        // 피격 사운드 
+        SoundManager.instance.PlayEFXSound(Constants.SFX.PLAYER_HIT);
+
         // 이전 상태 저장 
         stateMachine.SetPreState(stateMachine);
 
@@ -70,25 +73,13 @@ public class PlayerHitState : BaseState
         if(stateMachine.PlayerController.PlayerStat.CurrentHealth <= 0.0f)
         {
             Debug.Log("플레이어 죽음");
+            SoundManager.Instance.PlayEFXSound(Constants.SFX.PLAYER_DEAD);
             SceneLoadManager.instance.LoadScene(SceneKey.startScene);
         }
     }
 
     public override void FixedUpdateState(StateMachine stateMachine)
     {
-        // 0.1초가 지날 때까지 
-        // 피격당한 반대방향으로 넉백 (넉백은 캐릭터 크기의 20%)
-
-        // 캐릭터를 넉백하려면 어떻게 해야돼? 
-        /*
-         * 일단 리지드 바디가 필요해.
-         * 그리고 플레이어가 보스를 바라보는 방향의 반대방향 벡터를 알아야해.
-         * 그리고 힘. 넉백의 힘이 필요해. 
-         * -> 리지드 바디, 플레이어가 보스를 바라보는 방향의 반대, 넉백 힘 
-         * 
-         * 
-         */
-
         if(stateMachine.PlayerController.collider != null)
         {
             // 몬스터가 플레이어를 바라보는 방향 벡터
@@ -108,7 +99,6 @@ public class PlayerHitState : BaseState
             //// 방법2: 플레이어 자식으로 히트 오브젝트를 둬서 오브젝트를 껐다가 키면 됨.
 
             // 넉백 적용
-            //stateMachine.PlayerController.Rigid.AddForce(direction * CharacterManager.Instance.PlayerStat.KnockbackPower, ForceMode2D.Impulse);
             stateMachine.PlayerController.Rigid.AddForce(direction * size, ForceMode2D.Impulse);
 
             // 데미지 처리 

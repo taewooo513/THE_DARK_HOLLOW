@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class BossStage : MonoScene
+public class BossScene : MonoScene
 {
     public override void Init()
     {
@@ -11,7 +11,6 @@ public class BossStage : MonoScene
         ObjectManager.Instance.AddObject("MainUI", Vector3.zero, Quaternion.identity);
         SoundManager.Instance.PlayBGMSound("BossBGM2");
         CameraManager.Instance.Init();
-
     }
 
     public override AsyncOperationHandle LoadPrefabs()
@@ -26,7 +25,7 @@ public class BossStage : MonoScene
 
     public override void OnPadeOut()
     {
-        CharacterManager.instance.OnTriggerCamera?.OnAnimation("BossRoomAnimation");
+        //CharacterManager.instance.OnTriggerCamera?.OnAnimation("BossRoomAnimation");
     }
 
     public override void Release()

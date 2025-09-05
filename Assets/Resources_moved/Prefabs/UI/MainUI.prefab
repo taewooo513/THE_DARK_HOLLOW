@@ -5922,7 +5922,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e1fa89d1877c342aa68fbb7b18a280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeIcons: []
+  lifeIcons:
+  - {fileID: 4734062598512956533}
+  - {fileID: 6300252859929023994}
+  - {fileID: 6698105795583338562}
+  - {fileID: 7178446412186054828}
+  - {fileID: 3467962696200244092}
   observer: {fileID: 0}
 --- !u!1 &4150516213160960394
 GameObject:

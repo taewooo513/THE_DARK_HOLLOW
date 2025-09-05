@@ -24,9 +24,4 @@ public class CharacterManager : Singleton<CharacterManager>
     public PlayerStat _playerStat;
     public PlayerStat PlayerStat { get { return _playerStat; } set { _playerStat = value; } }
 
-
-    public OnTriggerCamera _onTriggerCamera;
-    public OnTriggerCamera OnTriggerCamera { get { return _onTriggerCamera; } set { _onTriggerCamera = value; } }
-
-
 }

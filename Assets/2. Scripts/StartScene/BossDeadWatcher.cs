@@ -11,9 +11,9 @@ public class BossDeadWatcher : MonoBehaviour
     // 영구 저장 키
     private const string PPKey = "BossCleared";
 
-    BossController cachedBoss;
+    //BossController cachedBoss;
     float pollAcc = 0f;
-    const float pollHz = 0.2f; // 초당 폴링 (필요시 조절)
+    const float pollHz = 1f; // 초당 폴링 (필요시 조절)
 
     void Awake()
     {
@@ -38,12 +38,13 @@ public class BossDeadWatcher : MonoBehaviour
         {
             pollAcc = 0f;
 
-            // 보스를 못 찾았으면 찾아두고
-            if (cachedBoss == null)
-                cachedBoss = FindObjectOfType<BossController>();
+            // TODO: 보스 죽음 처리 수정(수정자 : 이영신)
+            /* // 보스를 못 찾았으면 찾아두고
+             if (cachedBoss == null)
+                 cachedBoss = FindObjectOfType<BossController>();*/
 
             // 보스를 찾았고, 죽은 상태라면 클리어 처리
-            if (cachedBoss != null && cachedBoss.IsDead)
+            if (CharacterManager.instance.Boss.controller != null && CharacterManager.instance.Boss.controller.IsDead)
             {
                 ReportBossDead();
             }
