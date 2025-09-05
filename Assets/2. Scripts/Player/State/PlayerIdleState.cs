@@ -15,6 +15,8 @@ public class PlayerIdleState : BaseState
         // Idle Animation
         playerController.AnimationController.Move(Vector2.zero);
         playerController.AnimationController.Run(Vector2.zero);
+        //playerController.AnimationController.Idle();
+        playerController.AnimationController.Climb(false);
 
         ChangeSpeed();
     }
