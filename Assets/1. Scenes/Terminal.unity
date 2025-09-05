@@ -1133,6 +1133,7 @@ MonoBehaviour:
   _playerStat: {fileID: 0}
   pollInterval: 0.05
   maxGauge: 5
+  findInterval: 0.5
 --- !u!223 &8452547885526876005
 Canvas:
   m_ObjectHideFlags: 0

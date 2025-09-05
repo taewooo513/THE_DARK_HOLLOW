@@ -25,7 +25,7 @@ public class BossScene : MonoScene
 
     public override void OnPadeOut()
     {
-        CharacterManager.instance.OnTriggerCamera?.OnAnimation("BossRoomAnimation");
+        //CharacterManager.instance.OnTriggerCamera?.OnAnimation("BossRoomAnimation");
     }
 
     public override void Release()
