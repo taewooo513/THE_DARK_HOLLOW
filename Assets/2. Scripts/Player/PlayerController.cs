@@ -179,6 +179,15 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    public Collider2D GetCeilingCollider()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 1.0f), Vector2.up, 0.1f, groundLayer);
+        if (hit.collider != null)
+            return hit.collider;
+
+        return null;
+    }
+
     // test
     public void AddHealth()
     {

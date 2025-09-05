@@ -20,6 +20,10 @@ public class StartScene : MonoScene
         return SoundManager.Instance.LoadSound("StartScene");
     }
 
+    public override void OnPadeOut()
+    {
+    }
+
     public override void Release()
     {
         SoundManager.Instance.Release();
