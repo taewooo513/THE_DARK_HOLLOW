@@ -8004,11 +8004,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: dashCooldown
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: decisionDelay
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7463462234159839159, guid: ab6007eb577b7bb4c98c373fd617a85c, type: 3}
       propertyPath: rangedCooldown

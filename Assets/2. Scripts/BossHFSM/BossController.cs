@@ -49,7 +49,7 @@ public class BossController : MonoBehaviour
     bool secondPhase = false;
     public bool IsDead => isDead;
     float pAcc;
-    float nextDecisionReadyAt = 0f;
+    float nextDecisionReadyAt = 0.5f;
     int hp01;
     SpriteRenderer spriteRenderer;
 
@@ -114,11 +114,10 @@ public class BossController : MonoBehaviour
             fsm.Change(idle, reason: "Force");
             return;
         }
-        if (hp01 <= stat.hp01 / 2)
+
+        if (!secondPhase && stat.hp01 <= 50)//!secondPhase && hp01 <= Mathf.CeilToInt(stat.hp01 * 0.5f)
         {
-            StopMove();
-            fsm.Change(idle, reason: "Force");
-            SecondPhaseEffect();
+            StartCoroutine(EnterSecondPhaseRoutine());
         }
         fsm.Tick(Time.deltaTime);
     }
@@ -128,11 +127,19 @@ public class BossController : MonoBehaviour
         fsm.FixedTick(Time.fixedDeltaTime);
     }
     //2페이즈 진입 연출
-    void SecondPhaseEffect()
+    IEnumerator EnterSecondPhaseRoutine()
     {
         secondPhase = true;
+
+        // 짧은 텀
+        StopMove();
+        nextDecisionReadyAt = 3f;        // 연출 시간만큼 의사결정 텀을 줘서 바로 공격 안 나오게
+        fsm.Change(idle, reason: "Force");
         AnimationPlay_Trigger("SecondPhase");
         spriteRenderer.color = new Color(1f, 0f, 0f);
+        // 필요하면 여기서 잠깐 기다리기 (애니 길이에 맞춰 조절)
+        yield return new WaitForSeconds(2f);
+        nextDecisionReadyAt = 0.5f;
     }
 
     // 시야 처리 로직
@@ -307,6 +314,7 @@ public class BossController : MonoBehaviour
             }
             else
             {
+
                 AnimationPlay_Trigger("TakeDamage");
                 StartCoroutine(OnTakeDamageRoutine(_object));
             }

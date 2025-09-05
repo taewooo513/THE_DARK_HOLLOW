@@ -11,7 +11,7 @@ public class IdleState : BossStateBase
     }
     public override void Tick(float dt)
     {
-        if (ctx.CanSeePlayer())
+        if (ctx.CanSeePlayer() && ctx.DecisionReady())
             fsm.Change(ctx.SChoose);
     }
 }

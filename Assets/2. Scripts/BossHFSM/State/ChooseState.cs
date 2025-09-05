@@ -49,6 +49,7 @@ public class ChooseState : BossStateBase
         }
 
         // 허용 패턴이 모두 쿨다운이면 대기(경계 유지)
+        ctx.StartDecisionDelay();
         fsm.Change(ctx.SIdle);
     }
     static Zone GetZone(float d, BossStat s)
