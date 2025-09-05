@@ -13,7 +13,7 @@ public class BossDeadWatcher : MonoBehaviour
 
     BossController cachedBoss;
     float pollAcc = 0f;
-    const float pollHz = 0.2f; // 초당 폴링 (필요시 조절)
+    const float pollHz = 1f; // 초당 폴링 (필요시 조절)
 
     void Awake()
     {
