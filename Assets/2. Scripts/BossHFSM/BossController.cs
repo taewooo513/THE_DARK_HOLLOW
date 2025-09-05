@@ -29,14 +29,12 @@ public class BossController : MonoBehaviour
     AttackDashState atkDash;
     AttackMidState atkMid;
     AttackRangedState atkRanged;
-    RecoverState recover;
     DeadState dead;
     public IdleState SIdle => idle;
     public ChooseState SChoose => choose;
     public AttackDashState SAtkDash => atkDash;
     public AttackMidState SAtkMid => atkMid;
     public AttackRangedState SAtkRng => atkRanged;
-    public RecoverState SRecover => recover;
     public DeadState SDead => dead;
 
     // Äð´Ù¿î
@@ -73,7 +71,6 @@ public class BossController : MonoBehaviour
         atkDash = new AttackDashState(this, fsm);
         atkMid = new AttackMidState(this, fsm);
         atkRanged = new AttackRangedState(this, fsm);
-        recover = new RecoverState(this, fsm);
         dead = new DeadState(this, fsm);
     }
 
