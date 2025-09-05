@@ -160,12 +160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4678891599410319973}
+  - {fileID: 285671476009343248}
+  - {fileID: 1758710575199501643}
   buttonObjects:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2154143474291935162}
+  - {fileID: 7949138083090517764}
   delayBetweenTitles: 0.12
   delayBeforeButtons: 0.2
 --- !u!1 &249339687238031791
