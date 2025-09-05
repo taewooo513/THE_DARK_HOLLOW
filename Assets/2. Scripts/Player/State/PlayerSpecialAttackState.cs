@@ -33,13 +33,13 @@ public class PlayerSpecialAttackState : BaseState
                 if (collider.TryGetComponent(out Enemy enemy))
                 {
                     Debug.Log("적이 맞음");
-                    enemy.SwitchState(EnemyState.Damaged, CharacterManager.Instance.PlayerStat.Attack);
+                    enemy.SwitchState(EnemyState.Damaged, CharacterManager.Instance.PlayerStat.SpecialAttack);
                 }
                 // 보스 데미지 처리 
                 else if (collider.TryGetComponent(out BossController boss))
                 {
                     Debug.Log("보스가 맞음");
-                    boss.TakeDamage(CharacterManager.Instance.PlayerStat.Attack, playerController.hitObj);
+                    boss.TakeDamage(CharacterManager.Instance.PlayerStat.SpecialAttack, playerController.hitObj);
                 }
             }
         }

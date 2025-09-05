@@ -17,6 +17,7 @@ public enum StatType
 public class PlayerStat : MonoBehaviour
 {
     [field: SerializeField] public int Attack { get; set; }
+    [field: SerializeField] public int SpecialAttack { get; set; }
     [SerializeField] private float maxHealth;
     [field: SerializeField] public float CurrentHealth { get; set; }
     [field: SerializeField] public float MoveSpeed;
@@ -51,6 +52,8 @@ public class PlayerStat : MonoBehaviour
         {
             CurrentHealth = data.hp;
         }
+        Attack = 5;
+        SpecialAttack = Attack * 2;
         CurrentHealth = 5;
         MoveSpeed = 2;
         JumpPower = 6;
