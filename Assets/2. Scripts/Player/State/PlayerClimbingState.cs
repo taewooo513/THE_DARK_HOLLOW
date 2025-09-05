@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerClimbingState : BaseState
 {
     private PlayerController playerController;
+    private CompositeCollider2D coll;
 
     public override void EnterState(StateMachine stateMachine)
     {
@@ -28,12 +29,6 @@ public class PlayerClimbingState : BaseState
 
     public override void UpdateState(StateMachine stateMachine)
     {
-        // 클라이밍 중 땅에 닿으면 Idle상태로 전환
-        //if (playerController.IsGrounded()) // 에러 -> 확인필요. 
-        //{
-        //    stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
-        //}
-
         // 콜라이더에서 벗어나면 Idle상태로 변환 
         if (!playerController.IsClimbable)
         {
@@ -43,10 +38,10 @@ public class PlayerClimbingState : BaseState
 
             playerController.PlayerStat.isMoved = true;
 
+            coll.isTrigger = false;
+
             stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
         }
-
-       
     }
 
     public override void FixedUpdateState(StateMachine stateMachine)
@@ -69,7 +64,6 @@ public class PlayerClimbingState : BaseState
     {
         Debug.Log("사다리 타고 가고 있음");
         // 이동 방향 
-        //playerController.MovementDirection = new Vector2(0, playerController.MovementInput.y);
         playerController.MovementDirection = playerController.MovementInput;
 
         // 이동 속도 
@@ -80,32 +74,24 @@ public class PlayerClimbingState : BaseState
 
 
         // 사다리 타는 중 바닥에 닿고, 아래방향키를 누르면 
-        //if (playerController.IsGrounded() && Input.GetKeyDown(KeyCode.LeftControl))
         if (playerController.IsGrounded() && Input.GetKey(KeyCode.LeftControl))
         {
             Debug.Log("사다리 타는 중 바닥에 닿음");
 
             playerController.IsClimbable = false;
-            //playerController.PlayerStat.isMoved = true;
-
-            //// 이전 상태로 전환
-            //stateMachine.SwitchState(stateMachine.GetPreState());
-
-            // Idle 상태로 전환 
-            //stateMachine.SwitchState(stateMachine.Getstates(PlayerStateType.Idle));
         }
 
-
-        //if (collision.gameObject.layer == Constants.LayerName.GROUND)
-        //{
-        //    Debug.Log("땅과 충돌함");
-
-        //}
-
-        if (playerController.IsCeilinged())
+        Collider2D ceilingCollider = playerController.GetCeilingCollider();
+        if (ceilingCollider != null)
         {
             Debug.Log("천장에 닿음");
+            Debug.Log($"{ceilingCollider}");
+            coll = ceilingCollider.GetComponent<CompositeCollider2D>();
 
+            if (coll != null)
+            {
+                coll.isTrigger = true;
+            }
         }
     }
 }
