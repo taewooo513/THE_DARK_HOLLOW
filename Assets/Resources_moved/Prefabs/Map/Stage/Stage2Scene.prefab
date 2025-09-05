@@ -1009,7 +1009,7 @@ Transform:
   m_GameObject: {fileID: 1509744942208605794}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.48, y: -4.59, z: -10.035675}
+  m_LocalPosition: {x: 10.48, y: -4.59, z: 0}
   m_LocalScale: {x: 2.152776, y: 2.152776, z: 2.152776}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5582,7 +5582,7 @@ Transform:
   m_GameObject: {fileID: 4263822756160113619}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.44, y: -4.59, z: -10.035675}
+  m_LocalPosition: {x: 12.44, y: -4.59, z: 0}
   m_LocalScale: {x: 2.152776, y: 2.152776, z: 2.152776}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15192,7 +15192,7 @@ Transform:
   m_GameObject: {fileID: 6425534961343189123}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6, y: -4.59, z: -10.035675}
+  m_LocalPosition: {x: -1.6, y: -4.59, z: 0}
   m_LocalScale: {x: 2.152776, y: 2.152776, z: 2.152776}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15315,7 +15315,7 @@ Transform:
   m_GameObject: {fileID: 7405078378248373124}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.48, y: -4.59, z: -10.035675}
+  m_LocalPosition: {x: 11.48, y: -4.59, z: 0}
   m_LocalScale: {x: 2.152776, y: 2.152776, z: 2.152776}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16498,6 +16498,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3100987916654677515}
     m_Modifications:
+    - target: {fileID: 417302272440866386, guid: 96833dd9a9f45c94a92ef83ae25811f8, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4455919652323003072, guid: 96833dd9a9f45c94a92ef83ae25811f8, type: 3}
       propertyPath: m_Name
       value: Enemy_01 (1)
@@ -16622,6 +16626,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3100987916654677515}
     m_Modifications:
+    - target: {fileID: 417302272440866386, guid: 96833dd9a9f45c94a92ef83ae25811f8, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4455919652323003072, guid: 96833dd9a9f45c94a92ef83ae25811f8, type: 3}
       propertyPath: m_Name
       value: Enemy_01 (2)
@@ -16684,6 +16692,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3100987916654677515}
     m_Modifications:
+    - target: {fileID: 417302272440866386, guid: 96833dd9a9f45c94a92ef83ae25811f8, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4455919652323003072, guid: 96833dd9a9f45c94a92ef83ae25811f8, type: 3}
       propertyPath: m_Name
       value: Enemy_01 (3)
@@ -16746,6 +16758,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3100987916654677515}
     m_Modifications:
+    - target: {fileID: 417302272440866386, guid: 96833dd9a9f45c94a92ef83ae25811f8, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4455919652323003072, guid: 96833dd9a9f45c94a92ef83ae25811f8, type: 3}
       propertyPath: m_Name
       value: Enemy_01
