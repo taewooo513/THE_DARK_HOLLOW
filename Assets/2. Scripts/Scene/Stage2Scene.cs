@@ -23,6 +23,10 @@ public class Stage2Scene : MonoScene
         return SoundManager.Instance.LoadSound("Stage1");
     }
 
+    public override void OnPadeOut()
+    {
+    }
+
     public override void Release()
     {
         SoundManager.Instance.Release();

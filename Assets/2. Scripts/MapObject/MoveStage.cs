@@ -11,7 +11,12 @@ public class MoveStage : MonoBehaviour
     {
         if (collision.transform.TryGetComponent(out PlayerController player))
         {
+            if (CharacterManager.Instance.playerData == null)
+            {
+                CharacterManager.Instance.playerData = new PlayerData();
+            }
             CharacterManager.Instance.playerData.hp = CharacterManager.Instance.PlayerStat.CurrentHealth;
+            Debug.Log(nextSceneKey);
             SceneLoadManager.Instance.LoadScene(nextSceneKey);
         }
     }

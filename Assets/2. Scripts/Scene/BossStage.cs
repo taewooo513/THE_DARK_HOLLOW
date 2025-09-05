@@ -24,6 +24,11 @@ public class BossStage : MonoScene
         return SoundManager.Instance.LoadSound("Boss");
     }
 
+    public override void OnPadeOut()
+    {
+        CharacterManager.instance.OnTriggerCamera?.OnAnimation("BossRoomAnimation");
+    }
+
     public override void Release()
     {
         SoundManager.Instance.Release();
