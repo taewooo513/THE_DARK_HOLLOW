@@ -1,6 +1,9 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
@@ -17,6 +20,7 @@ public class Enemy_01 : Enemy
     public float walkRange;
     public float attackRange;
     public LayerMask layerMask;
+    public GameObject particle;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -104,8 +108,15 @@ public class Enemy_01 : Enemy
 
     public override void DamagedTrigger(float dmg)
     {
+        for (int i = 0; i < 10; i++)
+        {
+            var a = Instantiate(particle, transform.position, Quaternion.identity);
+            Vector2 dir = transform.position - player.transform.position;
+            dir = dir.normalized;
+            a.GetComponent<AttackEffect>().Init(dir);
+        }
         animator.SetTrigger("IsHit");
-        hp -= dmg;
+        hp -= 1;
         if (hp <= 0)
         {
             isDie = true;

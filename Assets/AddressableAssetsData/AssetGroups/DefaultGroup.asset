@@ -127,6 +127,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - Boss
     - StartScene
+    - Stage1
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d6c1dc74af41504eb4390fa415e5180
     m_Address: Assets/Resources_moved/Sounds/BatSkill_EFX.mp3
@@ -139,6 +140,25 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Boss
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2d8eba61d3372c439f9e3ca88a5dcde
+    m_Address: Prefabs/Map/Stage/Stage1Scene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a43ee2a18d3e4ef4b904c3228957f28e
+    m_Address: Prefabs/Map/Stage/Stage2Scene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stage1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2eb7707ca8da5f74e88860f0d229d9ad
+    m_Address: Prefabs/Player/Player
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Boss
+    - Stage1
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ed5694c84ebdf1941b0f5ef7c6b83e5f, type: 2}

@@ -9,6 +9,7 @@ public class Enemy_01_Attack : MonoBehaviour
         if (collision.TryGetComponent(out PlayerStat playerStat))
         {
             playerStat.TakeDamage();
+            CameraManager.Instance.CameraShack(1, 10, 0.08f);
         }
     }
 }

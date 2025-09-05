@@ -10,6 +10,8 @@ public class BossStage : MonoScene
         ObjectManager.Instance.AddObject("BossScene", Vector3.zero, Quaternion.identity);
         ObjectManager.Instance.AddObject("MainUI", Vector3.zero, Quaternion.identity);
         SoundManager.Instance.PlayBGMSound("BossBGM2");
+        CameraManager.Instance.Init();
+
     }
 
     public override AsyncOperationHandle LoadPrefabs()
@@ -26,5 +28,6 @@ public class BossStage : MonoScene
     {
         SoundManager.Instance.Release();
         ObjectManager.Instance.Release();
+        CameraManager.Instance.Release();
     }
 }

@@ -562,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boss: {fileID: 0}
   _playerStat: {fileID: 1848863916}
+  _onTriggerCamera: {fileID: 0}
 --- !u!4 &326110003
 Transform:
   m_ObjectHideFlags: 0
@@ -2092,6 +2093,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2556240246336546451, guid: f3371c5cea75b9c4aac1b045cf7e69f6, type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3011941340536783602, guid: f3371c5cea75b9c4aac1b045cf7e69f6, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4254995142600948925, guid: f3371c5cea75b9c4aac1b045cf7e69f6, type: 3}

@@ -5,6 +5,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public abstract class MonoScene
 {
+    public int stage;
     public abstract AsyncOperationHandle LoadPrefabs();
     public abstract AsyncOperationHandle LoadSounds();
 

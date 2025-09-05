@@ -5,15 +5,18 @@ using UnityEngine;
 public enum StatType
 {
     Attack,
+    MaxHealth,
     Health,
     MoveSpeed,
     SpeedModifier,
-    JumpPower
+    SpeedModifierInput,
+    JumpPower,
+    Gauge
 }
 
 public class PlayerStat : MonoBehaviour
 {
-    [field: SerializeField] public int Attack {  get; set; }
+    [field: SerializeField] public int Attack { get; set; }
     [SerializeField] private float maxHealth;
     [field: SerializeField] public float CurrentHealth { get; set; }
     [field: SerializeField] public float MoveSpeed;
@@ -30,21 +33,57 @@ public class PlayerStat : MonoBehaviour
 
     private void Awake()
     {
-        InitStats();
+        InitStats(CharacterManager.Instance.playerData);
     }
 
-    public void InitStats()
+    public void InitStats(PlayerData data)
     {
+
         CharacterManager.Instance.PlayerStat = this;
-
         maxHealth = 5;
-        CurrentHealth = 5;
+        if (data == null)
+        {
+            data = new PlayerData();
+            CurrentHealth = 5;
+            data.hp = CurrentHealth;
+        }
+        else
+        {
+            CurrentHealth = data.hp;
+        }
 
-        stats.Add(StatType.Attack, Attack); 
+
+        stats.Add(StatType.Attack, Attack);
+        stats.Add(StatType.MaxHealth, maxHealth);
         stats.Add(StatType.Health, CurrentHealth);
         stats.Add(StatType.MoveSpeed, MoveSpeed);
         stats.Add(StatType.SpeedModifier, SpeedModifier);
+        stats.Add(StatType.SpeedModifierInput, SpeedModifierInput);
         stats.Add(StatType.JumpPower, JumpPower);
+        stats.Add(StatType.Gauge, Gauge);
+    }
+
+    public void ReInitStats(float b)
+    {
+        CharacterManager.Instance.PlayerStat = this;
+
+        CurrentHealth = b;
+
+        stats.Add(StatType.Attack, Attack);
+        stats.Add(StatType.MaxHealth, maxHealth);
+        stats.Add(StatType.Health, CurrentHealth);
+        stats.Add(StatType.MoveSpeed, MoveSpeed);
+        stats.Add(StatType.SpeedModifier, SpeedModifier);
+        stats.Add(StatType.SpeedModifierInput, SpeedModifierInput);
+        stats.Add(StatType.JumpPower, JumpPower);
+        stats.Add(StatType.Gauge, Gauge);
+    }
+
+    public float SetHealth(float b)
+    {
+        b = CurrentHealth;
+
+        return b;
     }
 
     public float GetStat(StatType statType)
@@ -60,12 +99,40 @@ public class PlayerStat : MonoBehaviour
         Debug.Log($"바뀐 체력: {CurrentHealth}");
 
         if (CurrentHealth <= 0)
+        {
+            SaveData saveData = CharacterManager.Instance.saveData;
+            if (saveData == null)
+            {
+                if (CharacterManager.Instance.playerData != null)
+                {
+                    CharacterManager.Instance.playerData.hp = 5;
+                }
+                SceneLoadManager.Instance.LoadScene(SceneKey.stage1Scene);
+            }
+            else
+            {
+                if (CharacterManager.Instance.playerData != null)
+                {
+                    CharacterManager.Instance.playerData.hp = saveData.hp;
+                }
+                else
+                {
+                    CharacterManager.Instance.playerData = new PlayerData();
+                    CharacterManager.Instance.playerData.hp = saveData.hp;
+                }
+                SceneLoadManager.Instance.LoadScene(saveData.sceneKey);
+            }
             CurrentHealth = 0;
+        }
     }
 
-    // 플레이어 체크 포인트 저장 (작성자:이영신)
+    public Dictionary<StatType, float> GetPlayerStat()
+    {
+        return stats;
+    }
     public void SetCheckPoint()
     {
+        TakeDamage();
         transform.position = playerCheckPoint;
     }
 }
