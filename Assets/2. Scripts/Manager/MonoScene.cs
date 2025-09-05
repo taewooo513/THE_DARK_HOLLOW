@@ -9,6 +9,7 @@ public abstract class MonoScene
     public abstract AsyncOperationHandle LoadPrefabs();
     public abstract AsyncOperationHandle LoadSounds();
 
+    public abstract void OnPadeOut();
     public abstract void Init();
 
     public abstract void Release();
