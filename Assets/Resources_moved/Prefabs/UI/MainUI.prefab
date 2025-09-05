@@ -10215,8 +10215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropdown: {fileID: 7918497209095574536}
-  actionRef: {fileID: 8153007584207950725, guid: 01fa45de45754c9498026ee7d705c8cb, type: 3}
-  bindingIndex: 1
+  actionRef: {fileID: 1145244049335201328, guid: 01fa45de45754c9498026ee7d705c8cb, type: 3}
+  bindingIndex: 0
   playerPrefsKey: InputRebinds
 --- !u!1 &6709409837242961437
 GameObject:
