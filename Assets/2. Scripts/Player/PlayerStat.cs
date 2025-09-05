@@ -54,7 +54,6 @@ public class PlayerStat : MonoBehaviour
         }
         Attack = 5;
         SpecialAttack = Attack * 2;
-        CurrentHealth = 5;
         MoveSpeed = 2;
         JumpPower = 6;
 
