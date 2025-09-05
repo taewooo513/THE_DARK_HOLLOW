@@ -8472,9 +8472,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 59dcf994748792b4db3fe12697d5fbcc, type: 2}
-  masterSlider: {fileID: 0}
-  bgmSlider: {fileID: 0}
-  seSlider: {fileID: 0}
+  masterSlider: {fileID: 2642911175849194629}
+  bgmSlider: {fileID: 1607890451619586665}
+  seSlider: {fileID: 9038193607226631919}
 --- !u!82 &2215128194890225761
 AudioSource:
   m_ObjectHideFlags: 0
