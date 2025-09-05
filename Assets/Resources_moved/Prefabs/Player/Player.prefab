@@ -470,7 +470,7 @@ MonoBehaviour:
   <IsClimbable>k__BackingField: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   <PlayerStat>k__BackingField: {fileID: 0}
   <IsHit>k__BackingField: 0
   SpriteRenderer: {fileID: 0}
