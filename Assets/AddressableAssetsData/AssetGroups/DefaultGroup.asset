@@ -159,14 +159,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Boss
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0146b5a9564e0e74c8bc40abe36c39c8
-    m_Address: Assets/Resources_moved/Prefabs/UI/BossDeadWatcher.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Stage1
-    - Boss
-    - StartScene
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1c1ef08039e13e44bf272e3507930f7
     m_Address: Assets/Resources_moved/Prefabs/UI/StartSceneAfterClear.prefab
     m_ReadOnly: 0

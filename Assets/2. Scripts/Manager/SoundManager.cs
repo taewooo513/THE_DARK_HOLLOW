@@ -5,9 +5,13 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class SoundManager : Singleton<SoundManager>
 {
+    public AudioMixerGroup bgmGroup; // 인스펙터에서 StartAudioMixer/BGM 연결
+    public AudioMixerGroup seGroup;  // 인스펙터에서 StartAudioMixer/SE 연결
+
     private Dictionary<string, AudioClip> sounds;
 
     private AudioSource bgmAudio;
@@ -20,8 +24,17 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (transform.TryGetComponent(out AudioSource source))
         {
-            bgmAudio = GetComponents<AudioSource>()[0];
-            efxAudio = GetComponents<AudioSource>()[1];
+            var sources = GetComponents<AudioSource>();
+            if (sources.Length < 2)
+            {
+                bgmAudio = gameObject.AddComponent<AudioSource>();
+                efxAudio = gameObject.AddComponent<AudioSource>();
+            }
+            else
+            {
+                bgmAudio = sources[0];
+                efxAudio = sources[1];
+            }
         }
         else
         {
@@ -30,6 +43,10 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         bgmAudio.loop = true;
+
+        if (bgmGroup != null) bgmAudio.outputAudioMixerGroup = bgmGroup;
+        if (seGroup != null) efxAudio.outputAudioMixerGroup = seGroup;
+
         sounds = new Dictionary<string, AudioClip>();
 
     }
