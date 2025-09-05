@@ -104,6 +104,11 @@ public class PlayerStat : MonoBehaviour
         CurrentHealth -= 1;
         Debug.Log($"¹Ù²ï Ã¼·Â: {CurrentHealth}");
 
+        if(CurrentHealth == 1)
+        {
+            SoundManager.instance.PlayEFXSound(Constants.SFX.PLAYER_HPLOW);
+        }
+
         if (CurrentHealth <= 0)
         {
             SaveData saveData = CharacterManager.Instance.saveData;
