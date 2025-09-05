@@ -99,7 +99,31 @@ public class PlayerStat : MonoBehaviour
         Debug.Log($"¹Ù²ï Ã¼·Â: {CurrentHealth}");
 
         if (CurrentHealth <= 0)
+        {
+            SaveData saveData = CharacterManager.Instance.saveData;
+            if (saveData == null)
+            {
+                if (CharacterManager.Instance.playerData != null)
+                {
+                    CharacterManager.Instance.playerData.hp = 5;
+                }
+                SceneLoadManager.Instance.LoadScene(SceneKey.stage1Scene);
+            }
+            else
+            {
+                if (CharacterManager.Instance.playerData != null)
+                {
+                    CharacterManager.Instance.playerData.hp = saveData.hp;
+                }
+                else
+                {
+                    CharacterManager.Instance.playerData = new PlayerData();
+                    CharacterManager.Instance.playerData.hp = saveData.hp;
+                }
+                SceneLoadManager.Instance.LoadScene(saveData.sceneKey);
+            }
             CurrentHealth = 0;
+        }
     }
 
     public Dictionary<StatType, float> GetPlayerStat()

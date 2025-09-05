@@ -16,9 +16,9 @@ public static class SceneKey
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
     Dictionary<string, MonoScene> scenes;
-
     MonoScene nowScene;
     Coroutine asyncLoadScene;
+    public string nowSceneKey;
     private GameObject fadeObject;
     protected override void Awake()
     {
@@ -48,6 +48,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         {
             bool isStage = key.Contains("Stage"); // 시간상 생각없이 제작한코드
             asyncLoadScene = StartCoroutine(AsyncLoadScene(key, isStage));
+            nowSceneKey = key;
             return;
         }
         Debug.Log($"Not Find {key} in Objects");
