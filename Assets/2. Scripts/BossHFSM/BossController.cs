@@ -65,13 +65,6 @@ public class BossController : MonoBehaviour
         animator = GetComponent<Animator>();
         stat = GetComponent<BossStat>();
         spriteRenderer= GetComponent<SpriteRenderer>();
-
-        // Player 태그 자동 할당
-        if (!player)
-        {
-            var go = GameObject.FindGameObjectWithTag("Player");
-            if (go) player = go.transform;
-        }
         fsm = new BossStateMachine();
 
         // =================상태 인스턴스(새로운 상태가 추가되면 여기에 추가)=================
@@ -86,7 +79,14 @@ public class BossController : MonoBehaviour
 
     void Start()
     {
+
         if (CharacterManager.instance) CharacterManager.instance.Boss = GetComponent<Boss>();
+        // Player 태그 자동 할당
+        if (!player)
+        {
+            var go = GameObject.FindGameObjectWithTag("Player");
+            if (go) player = go.transform;
+        }
         fsm.Change(idle);
         hp01 = stat.hp01;
 

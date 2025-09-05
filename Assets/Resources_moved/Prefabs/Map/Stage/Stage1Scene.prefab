@@ -6786,6 +6786,7 @@ Transform:
   - {fileID: 5397484656480836192}
   - {fileID: 4202781366574178654}
   - {fileID: 5597055890207274243}
+  - {fileID: 5863372973240987809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7061731269915278523
@@ -7702,7 +7703,7 @@ Transform:
   m_GameObject: {fileID: 8194744444673065038}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3679868, y: -3.627902, z: -9.937966}
+  m_LocalPosition: {x: -29.48, y: 0.28200006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7745,7 +7746,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 5.1017885
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
