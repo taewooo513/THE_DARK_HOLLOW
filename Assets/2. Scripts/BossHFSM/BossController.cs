@@ -115,7 +115,7 @@ public class BossController : MonoBehaviour
             return;
         }
 
-        if (!secondPhase && stat.hp01 <= 50)//!secondPhase && hp01 <= Mathf.CeilToInt(stat.hp01 * 0.5f)
+        if (!secondPhase && hp01 <= Mathf.CeilToInt(stat.hp01 * 0.5f))
         {
             StartCoroutine(EnterSecondPhaseRoutine());
         }
