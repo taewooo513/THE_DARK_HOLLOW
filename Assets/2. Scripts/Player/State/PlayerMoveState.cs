@@ -10,6 +10,8 @@ public class PlayerMoveState : BaseState
         Debug.Log("Hello from the Move State");
         this.playerController = stateMachine.PlayerController;
 
+        playerController.Rigid.gravityScale = 1.0f;
+
         // 이전 상태 저장 
         stateMachine.SetPreState(stateMachine);
 

@@ -15,6 +15,8 @@ public class PlayerAttackState : BaseState
         Debug.Log("Hello From The Attack State");
         this.playerController = stateMachine.PlayerController;
 
+        playerController.Rigid.gravityScale = 1.0f;
+
         // 공격 사운드
         SoundManager.Instance.PlayEFXSound(Constants.SFX.PLAYER_ATTACK);
 

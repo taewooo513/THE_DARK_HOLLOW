@@ -12,6 +12,8 @@ public class PlayerSpecialAttackState : BaseState
         Debug.Log("Hello From The Special Attack State");
         this.playerController = stateMachine.PlayerController;
 
+        playerController.Rigid.gravityScale = 1.0f;
+
         SoundManager.Instance.PlayEFXSound(Constants.SFX.PLAYER_SPECIALATTACK);
 
         // 게이지가 충분한지 검사 
