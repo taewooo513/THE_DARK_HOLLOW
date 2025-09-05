@@ -26,7 +26,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         scenes = new Dictionary<string, MonoScene>();
         AddScene(SceneKey.stage1Scene, new Stage1Scene());
         AddScene(SceneKey.stage2Scene, new Stage2Scene());
-        AddScene(SceneKey.bossScene, new BossStage());
+        AddScene(SceneKey.bossScene, new BossScene());
         AddScene(SceneKey.startScene, new StartScene());
     }
 
