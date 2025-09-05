@@ -21,7 +21,17 @@
 - <img width="1590" height="868" alt="image" src="https://github.com/user-attachments/assets/d46abab3-b1c6-4ecc-9de2-ce83c96a4584" />
 
 ## 🧩 게임 주요 기능
-
+- 기본 조작키
+    | 입력 키 | 동작 |
+    | --- | --- |
+    | `우측 방향키` | 우측 이동 |
+    | `좌측 방향키` | 좌측 이동 |
+    | `X` | 기본 공격 |
+    | `Z` | 점프 |
+    | `SPACE BAR` | 특수 공격 |
+    | `SHIFT + 이동 방향키` | 달리기  |
+    | `위 방향키` | 상호작용(사다리 타기) |
+  
 ### 1) 플레이어
 - 플레이어 스킬공격 (x키)
 - <img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/9893ddd8-7b0a-4899-a3f5-afcfcbb0045f" />
